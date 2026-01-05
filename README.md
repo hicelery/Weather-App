@@ -41,7 +41,3 @@ Example of gitflow:
 https://unsplash.com/ - For hero image assets
 
 No other external code was used in this project.
-
-## TEST SECTION FOR PUSHING/PULLING
-
-Adding more info to try and merge with DEV branch instead of main
