@@ -36,6 +36,8 @@ Example of gitflow:
 
 ## Use of AI in development and project retrospective.
 
+Ai used to create initial boilerplate from wireframe, streamlining bootstrap structuring. Due to fairly complex wireframe, this did have superfluous css classes that needed removed.
+
 ## Use of external resources
 
 https://unsplash.com/ - For hero image assets
