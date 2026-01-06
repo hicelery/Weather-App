@@ -167,7 +167,13 @@
                 <div class="col-12">
                     <h2 class="h5">Favourite locations</h2>
                 </div>
-                <!-- Location as cards for md and larger screens -->
+                <!-- separate button for small screens-->
+                <div class="d-block d-md-none">
+                    <button class="add-new-card">
+                        <img src="" alt="Add new favourite" class="add-icon" /><!-- or span/ icon from font awesome -->
+                    </button>
+                </div>
+                <!-- Saved location cards -->
                 <div class="d-none d-md-block">
                     <div class="card col mb-3">
                         <div class="weather-card">
@@ -200,66 +206,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Location as carousel for smaller screens -->
-                <div class="d-block d-md-none">
-                    <div>
-                        <button class="add-new-card">
-                            <img src="" alt="Add new favourite"
-                                class="add-icon" /><!-- or span/ icon from font awesome -->
-                        </button>
-                    </div>
-                    <!--Carousel-->
-                    <div id="favouritescarousel" class="carousel slide carousel-fade " data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <!--Weather Card-->
-                                <div class="card col mb-3">
-                                    <div class="weather-card">
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <div class="fw-semibold">{Location}</div>
-                                                <div class="small text-muted">Weather</div>
-                                            </div>
-                                            <div class="text-end">
-                                                <div class="fw-semibold">28°C</div>
-                                                <div class="small text-muted">Sample data</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <!--Weather Card-->
-                                <div class="card col mb-3">
-                                    <div class="weather-card">
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <div class="fw-semibold">Location2</div>
-                                                <div class="small text-muted">Weather2</div>
-                                            </div>
-                                            <div class="text-end">
-                                                <div class="fw-semibold">8°C</div>
-                                                <div class="small text-muted">Sample data</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#favouritescarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#favouritescarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </main>
