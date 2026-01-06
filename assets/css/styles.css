@@ -11,6 +11,9 @@ body {
 /*Hero Section*/
 #hero h1 {
     color: #fdd90d;
+    text-align: center;
+    padding-top: 20%;
+    font-size: 4rem;
 }
 
 /*moving bootstrap default card-body style into custonm class for weather cards and js interactivity*/
