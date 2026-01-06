@@ -26,7 +26,6 @@ body {
     font-size: 4rem;
     font-family: "Radley", serif;
 }
-
 /*moving bootstrap default card-body style into custonm class for weather cards and js interactivity*/
 .weather-card {
     flex: 1 1 auto;
