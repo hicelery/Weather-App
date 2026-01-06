@@ -19,7 +19,7 @@ A project plan and outline:
 
 User story: As a First‑Time Visitor, I want a concise, clear, layout with consistent and familiar styling, so I can find weather information quickly and efficiently,
 
-User story: As a Visitor looking for information, I need easy navigation and a user‑friendly design, including a responsive layout for my device, so I can access information on mobile.
+User story: As a Regular User, I would like customisability, and the ability to save my favourite locations, so I can personalise my experience.
 
 User story: As a Regular User, I would like customisability, and the ability to save my favourite locations, so I can personalise my experience.
 
