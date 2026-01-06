@@ -2,14 +2,18 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #87ceeb 0%, #ffe29f 50%, #ffa99f 100%);
     padding-top: 50px;
+    /* Adjust padding to prevent content from being hidden behind navbar */
 }
-
 .search-input {
     max-width: 420px;
 }
 
+/*moving bootstrap default card-body style into custonm class for weather cards and js interactivity*/
 .weather-card {
-    border-radius: 0.75rem;
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: var(--bs-card-color);
+    border-radius: 0 !important;
 }
 
 .weather-card-today {
