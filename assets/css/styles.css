@@ -7,7 +7,20 @@ body {
 .search-input {
     max-width: 420px;
 }
+/* Searchbar styling */
 
+#location-form .search-input{
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+    border: black 2px solid;
+}
+
+#location-form .btn {
+    border-radius: 0px;
+    background-color: #f6ffa5;
+    color: #000000;
+    border: black 2px solid;
+}
 /*moving bootstrap default card-body style into custonm class for weather cards and js interactivity*/
 .weather-card {
     flex: 1 1 auto;
