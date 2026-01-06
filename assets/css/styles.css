@@ -8,6 +8,11 @@ body {
     max-width: 420px;
 }
 
+/*Hero Section*/
+#hero h1 {
+    color: #fdd90d;
+}
+
 /*moving bootstrap default card-body style into custonm class for weather cards and js interactivity*/
 .weather-card {
     flex: 1 1 auto;
