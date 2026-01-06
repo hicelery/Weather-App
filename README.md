@@ -21,8 +21,6 @@ User story: As a First‑Time Visitor, I want a concise, clear, layout with cons
 
 User story: As a Regular User, I would like customisability, and the ability to save my favourite locations, so I can personalise my experience.
 
-User story: As a Regular User, I would like customisability, and the ability to save my favourite locations, so I can personalise my experience.
-
 User story: As a Site Owner, I want the site to follow accessibility best practices and responsive design, so everyone can access information.
 
 User story: As a Site Owner, I want the site to follow development best practices, so it is secure and easy to maintain to minimize downtime.
