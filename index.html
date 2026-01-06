@@ -65,6 +65,7 @@
                 aria-label="Location" />
             <button type="submit" class="btn btn-primary px-4">Search</button>
         </form>
+        <p id="error-message" class="d-none">Please enter a location</p>
     </section>
 
     <div class="row">
@@ -91,13 +92,11 @@
             <!-- Today card -->
             <div class="card weather-card weather-card-today mb-3">
                 <div class="weather-card">
-                    <div class="weather-card">
-                        <div class="row align-items-center">
-                            <div class="col-md-4 mb-3 mb-md-0">
-                                <div class="text-center text-md-start">
-                                    <div class="temp-display">{Temp}</div>
-                                    <div class="text-muted small">(Feels like)</div>
-                                </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-4 mb-3 mb-md-0">
+                            <div class="text-center text-md-start">
+                                <div class="temp-display">{Temp}</div>
+                                <div id="feels-like" class="text-muted small">(Feels like)</div>
                             </div>
                             <div class="col-md-4 mb-3 mb-md-0">
                                 <div class="text-center text-md-start">
