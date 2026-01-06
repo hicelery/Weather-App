@@ -104,104 +104,162 @@
                         </div>
                     </div>
 
-                    <!-- Future days -->
-                    <!-- All set to one row, adjust min width in CSS to control wrapping -->
-                    <div class="row">
-                        <div class="col">
-                            <div class="card weather-card">
-                                <div class="day">{Day} - {Date}</div>
-                                <img src="" alt="Weather Icon" class="weather-icon" />
-                                <div class="temp-display">{Temp} (Feels like)</div>
-                                <div class="weather-type">{Weather}</div>
-                                <div class="rain-chance text-muted small">(Chance of rain)%</div>
-                                <div class="wind-speed">Wind</div>
-                                <!-- Example placeholder for wind speed to be added by queries-->
-                            </div>
-                        </div>
+    <!-- Search section -->
+    <section id='searchbar' class="mb-4">
+        <p class="fst-italic mb-2">Enter a location to view weather forecast</p>
+        <form id="location-form" class="d-flex flex-column flex-sm-row gap-2">
+            <input type="text" id="user-input" class="form-control search-input" placeholder="e.g. London, UK"
+                aria-label="Location" />
+            <button type="submit" class="btn btn-primary px-4">Search</button>
+        </form>
+        <p id="error-message" class="d-none">Please enter a location</p>
+    </section>
 
-                        <div class="col">
-                            <div class="card weather-card">
-                                <div class="day">{Day} - {Date}</div>
-                                <img src="" alt="Weather Icon" class="weather-icon" />
-                                <div class="temp-display">{Temp} (Feels like)</div>
-                                <div class="weather-type">{Weather}</div>
-                                <div class="rain-chance text-muted small">(Chance of rain)%</div>
-                                <div class="wind-speed">Wind</div>
+    <div class="row">
+        <!-- Forecast options column-->
+        <div class="col-lg-3 ">
+            <h2 class="h5">Forecast Options</h2>
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active"
+                    aria-current="true">Temperature
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">Wind</button>
+                <button type="button" class="list-group-item list-group-item-action">Precipitation</button>
+            </div>
+        </div>
+        <!-- Main forecast column -->
+        <div class="col-lg-9">
+            <!-- Current location heading -->
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h2 class="h5">Today</h2>
+                <span class="text-muted small">
+                    Current location: <strong>LOCATION</strong>
+                </span>
+            </div>
+            <!-- Today card -->
+            <div class="card weather-card weather-card-today mb-3">
+                <div class="weather-card">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 mb-3 mb-md-0">
+                            <div class="text-center text-md-start">
+                                <div class="temp-display">{Temp}</div>
+                                <div id="feels-like" class="text-muted small">(Feels like)</div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="card weather-card">
-                                <div class="day">{Day} - {Date}</div>
-                                <img src="" alt="Weather Icon" class="weather-icon" />
-                                <div class="temp-display">{Temp} (Feels like)</div>
-                                <div class="weather-type">{Weather}</div>
-                                <div class="rain-chance text-muted small">(Chance of rain)%</div>
-                                <div class="wind-speed">Wind</div>
+                            <div class="col-md-4 mb-3 mb-md-0">
+                                <div class="text-center text-md-start">
+                                    <div class="weather-type">{Weather}</div>
+                                    <div class="rain-chance text-muted small">(Chance of rain)</div>
+                                    <div class="weather-type">{Weather}</div>
+                                    <div class="rain-chance text-muted small">(Chance of rain)</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="card weather-card">
-                                <div class="day">{Day} - {Date}</div>
-                                <img src="" alt="Weather Icon" class="weather-icon" />
-                                <div class="temp-display">{Temp} (Feels like)</div>
-                                <div class="weather-type">{Weather}</div>
-                                <div class="rain-chance text-muted small">(Chance of rain)%</div>
-                                <div class="wind-speed">Wind</div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card weather-card">
-                                <div class="day">{Day} - {Date}</div>
-                                <img src="" alt="Weather Icon" class="weather-icon" />
-                                <div class="temp-display">{Temp} (Feels like)</div>
-                                <div class="weather-type">{Weather}</div>
-                                <div class="rain-chance text-muted small">(Chance of rain)%</div>
-                                <div class="wind-speed">Wind</div>
+                            <div class="col-md-4">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <span class="text-muted small">Weather icon / visual placeholder</span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Future days -->
+                <!-- All set to one row, adjust min width in CSS to control wrapping -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card weather-card">
+                            <div class="day">{Day} - {Date}</div>
+                            <img src="" alt="Weather Icon" class="weather-icon" />
+                            <div class="temp-display">{Temp} (Feels like)</div>
+                            <div class="weather-type">{Weather}</div>
+                            <div class="rain-chance text-muted small">(Chance of rain)%</div>
+                            <div class="wind-speed">Wind</div>
+                            <!-- Example placeholder for wind speed to be added by queries-->
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card weather-card">
+                            <div class="day">{Day} - {Date}</div>
+                            <img src="" alt="Weather Icon" class="weather-icon" />
+                            <div class="temp-display">{Temp} (Feels like)</div>
+                            <div class="weather-type">{Weather}</div>
+                            <div class="rain-chance text-muted small">(Chance of rain)%</div>
+                            <div class="wind-speed">Wind</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card weather-card">
+                            <div class="day">{Day} - {Date}</div>
+                            <img src="" alt="Weather Icon" class="weather-icon" />
+                            <div class="temp-display">{Temp} (Feels like)</div>
+                            <div class="weather-type">{Weather}</div>
+                            <div class="rain-chance text-muted small">(Chance of rain)%</div>
+                            <div class="wind-speed">Wind</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card weather-card">
+                            <div class="day">{Day} - {Date}</div>
+                            <img src="" alt="Weather Icon" class="weather-icon" />
+                            <div class="temp-display">{Temp} (Feels like)</div>
+                            <div class="weather-type">{Weather}</div>
+                            <div class="rain-chance text-muted small">(Chance of rain)%</div>
+                            <div class="wind-speed">Wind</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card weather-card">
+                            <div class="day">{Day} - {Date}</div>
+                            <img src="" alt="Weather Icon" class="weather-icon" />
+                            <div class="temp-display">{Temp} (Feels like)</div>
+                            <div class="weather-type">{Weather}</div>
+                            <div class="rain-chance text-muted small">(Chance of rain)%</div>
+                            <div class="wind-speed">Wind</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <!-- Favourites area -->
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="h5">Favourite locations</h2>
-                </div>
-                <!-- separate button for small screens-->
-                <div class="d-block d-md-none">
-                    <button class="add-new-card">
-                        <img src="" alt="Add new favourite" class="add-icon" /><!-- or span/ icon from font awesome -->
-                    </button>
-                </div>
-                <!-- Saved location cards -->
-                <div class="d-none d-md-block">
-                    <div class="card col mb-3">
-                        <div class="weather-card">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <div class="fw-semibold">{Location}</div>
-                                    <div class="small text-muted">Weather</div>
-                                </div>
-                                <div class="text-end">
-                                    <div class="fw-semibold">28°C</div>
-                                    <div class="small text-muted">Sample data</div>
-                                </div>
+        </div>
+        <!-- Favourites area -->
+        <div class="row">
+            <div class="col-12">
+                <h2 class="h5">Favourite locations</h2>
+            </div>
+            <!-- separate button for small screens-->
+            <div class="d-block d-md-none">
+                <button class="add-new-card">
+                    <img src="" alt="Add new favourite" class="add-icon" /><!-- or span/ icon from font awesome -->
+                </button>
+            </div>
+            <!-- Saved location cards -->
+            <div class="d-none d-md-block">
+                <div class="card col mb-3">
+                    <div class="weather-card">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="fw-semibold">{Location}</div>
+                                <div class="small text-muted">Weather</div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-semibold">28°C</div>
+                                <div class="small text-muted">Sample data</div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Placeholder for additional favourites -->
-                    <div class="card col mb-3">
-                        <div class="weather-card">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <div class="fw-semibold">Add Card
-                                    </div>
-                                    <button class="add-new-card">
-                                        <img src="" alt="Add new favourite"
-                                            class="add-icon" /><!-- or span/ icon from font awesome -->
-                                    </button>
+                <!-- Placeholder for additional favourites -->
+                <div class="card col mb-3">
+                    <div class="weather-card">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="fw-semibold">Add Card
                                 </div>
+                                <button class="add-new-card">
+                                    <img src="" alt="Add new favourite"
+                                        class="add-icon" /><!-- or span/ icon from font awesome -->
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -215,6 +273,7 @@
             Bring Me Sunshine! All rights reserved © 2026
         </p>
     </footer>
+
 
 
     <script src="assets/js/script.js"></script>
