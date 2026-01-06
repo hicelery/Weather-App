@@ -64,6 +64,7 @@
             <input type="text" id="user-input" class="form-control search-input" placeholder="e.g. London, UK" aria-label="Location" />
             <button type="submit" class="btn px-4">Search</button>
         </form>
+        <p id="error-message" class="d-none">Please enter a location</p>
     </section>
 
     <div class="row">
@@ -94,7 +95,7 @@
                         <div class="col-md-4 mb-3 mb-md-0">
                             <div class="text-center text-md-start">
                                 <div class="temp-display">{Temp}</div>
-                                <div class="text-muted small">(Feels like)</div>
+                                <div id="feels-like" class="text-muted small">(Feels like)</div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3 mb-md-0">
