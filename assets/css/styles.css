@@ -12,6 +12,12 @@ body {
 }
 /* Searchbar styling */
 
+#location-form .search-input{
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+    border: black 2px solid;
+}
+
 /*Hero Section*/
 #hero h1 {
     color: #fdd90d;

@@ -36,26 +36,73 @@
             </div>
         </div>
     </nav>
+    <main>
+        <div class="container-fluid py-4">
+            <header>
+                <!-- hero section -->
+                <section id="branding" class="hero">
+                    <div id="brandingContent">
+                        <h1>Bring me sunshine</h1>
+                    </div>
+                </section>
+            </header>
 
-    <!-- hero section -->
 
-    <header id="hero" class="position-relative">
-        <div class="bg-image"
-            style="background-image: url('assets/images/Sunny_BG_1.jpg'); background-size: cover; background-position: center;">
-            <div class="bg-dark bg-opacity-50">
-                <div class="container py-5" style="min-height: 60vh;">
-                    <div class="row align-items-center">
-                        <div class="col-lg-8">
-                            <h1 class="logo-text display-4 fw-bold">Bring me sunshine</h1>
-                        </div>
+            <!-- Search section -->
+            <section class="mb-4">
+                <p class="mb-2">Enter a location to view weather forecast</p>
+                <form class="d-flex flex-column flex-sm-row gap-2">
+                    <input type="text" class="form-control search-input" placeholder="e.g. London, UK"
+                        aria-label="Location" />
+                    <button type="submit" class="btn btn-primary px-4">Search</button>
+                </form>
+            </section>
+
+            <div class="row">
+                <!-- Forecast options column-->
+                <div class="col-lg-3 ">
+                    <h2 class="h5">Forecast Options</h2>
+                    <div class="list-group">
+                        <button type="button" class="list-group-item list-group-item-action active"
+                            aria-current="true">Temperature
+                        </button>
+                        <button type="button" class="list-group-item list-group-item-action">Wind</button>
+                        <button type="button" class="list-group-item list-group-item-action">Precipitation</button>
                     </div>
                 </div>
-            </div>
-        </div>
-
-    </header>
-
-
+                <!-- Main forecast column -->
+                <div class="col-lg-9">
+                    <!-- Current location heading -->
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h2 class="h5">Today</h2>
+                        <span class="text-muted small">
+                            Current location: <strong>LOCATION</strong>
+                        </span>
+                    </div>
+                    <!-- Today card -->
+                    <div class="card weather-card weather-card-today mb-3">
+                        <div class="weather-card">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <div class="text-center text-md-start">
+                                        <div class="temp-display">{Temp}</div>
+                                        <div class="text-muted small">(Feels like)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <div class="text-center text-md-start">
+                                        <div class="weather-type">{Weather}</div>
+                                        <div class="rain-chance text-muted small">(Chance of rain)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <span class="text-muted small">Weather icon / visual placeholder</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
     <!-- Search section -->
     <section id='searchbar' class="mb-4">
@@ -219,8 +266,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
     </main>
     <!-- Footer -->
     <footer>
