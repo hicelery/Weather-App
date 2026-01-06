@@ -9,12 +9,23 @@ A project plan and outline:
 -   Project workflow and repo setup
 -   Creation of user stories
 -   Wireframe skeleton and high priority features
+-   Create kanban board of development issues
 -   development, smoke testing, deployment
 -   in situe testing, performance and improvements
 
 ## Project Goals
 
 ## User Stories
+
+User story: As a First‑Time Visitor, I want a concise, clear, layout with consistent and familiar styling, so I can find weather information quickly and efficiently,
+
+User story: As a Visitor looking for information, I need easy navigation and a user‑friendly design, including a responsive layout for my device, so I can access information on mobile.
+
+User story: As a Regular User, I would like customisability, and the ability to save my favourite locations, so I can personalise my experience.
+
+User story: As a Site Owner, I want the site to follow accessibility best practices and responsive design, so everyone can access information.
+
+User story: As a Site Owner, I want the site to follow development best practices, so it is secure and easy to maintain to minimize downtime.
 
 ## Solution Design Details
 
