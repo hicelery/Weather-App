@@ -1,15 +1,51 @@
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Radley:ital@0;1&display=swap");
+
 body {
     min-height: 100vh;
     background: linear-gradient(135deg, #87ceeb 0%, #ffe29f 50%, #ffa99f 100%);
     padding-top: 50px;
+    /* Adjust padding to prevent content from being hidden behind navbar */
 }
-
 .search-input {
     max-width: 420px;
 }
+/* Searchbar styling */
 
+#location-form .search-input{
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+    border: black 2px solid;
+}
+
+/*Hero Section*/
+#hero h1 {
+    color: #fdd90d;
+    text-align: center;
+    padding-top: 20%;
+    font-size: 4rem;
+    font-family: "Radley", serif;
+}
+
+#location-form .search-input {
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+    border: black 2px solid;
+}
+
+#location-form .btn {
+    border-radius: 0px;
+    background-color: #f6ffa5;
+    color: #000000;
+    border: black 2px solid;
+}
+/*moving bootstrap default card-body style into custonm class for weather cards and js interactivity*/
 .weather-card {
-    border-radius: 0.75rem;
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: var(--bs-card-color);
+    border-radius: 0 !important;
+    min-width: 150px;
 }
 
 .weather-card-today {
