@@ -1,3 +1,6 @@
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Radley:ital@0;1&display=swap");
+
 body {
     min-height: 100vh;
     background: linear-gradient(135deg, #87ceeb 0%, #ffe29f 50%, #ffa99f 100%);
@@ -14,6 +17,7 @@ body {
     text-align: center;
     padding-top: 20%;
     font-size: 4rem;
+    font-family: "Radley", serif;
 }
 
 /*moving bootstrap default card-body style into custonm class for weather cards and js interactivity*/
