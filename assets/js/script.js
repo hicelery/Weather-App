@@ -1,7 +1,7 @@
 /* API Call to Fetch Data From OpenWeatherMap */
 
 let weatherLocation = 'London';
-const apiKey = '81feab47f2b2b44f10ee9f0f9a026041';
+const apiKey = '';
 
 const endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=${weatherLocation}&appid=${apiKey}&units=metric`;
 
