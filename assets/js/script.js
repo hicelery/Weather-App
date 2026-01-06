@@ -1,9 +1,8 @@
-/* API Call to Fetch Data From OpenWeatherMap */
-
- // Global variable with default location
+// Global variable with default location
 const apiKey = "81feab47f2b2b44f10ee9f0f9a026041";
  let weatherLocation = "New York, US";
 
+ /* API Call to Fetch Data From OpenWeatherMap */
  function callWeatherAPI(weatherLocation) {
   console.log("Fetching weather data for", weatherLocation);
   const endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=${weatherLocation}&appid=${apiKey}&units=metric`;
