@@ -84,8 +84,8 @@
                                         id="precipitationradio" name="fav_language" value="precipitation" checked>
                                     <label for="precipitationradio">Precipitation</label><br></button>
 
-                                <input type="number" id="forecastDays" placeholder="Number of days"
-                                    class="list-group-item" min="1" max="7" value="5" />
+                                <input type="number" id="forecastDays" placeholder="Number of days:"
+                                    class="list-group-item" min="1" max="7" />
                                 <button id="applyDataFilters" type="submit"
                                     class="btn list-group-item list-group-item-action active text-center">Apply</button>
 
@@ -127,12 +127,13 @@
 
                             <!-- Future days -->
                             <!-- All set to one row, adjust min width in CSS to control wrapping -->
-                            <div class="row">
-                                <div class="col">
+                            <div id="futureForecast" class="row">
+                                <div class="col forecast-card">
                                     <div class="card weather-card">
                                         <div class="day">{Day} - {Date}</div>
                                         <img src="" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display">{Temp} (Feels like)</div>
+                                        <div class="temp-display">{Temp}</div>
+                                        <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
                                         <div class="rain-chance text-muted small">(Chance of
                                             rain)%</div>
@@ -141,45 +142,49 @@
                                     </div>
                                 </div>
 
-                                <div class="col">
+                                <div class="col forecast-card">
                                     <div class="card weather-card">
-                                        <div class="day">{Day} - {Date}</div>
+                                        <div class="day"></div>
                                         <img src="" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display">{Temp} (Feels like)</div>
+                                        <div class="temp-display"></div>
+                                        <div class="feels-like"></div>
                                         <div class="weather-type">{Weather}</div>
                                         <div class="rain-chance text-muted small">(Chance of
                                             rain)%</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col forecast-card">
                                     <div class="card weather-card">
-                                        <div class="day">{Day} - {Date}</div>
+                                        <div class="day"></div>
                                         <img src="" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display">{Temp} (Feels like)</div>
+                                        <div class="temp-display"> </div>
+                                        <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
                                         <div class="rain-chance text-muted small">(Chance of
                                             rain)%</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col forecast-card">
                                     <div class="card weather-card">
-                                        <div class="day">{Day} - {Date}</div>
+                                        <div class="day"></div>
                                         <img src="" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display">{Temp} (Feels like)</div>
-                                        <div class="weather-type">{Weather}</div>
+                                        <div class="temp-display"> </div>
+                                        <div class="feels-like"></div>
+                                        <div class="weather-type"></div>
                                         <div class="rain-chance text-muted small">(Chance of
                                             rain)%</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col forecast-card">
                                     <div class="card weather-card">
-                                        <div class="day">{Day} - {Date}</div>
+                                        <div class="day"></div>
                                         <img src="" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display">{Temp} (Feels like)</div>
-                                        <div class="weather-type">{Weather}</div>
+                                        <div class="temp-display"></div>
+                                        <div class="feels-like"></div>
+                                        <div class="weather-type"></div>
                                         <div class="rain-chance text-muted small">(Chance of
                                             rain)%</div>
                                         <div class="wind-speed">Wind</div>

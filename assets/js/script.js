@@ -1,12 +1,12 @@
 // Global variable with default location
 const apiKey = "81feab47f2b2b44f10ee9f0f9a026041";
 let weatherLocation = "";
-let cnt = document.getElementById("forecastDays").value; // Number of days to fetch
+let forecastDays = document.getElementById("forecastDays").value; // Number of days to fetch
 
 /* API Call to Fetch Data From OpenWeatherMap */
 function callWeatherAPI(weatherLocation) {
     //console.log("Fetching weather data for", weatherLocation);
-    //const endpoint = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${weatherLocation}&cnt={cnt}&appid=${apiKey}&units=metric`;
+    //const endpoint = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${weatherLocation}&cnt={forecastDays}&appid=${apiKey}&units=metric`;
     // fetch(endpoint)
     // .then(function (response) {
     //   return response.json();
@@ -1522,8 +1522,29 @@ document.getElementById("feels-like").textContent =
     weatherData.list[0].main.feels_like;
 document.getElementById("weather-type").textContent =
     weatherData.list[0].weather[0].main;
-for (let i = 0; i < 5; i++) {
-    let forecast = weatherData.list[i].dt_txt;
+
+forecastDays = 5;
+for (let i = 0; i < forecastDays + 1; i++) {
+    let forecast = weatherData.list[i];
+
+    console.log(i);
+    console.log("query:", document.querySelectorAll(".forecast-card .day")[i]);
+
+    document.querySelectorAll(".forecast-card .day")[i].textContent =
+        forecast.dt_txt;
+    document.querySelectorAll(".forecast-card .temp-display")[i].textContent =
+        forecast.main.temp;
+    document.querySelectorAll(".forecast-card .feels-like")[i].textContent =
+        forecast.main.feels_like;
+    document.querySelectorAll(".forecast-card .weather-type")[i].textContent =
+        forecast.weather[0].main;
+    document.querySelectorAll(".forecast-card .weather-icon")[i].src =
+        "https://openweathermap.org/img/wn/" +
+        forecast.weather[0].icon +
+        "@2x.png";
+    document.querySelectorAll(".forecast-card .wind-speed")[
+        i
+    ].textContent = `${forecast.wind.speed} KPH`;
     console.log(forecast);
 }
 /*for (let futurecard of futurecards) {
