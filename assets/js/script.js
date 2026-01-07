@@ -18,6 +18,7 @@ document
 document
     .getElementById("forecast-options-form")
     .addEventListener("submit", handleFormFilters);
+// Favourite Location Event Listener
 
 //get data on initial load
 updateWeatherDisplay(weatherLocation, forecastDays);
@@ -1626,6 +1627,8 @@ function handleSubmitButtonClick(event) {
     weatherLocation = document.getElementById("user-input").value;
     console.log("User input:", weatherLocation);
     updateWeatherDisplay(weatherLocation, forecastDays);
+    // Makes button to add to favourites visible
+    document.getElementById("add-favourite-btn").classList.remove("d-none");
 }
 
 function handleFormFilters(event) {
@@ -1667,10 +1670,13 @@ function handleFormFilters(event) {
     handleSubmitButtonClick(event);
 }
 
-function addRemoveFavouriteLocation() {
-    /*get location
-    define the parent container
-    if add card clicked
+function addRemoveFavouriteLocation(event) {
+    event.preventDefault();
+    //get location
+   const favouriteLocation = document.getElementById("favourite-location").textContent;
+    //define the parent container
+   const container = document.getElementById("forecast-container");
+   /* if add card clicked
         run addcard function
     if else clicked remove card
         run remove card function
