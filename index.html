@@ -72,23 +72,26 @@
                             <h2 class="h5">Forecast Options</h2>
                             <div class="list-group">
                                 <!-- Radio button to select outputs-->
-                                <button type="button" class="list-group-item list-group-item-action"
-                                    aria-current="true">
-                                    <input type="radio" id="tempradio" name="fav_language" value="Temperature" checked>
-                                    <label for="tempradio">Temperature</label><br>
-                                </button>
-                                <button type="button" class="list-group-item list-group-item-action"><input type="radio"
-                                        id="windradio" name="fav_language" value="wind" checked>
-                                    <label for="windradio">Wind</label><br></button>
-                                <button type="button" class="list-group-item list-group-item-action"><input type="radio"
-                                        id="precipitationradio" name="fav_language" value="precipitation" checked>
-                                    <label for="precipitationradio">Precipitation</label><br></button>
+                                <form id="forecast-options-form" class="d-flex flex-column flex-sm-row gap-2">
+                                    <button type="button" class="list-group-item list-group-item-action"
+                                        aria-current="true">
+                                        <input type="radio" id="tempradio" name="fav_language" value="Temperature"
+                                            checked>
+                                        <label for="tempradio">Temperature</label><br>
+                                    </button>
+                                    <button type="button" class="list-group-item list-group-item-action"><input
+                                            type="radio" id="windradio" name="fav_language" value="wind" checked>
+                                        <label for="windradio">Wind</label><br></button>
+                                    <button type="button" class="list-group-item list-group-item-action"><input
+                                            type="radio" id="precipitationradio" name="fav_language"
+                                            value="precipitation" checked>
+                                        <label for="precipitationradio">Precipitation</label><br></button>
 
-                                <input type="number" id="forecastDays" placeholder="Number of days:"
-                                    class="list-group-item" min="1" max="7" />
-                                <button id="applyDataFilters" type="submit"
-                                    class="btn list-group-item list-group-item-action active text-center">Apply</button>
-
+                                    <input type="number" id="forecastDays" placeholder="Number of days:"
+                                        class="list-group-item" min="1" max="7" value="6" />
+                                    <button id="applyDataFilters" type="submit"
+                                        class="btn list-group-item list-group-item-action active text-center">Apply</button>
+                                </form>
                             </div>
                         </div>
 
@@ -127,10 +130,10 @@
 
                             <!-- Future days -->
                             <!-- All set to one row, adjust min width in CSS to control wrapping -->
-                            <div id="futureForecast" class="row">
+                            <div id="forecast-container" class="row">
                                 <div class="col forecast-card">
                                     <div class="card weather-card">
-                                        <div class="day">{Day} - {Date}</div>
+                                        <div class="day"></div>
                                         <img src="" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display">{Temp}</div>
                                         <div class="feels-like">{Feels Like}</div>
