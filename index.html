@@ -101,9 +101,9 @@
                         <div class="col-lg-9">
                             <!-- Current location heading -->
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h2 class="h5">Today</h2>
+                                <h2 class="h5">Current location: <strong id="current-location">LOCATION</strong></h2>
                                 <span class="text-muted small">
-                                    Current location: <strong id="current-location">LOCATION</strong>
+                                    Today's Date: <strong><span id="current-date">{Date}</span></strong>
                                 </span>
                             </div>
                             <!-- Today card -->
@@ -119,12 +119,12 @@
                                         <div class="col-md-4 mb-3 mb-md-0">
                                             <div class="text-center text-md-start">
                                                 <div id="weather-type" class="weather-type">{Weather}</div>
-                                                <div class="rain-amount text-muted small">(Rain Amount)</div>
+                                                <div id="wind-today" class="text-muted small">Wind</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="d-flex align-items-center justify-content-center">
-                                                <span class="text-muted small">Weather icon / visual placeholder</span>
+                                                <img id="today-image" alt="Weather Icon" class="weather-icon" />
                                             </div>
                                         </div>
                                     </div>
@@ -137,11 +137,11 @@
                                 <div class="col forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="" alt="Weather Icon" class="weather-icon" />
+                                        <img src="null" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display">{Temp}</div>
                                         <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
-                                        <div class="rain-amount text-muted small">Rain Amount</div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                         <!-- Example placeholder for wind speed to be added by queries-->
                                     </div>
@@ -150,22 +150,22 @@
                                 <div class="col forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="" alt="Weather Icon" class="weather-icon" />
+                                        <img src="null" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"></div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type">{Weather}</div>
-                                        <div class="rain-amount text-muted small">Rain Amount</div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
                                 <div class="col forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="" alt="Weather Icon" class="weather-icon" />
+                                        <img src="null" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"> </div>
                                         <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
-                                        <div class="rain-amount text-muted small">Rain Amount</div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@
                                         <div class="temp-display"> </div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type"></div>
-                                        <div class="rain-amount text-muted small">Rain Amount</div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                                         <div class="temp-display"></div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type"></div>
-                                        <div class="rain-amount text-muted small">Rain Amount</div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>

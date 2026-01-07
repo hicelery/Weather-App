@@ -3,7 +3,14 @@ const apiKey = "81feab47f2b2b44f10ee9f0f9a026041";
 let weatherLocation = "";
 let forecastDays = 5;
 const container = document.getElementById("forecast-container");
+const todayDateElement = document.getElementById("current-date");
 
+//Add date to forecast on page load
+const today = new Date();
+const options = { year: "numeric", month: "long", day: "numeric" };
+todayDateElement.textContent = today.toLocaleDateString(undefined, options);
+
+//submit event listeners
 document
     .getElementById("location-form")
     .addEventListener("submit", handleSubmitButtonClick);
@@ -1542,6 +1549,13 @@ function updateWeatherDisplay(weatherLocation, forecastDays) {
         weatherData.list[0].main.feels_like + "°C";
     document.getElementById("weather-type").textContent =
         weatherData.list[0].weather[0].main;
+    document.getElementById("today-image").src =
+        "https://openweathermap.org/img/wn/" +
+        weatherData.list[0].weather[0].icon +
+        "@2x.png";
+    document.getElementById(
+        "wind-today"
+    ).textContent = `${weatherData.list[0].wind.speed} m/s`;
 
     //Adjust number of forecast cards
     while (container.querySelectorAll(".forecast-card").length < forecastDays) {
@@ -1574,11 +1588,15 @@ function updateWeatherDisplay(weatherLocation, forecastDays) {
         const windSpeedElements = document.querySelectorAll(
             ".forecast-card .wind-speed"
         );
+        const humidityElements = document.querySelectorAll(
+            ".forecast-card .humidity"
+        );
         //Add null check for each element to allow filters to remove elements
         if (dayElements[i]) dayElements[i].textContent = forecast.dt_txt;
-        if (tempElements[i]) tempElements[i].textContent = forecast.main.temp;
+        if (tempElements[i])
+            tempElements[i].textContent = forecast.main.temp + " °C";
         if (feelsLikeElements[i])
-            feelsLikeElements[i].textContent = forecast.main.feels_like;
+            feelsLikeElements[i].textContent = forecast.main.feels_like + " °C";
         if (weatherTypeElements[i])
             weatherTypeElements[i].textContent = forecast.weather[0].main;
         if (weatherIconElements[i]) {
@@ -1589,8 +1607,8 @@ function updateWeatherDisplay(weatherLocation, forecastDays) {
         }
         if (windSpeedElements[i])
             windSpeedElements[i].textContent = `${forecast.wind.speed} KPH`;
-
-        console.log(forecast);
+        if (humidityElements[i])
+            humidityElements[i].textContent = forecast.main.humidity + " %";
     }
 }
 
