@@ -14,9 +14,9 @@
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
-                <img src="" alt="logo" class="logo" />
+                <img src="assets/images/logo.png" alt="logo" class="logo" />
 
-            </a>
+            </a>    
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -24,13 +24,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html#search">Search Weather</a>
+                        <a class="nav-link active" aria-current="page" href="#searchbar">Search Weather</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#contact_section">Favourite locations</a>
+                        <a class="nav-link" href="#favourites">Favourites</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#contact_section">Report Extreme Weather</a>
+                        <a class="btn nav-link" href="https://severeweather.wmo.int/">View Extreme Weather</a>
                     </li>
                 </ul>
             </div>
@@ -196,7 +196,7 @@
                     </div>
                 </section>
                 <!-- Favourites area -->
-                <div class="row">
+                <div id="favourites" class="row">
                     <div class="col-12">
                         <h2 class="h5">Favourite locations</h2>
                     </div>
@@ -247,9 +247,11 @@
     </main>
     <!-- Footer -->
     <footer>
-        <p>
-            Bring Me Sunshine! All rights reserved © 2026
-        </p>
+        <h5>
+            Bring Me Sunshine! 
+        </h5>
+        <p> Powered By <a href="https://openweathermap.org/">OpenWeatherMap</a></p>
+        <p class="small"> All rights reserved © 2026</p>
     </footer>
 
 
