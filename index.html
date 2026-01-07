@@ -16,7 +16,7 @@
             <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo.png" alt="logo" class="logo" />
 
-            </a>    
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -72,16 +72,19 @@
                             <h2 class="h5">Forecast Options</h2>
                             <div class="list-group">
                                 <!-- Radio button to select outputs-->
-                                <form id="forecast-options-form" class="d-flex flex-column flex-sm-row gap-2">
+                                <form id="forecast-options-form" class="d-flex flex-row flex-lg-column gap-2">
                                     <button type="button" class="list-group-item list-group-item-action"
                                         aria-current="true">
                                         <input type="checkbox" id="tempCheck" name="fav_language" value="Temperature"
                                             checked>
                                         <label for="tempCheck">Temperature</label><br>
                                     </button>
+
+
                                     <button type="button" class="list-group-item list-group-item-action"><input
                                             type="checkbox" id="windCheck" name="fav_language" value="wind" checked>
                                         <label for="windCheck">Wind</label><br></button>
+
                                     <button type="button" class="list-group-item list-group-item-action"><input
                                             type="checkbox" id="precipitationCheck" name="fav_language"
                                             value="precipitation" checked>
@@ -246,7 +249,7 @@
     <!-- Footer -->
     <footer>
         <h5>
-            Bring Me Sunshine! 
+            Bring Me Sunshine!
         </h5>
         <p> Powered By <a href="https://openweathermap.org/">OpenWeatherMap</a></p>
         <p class="small"> All rights reserved © 2026</p>
