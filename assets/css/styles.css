@@ -1,9 +1,9 @@
 /* google fonts */
-@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Radley:ital@0;1&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
 body {
+    background: url("../images/Sunny_BG_1.jpg") center/cover no-repeat;
     min-height: 100vh;
-    background: linear-gradient(135deg, #87ceeb 0%, #ffe29f 50%, #ffa99f 100%);
+    background-size: cover;
     padding-top: 50px;
     /* Adjust padding to prevent content from being hidden behind navbar */
 }
@@ -12,7 +12,7 @@ body {
 }
 /* Searchbar styling */
 
-#location-form .search-input{
+#location-form .search-input {
     border-radius: 0px;
     background-color: rgb(255, 255, 255);
     border: black 2px solid;
@@ -22,9 +22,10 @@ body {
 #hero h1 {
     color: #fdd90d;
     text-align: center;
-    padding-top: 20%;
-    font-size: 4rem;
-    font-family: "Radley", serif;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    font-size: 3rem;
+    font-family: "boldonse", sans-serif;
 }
 
 #location-form .search-input {
