@@ -1,10 +1,22 @@
 // Global variable with default location
 const apiKey = "81feab47f2b2b44f10ee9f0f9a026041";
 let weatherLocation = "";
-let forecastDays = document.getElementById("forecastDays").value; // Number of days to fetch
+let forecastDays = 5;
+const container = document.getElementById("forecast-container");
+
+document
+    .getElementById("location-form")
+    .addEventListener("submit", handleSubmitButtonClick);
+
+document
+    .getElementById("forecast-options-form")
+    .addEventListener("submit", handleFormFilters);
+
+//get data on initial load
+updateWeatherDisplay(weatherLocation, forecastDays);
 
 /* API Call to Fetch Data From OpenWeatherMap */
-function callWeatherAPI(weatherLocation) {
+function callWeatherAPI(weatherLocation, forecastDays) {
     //console.log("Fetching weather data for", weatherLocation);
     //const endpoint = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${weatherLocation}&cnt={forecastDays}&appid=${apiKey}&units=metric`;
     // fetch(endpoint)
@@ -1512,51 +1524,75 @@ function callWeatherAPI(weatherLocation) {
     return data;
 }
 
-// Assign data to a variable
-let weatherData = callWeatherAPI();
+function updateWeatherDisplay(weatherLocation, forecastDays) {
+    // Assign data to a variable
+    let weatherData = callWeatherAPI(weatherLocation, forecastDays);
+    forecastDays =
+        parseInt(document.getElementById("forecastDays").value, 10) || 1;
+    // Update forecast based on user input
 
-document.getElementById("current-location").textContent = weatherData.city.name;
-document.getElementById("temp-display").textContent =
-    weatherData.list[0].main.temp;
-document.getElementById("feels-like").textContent =
-    weatherData.list[0].main.feels_like;
-document.getElementById("weather-type").textContent =
-    weatherData.list[0].weather[0].main;
+    console.log(forecastDays); // Number of days to fetch
 
-forecastDays = 5;
-for (let i = 0; i < forecastDays + 1; i++) {
-    let forecast = weatherData.list[i];
+    //Main current weather display
+    document.getElementById("current-location").textContent =
+        weatherData.city.name;
+    document.getElementById("temp-display").textContent =
+        weatherData.list[0].main.temp;
+    document.getElementById("feels-like").textContent =
+        weatherData.list[0].main.feels_like;
+    document.getElementById("weather-type").textContent =
+        weatherData.list[0].weather[0].main;
 
-    console.log(i);
-    console.log("query:", document.querySelectorAll(".forecast-card .day")[i]);
+    //Adjust number of forecast cards
+    while (container.querySelectorAll(".forecast-card").length < forecastDays) {
+        addCard();
+    }
+    while (container.querySelectorAll(".forecast-card").length > forecastDays) {
+        removeCard();
+    }
+    //Future Forecast display
+    for (let i = 0; i < forecastDays; i++) {
+        //Get data for each forecast day
+        let forecast = weatherData.list[i];
 
-    document.querySelectorAll(".forecast-card .day")[i].textContent =
-        forecast.dt_txt;
-    document.querySelectorAll(".forecast-card .temp-display")[i].textContent =
-        forecast.main.temp;
-    document.querySelectorAll(".forecast-card .feels-like")[i].textContent =
-        forecast.main.feels_like;
-    document.querySelectorAll(".forecast-card .weather-type")[i].textContent =
-        forecast.weather[0].main;
-    document.querySelectorAll(".forecast-card .weather-icon")[i].src =
-        "https://openweathermap.org/img/wn/" +
-        forecast.weather[0].icon +
-        "@2x.png";
-    document.querySelectorAll(".forecast-card .wind-speed")[
-        i
-    ].textContent = `${forecast.wind.speed} KPH`;
-    console.log(forecast);
+        console.log(i);
+
+        //define variables for arrays of elements to be updated
+        const dayElements = document.querySelectorAll(".forecast-card .day");
+        const tempElements = document.querySelectorAll(
+            ".forecast-card .temp-display"
+        );
+        const feelsLikeElements = document.querySelectorAll(
+            ".forecast-card .feels-like"
+        );
+        const weatherTypeElements = document.querySelectorAll(
+            ".forecast-card .weather-type"
+        );
+        const weatherIconElements = document.querySelectorAll(
+            ".forecast-card .weather-icon"
+        );
+        const windSpeedElements = document.querySelectorAll(
+            ".forecast-card .wind-speed"
+        );
+        //Add null check for each element to allow filters to remove elements
+        if (dayElements[i]) dayElements[i].textContent = forecast.dt_txt;
+        if (tempElements[i]) tempElements[i].textContent = forecast.main.temp;
+        if (feelsLikeElements[i])
+            feelsLikeElements[i].textContent = forecast.main.feels_like;
+        if (weatherTypeElements[i])
+            weatherTypeElements[i].textContent = forecast.weather[0].main;
+        if (weatherIconElements[i]) {
+            weatherIconElements[i].src =
+                "https://openweathermap.org/img/wn/" +
+                forecast.weather[0].icon +
+                "@2x.png";
+        }
+        if (windSpeedElements[i])
+            windSpeedElements[i].textContent = `${forecast.wind.speed} KPH`;
+
+        console.log(forecast);
+    }
 }
-/*for (let futurecard of futurecards) {
- for i in Range()
-update html}
-let dayOneWeather = 
-let futurecards = document.getElementsByClassName("weather-card");
-*/
-/* Event Listener for location form submission */
-document
-    .getElementById("location-form")
-    .addEventListener("submit", handleSubmitButtonClick);
 
 /* Function to handle submit button click, save user input as a variable and then run call to API */
 function handleSubmitButtonClick(event) {
@@ -1570,5 +1606,60 @@ function handleSubmitButtonClick(event) {
     /* Continues on if location is entered */
     weatherLocation = document.getElementById("user-input").value;
     console.log("User input:", weatherLocation);
-    callWeatherAPI(weatherLocation);
+    updateWeatherDisplay(weatherLocation, forecastDays);
+}
+
+function handleFormFilters(event) {
+    event.preventDefault();
+    //get filter values
+    const showWind = document.getElementById("windCheck").checked;
+    const showTemp = document.getElementById("tempCheck").checked;
+    const showPrecipitation =
+        document.getElementById("precipitationCheck").checked;
+
+    //Get all wind speed elements
+
+    let windElements = document.querySelectorAll(".wind-speed");
+    let tempElements = document.querySelectorAll(".temp-display");
+    let rainElements = document.querySelectorAll(".rain-amount");
+
+    //loop through and remove or add based on filter
+    windElements.forEach((element) => {
+        if (showWind) {
+            element.classList.remove("d-none");
+        } else {
+            element.classList.add("d-none");
+        }
+    });
+    tempElements.forEach((element) => {
+        if (showTemp) {
+            element.classList.remove("d-none");
+        } else {
+            element.classList.add("d-none");
+        }
+    });
+    rainElements.forEach((element) => {
+        if (showPrecipitation) {
+            element.classList.remove("d-none");
+        } else {
+            element.classList.add("d-none");
+        }
+    });
+    handleSubmitButtonClick(event);
+}
+//Add a new forecast card to container
+function addCard() {
+    const firstCard = container.querySelector(".forecast-card");
+    if (firstCard) {
+        const newCard = firstCard.cloneNode(true);
+        container.appendChild(newCard);
+    }
+}
+
+//Remove last forecast card from container
+function removeCard() {
+    if (container.children.length > 0) {
+        let lastCard = container.lastElementChild;
+        container.removeChild(lastCard);
+    }
 }
