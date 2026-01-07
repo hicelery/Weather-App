@@ -1,8 +1,9 @@
 /* google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
 body {
+    background: url("../images/Sunny_BG_1.jpg") center/cover no-repeat;
     min-height: 100vh;
-    background: linear-gradient(135deg, #87ceeb 0%, #ffe29f 50%, #ffa99f 100%);
+    background-size: cover;
     padding-top: 50px;
     /* Adjust padding to prevent content from being hidden behind navbar */
 }
@@ -21,7 +22,8 @@ body {
 #hero h1 {
     color: #fdd90d;
     text-align: center;
-    padding-top: 20%;
+    padding-top: 40px;
+    padding-bottom: 30px;
     font-size: 3rem;
     font-family: "boldonse", sans-serif;
 }
