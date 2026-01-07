@@ -2,7 +2,7 @@
 const apiKey = "81feab47f2b2b44f10ee9f0f9a026041";
 let weatherLocation = "";
 let forecastDays = 5;
-const container = document.getElementById("forecast-container");
+let weatherData = callWeatherAPI(weatherLocation, forecastDays);
 const todayDateElement = document.getElementById("current-date");
 
 //Add date to forecast on page load
@@ -24,6 +24,7 @@ updateWeatherDisplay(weatherLocation, forecastDays);
 
 /* API Call to Fetch Data From OpenWeatherMap */
 function callWeatherAPI(weatherLocation, forecastDays) {
+    const container = document.getElementById("forecast-container");
     //console.log("Fetching weather data for", weatherLocation);
     //const endpoint = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${weatherLocation}&cnt={forecastDays}&appid=${apiKey}&units=metric`;
     // fetch(endpoint)
@@ -1531,9 +1532,9 @@ function callWeatherAPI(weatherLocation, forecastDays) {
     return data;
 }
 
-function updateWeatherDisplay(weatherLocation, forecastDays) {
+function updateWeatherDisplay() {
     // Assign data to a variable
-    let weatherData = callWeatherAPI(weatherLocation, forecastDays);
+    const container = document.getElementById("forecast-container");
     forecastDays =
         parseInt(document.getElementById("forecastDays").value, 10) || 1;
     // Update forecast based on user input
@@ -1559,10 +1560,10 @@ function updateWeatherDisplay(weatherLocation, forecastDays) {
 
     //Adjust number of forecast cards
     while (container.querySelectorAll(".forecast-card").length < forecastDays) {
-        addCard();
+        addCard(container);
     }
     while (container.querySelectorAll(".forecast-card").length > forecastDays) {
-        removeCard();
+        removeCard(container);
     }
     //Future Forecast display
     for (let i = 0; i < forecastDays; i++) {
@@ -1665,8 +1666,20 @@ function handleFormFilters(event) {
     });
     handleSubmitButtonClick(event);
 }
+
+function addRemoveFavouriteLocation() {
+    /*get location
+    define the parent container
+    if add card clicked
+        run addcard function
+    if else clicked remove card
+        run remove card function
+
+    fill in card details using run api*/
+}
+
 //Add a new forecast card to container
-function addCard() {
+function addCard(container) {
     const firstCard = container.querySelector(".forecast-card");
     if (firstCard) {
         const newCard = firstCard.cloneNode(true);
@@ -1675,7 +1688,7 @@ function addCard() {
 }
 
 //Remove last forecast card from container
-function removeCard() {
+function removeCard(container) {
     if (container.children.length > 0) {
         let lastCard = container.lastElementChild;
         container.removeChild(lastCard);
