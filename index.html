@@ -75,20 +75,20 @@
                                 <form id="forecast-options-form" class="d-flex flex-column flex-sm-row gap-2">
                                     <button type="button" class="list-group-item list-group-item-action"
                                         aria-current="true">
-                                        <input type="radio" id="tempradio" name="fav_language" value="Temperature"
+                                        <input type="checkbox" id="tempCheck" name="fav_language" value="Temperature"
                                             checked>
-                                        <label for="tempradio">Temperature</label><br>
+                                        <label for="tempCheck">Temperature</label><br>
                                     </button>
                                     <button type="button" class="list-group-item list-group-item-action"><input
-                                            type="radio" id="windradio" name="fav_language" value="wind" checked>
-                                        <label for="windradio">Wind</label><br></button>
+                                            type="checkbox" id="windCheck" name="fav_language" value="wind" checked>
+                                        <label for="windCheck">Wind</label><br></button>
                                     <button type="button" class="list-group-item list-group-item-action"><input
-                                            type="radio" id="precipitationradio" name="fav_language"
+                                            type="checkbox" id="precipitationCheck" name="fav_language"
                                             value="precipitation" checked>
-                                        <label for="precipitationradio">Precipitation</label><br></button>
+                                        <label for="precipitationCheck">Precipitation</label><br></button>
 
                                     <input type="number" id="forecastDays" placeholder="Number of days:"
-                                        class="list-group-item" min="1" max="7" value="6" />
+                                        class="list-group-item" min="1" max="7" value="5" />
                                     <button id="applyDataFilters" type="submit"
                                         class="btn list-group-item list-group-item-action active text-center">Apply</button>
                                 </form>
@@ -116,7 +116,7 @@
                                         <div class="col-md-4 mb-3 mb-md-0">
                                             <div class="text-center text-md-start">
                                                 <div id="weather-type" class="weather-type">{Weather}</div>
-                                                <div class="rain-chance text-muted small">(Chance of rain)</div>
+                                                <div class="rain-amount text-muted small">(Rain Amount)</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -138,8 +138,7 @@
                                         <div class="temp-display">{Temp}</div>
                                         <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
-                                        <div class="rain-chance text-muted small">(Chance of
-                                            rain)%</div>
+                                        <div class="rain-amount text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                         <!-- Example placeholder for wind speed to be added by queries-->
                                     </div>
@@ -152,8 +151,7 @@
                                         <div class="temp-display"></div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type">{Weather}</div>
-                                        <div class="rain-chance text-muted small">(Chance of
-                                            rain)%</div>
+                                        <div class="rain-amount text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
@@ -164,8 +162,7 @@
                                         <div class="temp-display"> </div>
                                         <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
-                                        <div class="rain-chance text-muted small">(Chance of
-                                            rain)%</div>
+                                        <div class="rain-amount text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
@@ -176,8 +173,7 @@
                                         <div class="temp-display"> </div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type"></div>
-                                        <div class="rain-chance text-muted small">(Chance of
-                                            rain)%</div>
+                                        <div class="rain-amount text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
@@ -188,8 +184,7 @@
                                         <div class="temp-display"></div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type"></div>
-                                        <div class="rain-chance text-muted small">(Chance of
-                                            rain)%</div>
+                                        <div class="rain-amount text-muted small">Rain Amount</div>
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
