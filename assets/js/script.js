@@ -26,7 +26,7 @@ updateWeatherDisplay(weatherLocation, forecastDays);
 function callWeatherAPI(weatherLocation, forecastDays) {
     const container = document.getElementById("forecast-container");
     //console.log("Fetching weather data for", weatherLocation);
-    //const endpoint = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${weatherLocation}&cnt={forecastDays}&appid=${apiKey}&units=metric`;
+    //const endpoint = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${weatherLocation}&cnt={10}&appid=${apiKey}&units=metric`;
     // fetch(endpoint)
     // .then(function (response) {
     //   return response.json();
@@ -1676,6 +1676,7 @@ function addRemoveFavouriteLocation() {
         run remove card function
 
     fill in card details using run api*/
+    //  const container = document.getElementById("what your parent container is called");
 }
 
 //Add a new forecast card to container
