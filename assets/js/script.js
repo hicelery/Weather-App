@@ -1508,15 +1508,27 @@ function callWeatherAPI(weatherLocation) {
     },
   };
   console.log(data);
-  /* Update DOM elements with fetched data */
-  document.getElementById("current-location").textContent = data.city.name;
+
+ document.getElementById("current-location").textContent = data.city.name;
   document.getElementById("temp-display").textContent = data.list[0].main.temp;
   document.getElementById("feels-like").textContent =
     data.list[0].main.feels_like;
   document.getElementById("weather-type").textContent =
     data.list[0].weather[0].main;
+
+  for (let i = 0; i < 5; i++) {
+  let forecast = data.list[i].dt_txt;
+  console.log(forecast);
+}
 }
 
+
+/*for (let futurecard of futurecards) {
+ for i in Range()
+update html}
+let dayOneWeather = 
+let futurecards = document.getElementsByClassName("weather-card");
+*/
 /* Event Listener for location form submission */
 document
   .getElementById("location-form")
@@ -1535,4 +1547,5 @@ function handleSubmitButtonClick(event) {
   weatherLocation = document.getElementById("user-input").value;
   console.log("User input:", weatherLocation);
   callWeatherAPI(weatherLocation);
+  
 }
