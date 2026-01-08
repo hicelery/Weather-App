@@ -1,9 +1,25 @@
 /* google fonts */
-@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Radley:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
 
+/* Navbar styling */
+nav .nav-item {
+    background-color: rgb(255, 255, 255);
+    border: black 1px solid;
+}
+nav img {
+    margin-left: 8px;
+    height: 50px;
+}
+nav .btn {
+    border: black 2px solid;
+    border-radius: 0px;
+    background-color: rgb(226, 107, 39);
+    color: rgb(0, 0, 0);
+}
 body {
+    background: url("../images/Sunny_BG_1.jpg") center/cover no-repeat;
     min-height: 100vh;
-    background: linear-gradient(135deg, #87ceeb 0%, #ffe29f 50%, #ffa99f 100%);
+    background-size: cover;
     padding-top: 50px;
     /* Adjust padding to prevent content from being hidden behind navbar */
 }
@@ -12,7 +28,7 @@ body {
 }
 /* Searchbar styling */
 
-#location-form .search-input{
+#location-form .search-input {
     border-radius: 0px;
     background-color: rgb(255, 255, 255);
     border: black 2px solid;
@@ -22,9 +38,11 @@ body {
 #hero h1 {
     color: #fdd90d;
     text-align: center;
-    padding-top: 20%;
-    font-size: 4rem;
-    font-family: "Radley", serif;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    font-size: 3rem;
+    font-family: "boldonse", sans-serif;
+    text-shadow: #5c5a50 1px 0 10px;
 }
 
 #location-form .search-input {
@@ -50,4 +68,21 @@ body {
 
 .weather-card-today {
     border-left: 4px solid #0d6efd;
+}
+
+/* Footer Styling */
+footer {
+    background-color: rgb(226, 107, 39);
+    color: rgb(0, 0, 0);
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer h5 {
+    font-family: "boldonse", sans-serif;
+    font-size: 30px;
+}
+
+footer p {
+    margin: 1px;
 }
