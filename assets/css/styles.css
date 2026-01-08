@@ -57,17 +57,25 @@ body {
     color: #000000;
     border: black 2px solid;
 }
-/*moving bootstrap default card-body style into custonm class for weather cards and js interactivity*/
+/*Card styling*/
 .weather-card {
     flex: 1 1 auto;
-    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-    color: var(--bs-card-color);
-    border-radius: 0 !important;
+    color: rgb(226, 107, 39);
+    border-radius: 4;
     min-width: 150px;
+    background-color: rgb(215, 215, 215);
+    opacity: 100%;
+    padding: 10px;
 }
 
-.weather-card-today {
-    border-left: 4px solid #0d6efd;
+.temp-display {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+/* Secondary text color on cards */
+.text-muted {
+    color: rgb(226, 107, 39) !important;
 }
 
 /* Footer Styling */
