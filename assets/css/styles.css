@@ -10,6 +10,8 @@ nav {
 nav .nav-item {
     background-color: rgb(255, 255, 255);
     border: black 1px solid;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 nav img {
     margin-left: 8px;
@@ -72,7 +74,7 @@ body {
 .weather-card {
     flex: 1 1 auto;
     color: rgb(226, 107, 39);
-    border-radius: 4;
+    border-radius: 15px;
     min-width: 150px;
     max-width: 300px;
     background-color: rgb(219, 227, 240);
@@ -80,17 +82,46 @@ body {
     padding: 10px;
 }
 
+.weather-card-today {
+    flex: 1 1 auto;
+    border-top: #fdd90d 4px solid;
+    min-width: 150px;
+    max-width: 400px;
+    opacity: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
 .temp-display {
     font-size: 1.7rem;
     font-weight: bold;
 }
-#forecast-container .weather-card {
-    margin-top: 20px;
-    padding: 10px;
-    border-top: rgb(239, 90, 15) 4px solid;
-    text-align: center;
+#forecast-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 auto;
 }
 
+#forecast-container .forecast-card {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+#forecast-container .weather-card {
+    margin-top: 20px;
+    border-top: rgb(239, 90, 15) 4px solid;
+    text-align: center;
+    max-width: 100px;
+}
+
+.weather-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: block;
+}
 .day {
     font-size: 1.2rem;
     font-weight: bold;
@@ -105,6 +136,7 @@ body {
 .date-text {
     font-size: 0.9rem;
     color: rgb(58, 58, 58) !important;
+    margin-right: 5%;
 }
 
 .favourite-card {
@@ -134,4 +166,30 @@ footer h5 {
 
 footer p {
     margin: 1px;
+}
+
+/*media queries */
+/*medium screens */
+@media screen and (min-width: 768px) {
+    .weather-card-today {
+        margin-right: 25%;
+    }
+}
+/*large screens */
+@media screen and (min-width: 992px) {
+    .weather-card-today {
+        margin-right: 40%;
+    }
+}
+/* X Large screens */
+@media screen and (min-width: 1200px) {
+    .weather-card-today {
+        margin-right: 45%;
+    }
+}
+/* XXL screens */
+@media screen and (min-width: 1400px) {
+    .weather-card-today {
+        margin-right: 50%;
+    }
 }
