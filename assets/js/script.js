@@ -228,47 +228,21 @@ function handleFormFilters(event) {
 }
 
 function addFavouriteLocation(event) {
-  document.getElementById("max-favourites-msg").classList="d-none";
   event.preventDefault();
+  const maxMsg = document.getElementById("max-favourites-msg");
+  if (maxMsg) maxMsg.classList.add("d-none");
+
   const favouriteLocation =
     document.getElementById("current-location").textContent;
 
-  if (favouriteContainer.children.length >= 6) {
-   document.getElementById("max-favourites-msg").classList.remove("d-none");
-   return;
+  if (favouriteContainer.children.length >= 3) {
+    if (maxMsg) maxMsg.classList.remove("d-none");
+    return;
   }
-  if (favouriteContainer.children.length === 1) {
-  callWeatherAPI(favouriteLocation).then((favouriteData) => {
-    console.log(favouriteData);
-    document.getElementById("favourite-title").textContent =
-      favouriteData.city.name;
-    document.getElementById("favourite-image").src =
-      "https://openweathermap.org/img/wn/" +
-      favouriteData.list[0].weather[0].icon +
-      "@2x.png";
-    document.getElementById("favourite-temp-display").textContent =
-      favouriteData.list[0].main.temp + "°C";
-    document.getElementById("favourite-weather-type").textContent =
-      favouriteData.list[0].weather[0].main;
-  });
- if (favouriteContainer.children.length === 1) {
-  callWeatherAPI(favouriteLocation).then((favouriteData) => {
-    console.log(favouriteData);
-    document.getElementById("favourite-title").textContent =
-      favouriteData.city.name;
-    document.getElementById("favourite-image").src =
-      "https://openweathermap.org/img/wn/" +
-      favouriteData.list[0].weather[0].icon +
-      "@2x.png";
-    document.getElementById("favourite-temp-display").textContent =
-      favouriteData.list[0].main.temp + "°C";
-    document.getElementById("favourite-weather-type").textContent =
-      favouriteData.list[0].weather[0].main;
-  });
-  return;
- }
 
   addCard(favouriteContainer);
+
+  // Wait for the API call to complete before accessing data
   callWeatherAPI(favouriteLocation).then((favouriteData) => {
     console.log(favouriteData);
     document.getElementById("favourite-title").textContent =
@@ -282,10 +256,9 @@ function addFavouriteLocation(event) {
     document.getElementById("favourite-weather-type").textContent =
       favouriteData.list[0].weather[0].main;
   });
-
-  // Wait for the API call to complete before accessing data
-  
 }
+
+
 
 function removeFavouriteLocation(event) {
   const closeBtn = event.target.closest(".remove-favourite-btn");
@@ -293,6 +266,10 @@ function removeFavouriteLocation(event) {
   event.preventDefault();
   const card = closeBtn.closest(".forecast-card");
   if (card) card.remove();
+  const maxMsg = document.getElementById("max-favourites-msg");
+  if (maxMsg && favouriteContainer.children.length <= 3) {
+    maxMsg.classList.add("d-none");
+  }
 }
 // Favourite Location Event Listener - Must go underneath function definitions to work
 document
@@ -310,6 +287,17 @@ function addCard(container) {
   } else {
     const newCard = document.createElement("div");
     newCard.className = "forecast-card col-md-4 mb-3";
+    newCard.innerHTML = `
+      <div class="favourite-card weather-card card h-100 position-relative">
+        <button class="remove-favourite-btn btn-close position-absolute top-0 end-0 m-2" aria-label="Remove favourite"></button>
+        <div class="card-body">
+          <h5 id="favourite-title" class="card-title fs-1">Location</h5>
+          <img id="favourite-image" src="" alt="Weather icon" class="weather-icon mb-2">
+          <p id="favourite-weather-type" class="weather-type">Weather Type</p>
+          <p id="favourite-temp-display" class="temp-display">Temperature: --°C</p>
+        </div>
+      </div>
+    `;
     container.appendChild(newCard);
   }
 }
