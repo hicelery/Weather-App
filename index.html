@@ -54,9 +54,9 @@
     </header>
     <main>
         <div id="bg-image">
-            <div class="container-fluid py-4">
+            <div class="container-fluid py-4 ">
                 <!-- Search section -->
-                <section id='searchbar' class="mb-4">
+                <section id='searchbar' class="mb-4 d-flex flex-column align-items-center">
                     <p class="fst-italic mb-2">Enter a location to view weather forecast</p>
                     <form id="location-form" class="d-flex flex-column flex-sm-row gap-2">
                         <input type="text" id="user-input" class="form-control search-input"
@@ -103,7 +103,7 @@
                             <!-- Current location heading -->
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <h2 class="h5">Current location: <strong id="current-location">LOCATION</strong></h2>
-                                <span class="text-muted small">
+                                <span class="text-muted small date-text">
                                     Today's Date: <strong><span id="current-date">{Date}</span></strong>
                                 </span>
                             </div>
@@ -139,6 +139,7 @@
                                     <div class="card weather-card">
                                         <div class="day"></div>
                                         <img src="null" alt="Weather Icon" class="weather-icon" />
+
                                         <div class="temp-display">{Temp}</div>
                                         <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
