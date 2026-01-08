@@ -1593,6 +1593,7 @@ function updateWeatherDisplay() {
             ".forecast-card .humidity"
         );
         //Add null check for each element to allow filters to remove elements
+        /* changes date string to day name */
         if (dayElements[i]) {
             const date = new Date(forecast.dt_txt);
             const dayName = date.toLocaleDateString(undefined, {
@@ -1600,6 +1601,7 @@ function updateWeatherDisplay() {
             });
             dayElements[i].textContent = dayName;
         }
+
         if (tempElements[i])
             tempElements[i].textContent = forecast.main.temp + " °C";
         if (feelsLikeElements[i])
