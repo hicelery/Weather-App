@@ -2,6 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
 
 /* Navbar styling */
+nav {
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 nav .nav-item {
     background-color: rgb(255, 255, 255);
     border: black 1px solid;
@@ -20,7 +25,7 @@ body {
     background: url("../images/Sunny_BG_1.jpg") center/cover no-repeat;
     min-height: 100vh;
     background-size: cover;
-    padding-top: 50px;
+    padding-top: 57px;
     /* Adjust padding to prevent content from being hidden behind navbar */
 }
 .search-input {
@@ -69,6 +74,7 @@ body {
     color: rgb(226, 107, 39);
     border-radius: 4;
     min-width: 150px;
+    max-width: 300px;
     background-color: rgb(219, 227, 240);
     opacity: 100%;
     padding: 10px;
@@ -101,6 +107,18 @@ body {
     color: rgb(58, 58, 58) !important;
 }
 
+.favourite-card {
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: var(--bs-card-color);
+    border-radius: 0 !important;
+    min-width: 150px;
+    max-width: 300px;
+}
+
+.add-icon {
+    max-width: 70%;
+}
 /* Footer Styling */
 footer {
     background-color: rgb(226, 107, 39);

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bring me sunshine</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -135,11 +137,11 @@
                             <!-- Future days -->
                             <!-- All set to one row, adjust min width in CSS to control wrapping -->
                             <div id="forecast-container" class="row">
+                                <h3 class="h6 mb-3">Upcoming Days</h3>
                                 <div class="col forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="null" alt="Weather Icon" class="weather-icon" />
-
+                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display">{Temp}</div>
                                         <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
@@ -152,7 +154,7 @@
                                 <div class="col forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="null" alt="Weather Icon" class="weather-icon" />
+                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"></div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type">{Weather}</div>
@@ -163,7 +165,7 @@
                                 <div class="col forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="null" alt="Weather Icon" class="weather-icon" />
+                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"> </div>
                                         <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
@@ -174,7 +176,7 @@
                                 <div class="col forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="" alt="Weather Icon" class="weather-icon" />
+                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"> </div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type"></div>
@@ -185,7 +187,7 @@
                                 <div class="col forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="" alt="Weather Icon" class="weather-icon" />
+                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"></div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type"></div>
@@ -199,49 +201,33 @@
                     </div>
                 </section>
                 <!-- Favourites area -->
-                <div id="favourites" class="row">
+                <div id="favourites" class="container-fluid mt-5 row">
                     <div class="col-12">
                         <h2 class="h5">Favourite locations</h2>
                     </div>
-                    <!-- separate button for small screens-->
-                    <div class="d-block d-md-none">
+                    <!-- separate button-->
+                    <div class="card weather-card col-12">
+                        <h2 class="h5 text-center">Add New Favourite</h2>
                         <button class="add-new-card">
-                            <img src="" alt="Add new favourite"
+                            <img src="assets/images/plusicon.png" alt="Add new favourite"
                                 class="add-icon" /><!-- or span/ icon from font awesome -->
                         </button>
                     </div>
                     <!-- Saved location cards -->
-                    <div class="d-none d-md-block">
-                        <div class="card col mb-3">
-                            <div class="weather-card">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="fw-semibold">{Location}</div>
-                                        <div class="small text-muted">Weather</div>
-                                    </div>
-                                    <div class="text-end">
-                                        <div class="fw-semibold">28°C</div>
-                                        <div class="small text-muted">Sample data</div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="favourite-location-container">
+                        <!--template of cards to add -->
+                        <div class="card favourite-card col mb-3">
+                            <div class="Location"></div>
+                            <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
+                            <!-- placeholder image-->
+                            <div class="temp-display"></div>
+                            <div class="feels-like"></div>
+                            <div class="weather-type"></div>
+                            <div class="humidity text-muted small">Rain Amount</div>
+                            <div class="wind-speed">Wind</div>
+
                         </div>
 
-                        <!-- Placeholder for additional favourites -->
-                        <div class="card col mb-3">
-                            <div class="weather-card">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="fw-semibold">Add Card
-                                        </div>
-                                        <button class="add-new-card">
-                                            <img src="" alt="Add new favourite"
-                                                class="add-icon" /><!-- or span/ icon from font awesome -->
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -258,7 +244,7 @@
 
 
 
-    <script src="assets/js/script.js"></script>
+    <script src="/assets/js/script.js"></script>
     <!-- Bootstrap 5 JS (optional, if you later add interactive components) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
