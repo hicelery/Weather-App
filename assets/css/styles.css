@@ -64,6 +64,7 @@ body {
     color: var(--bs-card-color);
     border-radius: 0 !important;
     min-width: 150px;
+    max-width: 300px;
 }
 
 .weather-card-today {
