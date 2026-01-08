@@ -186,13 +186,14 @@ function handleFormFilters(event) {
 }
 
 function addFavouriteLocation(event) {
+  document.getElementById("max-favourites-msg").classList="d-none";
   event.preventDefault();
   const favouriteLocation =
     document.getElementById("current-location").textContent;
 
   if (favouriteContainer.children.length >= 6) {
-    alert("You can only have 5 favourite locations.");
-    return;
+   document.getElementById("max-favourites-msg").classList.remove("d-none");
+   return;
   }
 
   addCard(favouriteContainer);
