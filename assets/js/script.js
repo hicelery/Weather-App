@@ -1683,6 +1683,14 @@ function handleFormFilters(event) {
             element.classList.add("d-none");
         }
     });
+    /*could also just call update display again to refresh all data
+    
+    should probably add a check to see if we need to run the update again:
+    add some variable tracking to see if any of the filters have changed since last time :
+    let lastShowWind, lastShowTemp, lastShowPrecipitation = null
+    compare current values to last values  
+    if changed run update display again
+    */
     handleSubmitButtonClick(event);
 }
 
