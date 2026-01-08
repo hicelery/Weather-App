@@ -130,6 +130,7 @@ body {
 .date-text {
     font-size: 0.9rem;
     color: rgb(58, 58, 58) !important;
+    margin-right: 5%;
 }
 
 /* Footer Styling */
