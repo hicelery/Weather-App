@@ -5,7 +5,8 @@ const storedFavouriteLocations = [];
 let forecastDays = 5;
 let weatherData = null; // Changed this to null so data can be loaded before displaying
 const todayDateElement = document.getElementById("current-date");
-const container = document.getElementById("forecast-container")
+const container = document.getElementById("forecast-container");
+const favouriteContainer = document.getElementById("favourites-container");
 
 //Add date to forecast on page load
 const today = new Date();
@@ -19,10 +20,6 @@ document
 document
   .getElementById("forecast-options-form")
   .addEventListener("submit", handleFormFilters);
-// Favourite Location Event Listener
-document
-  .getElementById("add-favourite-btn")
-  .addEventListener("click", addFavouriteLocation);
 
 //get data on initial load, had to make this asynchronous to ensure data is ready before UI update
 callWeatherAPI(weatherLocation).then((data) => {
@@ -44,7 +41,6 @@ function callWeatherAPI(weatherLocation) {
       return data; // keep the full object
     });
 }
-
 
 function updateWeatherDisplay() {
   if (!weatherData || !weatherData.list || !weatherData.city) return; // this check ensures it only runs once weatherData is defined.
@@ -82,7 +78,7 @@ function updateWeatherDisplay() {
   //Future Forecast display
   for (let i = 0; i < forecastDays; i++) {
     //Get data for each forecast day
-    let forecast = weatherData.list[i*8];
+    let forecast = weatherData.list[i * 8];
 
     //define variables for arrays of elements to be updated
     const dayElements = document.querySelectorAll(".forecast-card .day");
@@ -193,15 +189,14 @@ function addFavouriteLocation(event) {
   event.preventDefault();
   const favouriteLocation =
     document.getElementById("current-location").textContent;
-  const favouriteContainer = document.getElementById("favourites-container");
-  
+
   if (favouriteContainer.children.length >= 6) {
     alert("You can only have 5 favourite locations.");
     return;
   }
-  
+
   addCard(favouriteContainer);
-  
+
   // Wait for the API call to complete before accessing data
   callWeatherAPI(favouriteLocation).then((favouriteData) => {
     console.log(favouriteData);
@@ -218,6 +213,20 @@ function addFavouriteLocation(event) {
   });
 }
 
+function removeFavouriteLocation(event) {
+  const closeBtn = event.target.closest(".remove-favourite-btn");
+  if (!closeBtn) return;
+  event.preventDefault();
+  const card = closeBtn.closest(".forecast-card");
+  if (card) card.remove();
+}
+// Favourite Location Event Listener - Must go underneath function definitions to work
+document
+  .getElementById("add-favourite-btn")
+  .addEventListener("click", addFavouriteLocation);
+
+favouriteContainer.addEventListener("click", removeFavouriteLocation);
+
 //Add a new forecast card to container, by cloning first card or creating new if empty
 function addCard(container) {
   const firstCard = container.querySelector(".forecast-card");
@@ -228,7 +237,8 @@ function addCard(container) {
     const newCard = document.createElement("div");
     newCard.className = "forecast-card col-md-4 mb-3";
     newCard.innerHTML = `
-      <div class="card h-100">
+      <div class="card h-100 position-relative">
+        <button class="remove-favourite-btn btn-close position-absolute top-0 end-0 m-2" aria-label="Remove favourite"></button>
         <div class="card-body">
           <h5 id="favourite-title" class="card-title fs-1">Location</h5>
           <img id="favourite-image" src="" alt="Weather icon" class="weather-icon mb-2">
@@ -238,7 +248,6 @@ function addCard(container) {
       </div>
     `;
     container.appendChild(newCard);
-  
   }
 }
 
