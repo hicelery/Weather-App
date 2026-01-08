@@ -90,6 +90,11 @@ body {
     color: rgb(226, 107, 39) !important;
 }
 
+.date-text {
+    font-size: 0.9rem;
+    color: rgb(58, 58, 58) !important;
+}
+
 /* Footer Styling */
 footer {
     background-color: rgb(226, 107, 39);
