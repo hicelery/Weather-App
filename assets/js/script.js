@@ -2,8 +2,15 @@
 const apiKey = "81feab47f2b2b44f10ee9f0f9a026041";
 let weatherLocation = "";
 let forecastDays = 5;
-let weatherData = callWeatherAPI(weatherLocation, forecastDays);
+let weatherData = {};
 const todayDateElement = document.getElementById("current-date");
+let userLocation = "";
+//Get user's location if available
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+        userLocation = `${position.coords.latitude},${position.coords.longitude}`;
+    });
+}
 
 //Add date to forecast on page load
 const today = new Date();
@@ -19,14 +26,27 @@ document
     .getElementById("forecast-options-form")
     .addEventListener("submit", handleFormFilters);
 
-//get data on initial load
-updateWeatherDisplay(weatherLocation, forecastDays);
+//Initialize weather display on page load
+initializeApp();
+
+/* Initialize Application */
+function initializeApp() {
+    //get default values
+    if (userLocation) {
+        weatherLocation = userLocation;
+    } else {
+        weatherLocation = "London"; // Default location if geolocation fails
+    }
+    //Call API add update display
+    callWeatherAPI(weatherLocation, forecastDays);
+    updateWeatherDisplay(weatherLocation, forecastDays);
+}
 
 /* API Call to Fetch Data From OpenWeatherMap */
 function callWeatherAPI(weatherLocation, forecastDays) {
     const container = document.getElementById("forecast-container");
     //console.log("Fetching weather data for", weatherLocation);
-    //const endpoint = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${weatherLocation}&cnt={forecastDays}&appid=${apiKey}&units=metric`;
+    //const endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=${weatherLocation}&appid=${apiKey}&units=metric`;
     // fetch(endpoint)
     // .then(function (response) {
     //   return response.json();
@@ -1528,18 +1548,17 @@ function callWeatherAPI(weatherLocation, forecastDays) {
             sunset: 1767715630,
         },
     };
-    console.log(data);
     return data;
 }
 
-function updateWeatherDisplay() {
+function updateWeatherDisplay(weatherLocation, forecastDays) {
+    //update api
+    const weatherData = callWeatherAPI(weatherLocation, forecastDays);
     // Assign data to a variable
     const container = document.getElementById("forecast-container");
     forecastDays =
         parseInt(document.getElementById("forecastDays").value, 10) || 1;
     // Update forecast based on user input
-
-    console.log(forecastDays); // Number of days to fetch
 
     //Main current weather display
     document.getElementById("current-location").textContent =
@@ -1672,6 +1691,14 @@ function handleFormFilters(event) {
             element.classList.add("d-none");
         }
     });
+    /*could also just call update display again to refresh all data
+    
+    should probably add a check to see if we need to run the update again:
+    add some variable tracking to see if any of the filters have changed since last time :
+    let lastShowWind, lastShowTemp, lastShowPrecipitation = null
+    compare current values to last values  
+    if changed run update display again
+    */
     handleSubmitButtonClick(event);
 }
 
@@ -1684,6 +1711,7 @@ function addRemoveFavouriteLocation() {
         run remove card function
 
     fill in card details using run api*/
+    //  const container = document.getElementById("what your parent container is called");
 }
 
 //Add a new forecast card to container
