@@ -1593,7 +1593,13 @@ function updateWeatherDisplay() {
             ".forecast-card .humidity"
         );
         //Add null check for each element to allow filters to remove elements
-        if (dayElements[i]) dayElements[i].textContent = forecast.dt_txt;
+        if (dayElements[i]) {
+            const date = new Date(forecast.dt_txt);
+            const dayName = date.toLocaleDateString(undefined, {
+                weekday: "long",
+            });
+            dayElements[i].textContent = dayName;
+        }
         if (tempElements[i])
             tempElements[i].textContent = forecast.main.temp + " °C";
         if (feelsLikeElements[i])
