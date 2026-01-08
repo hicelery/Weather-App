@@ -159,7 +159,7 @@
                     <strong id="current-location" class="me-4">LOCATION</strong
                     ><button id="add-favourite-btn" class="btn d-none">
                       Add to Favourites
-                    </button>
+                    </button><p id="max-favourites-msg" class="d-none">You may only add a maximum of 3 favourite locations.</p>
                   </h2>
 
                   <span class="text-muted small">
@@ -272,32 +272,14 @@
                     </div>
                 </section>
                 <!-- Favourites area -->
-                <div id="favourites" class="container-fluid mt-5 row">
+
+                <div id="favourites" class="row">
                     <div class="col-12">
-                        <h2 class="h5">Favourite locations</h2>
-                    </div>
-                    <!-- separate button-->
-                    <div class="card weather-card col-12">
-                        <h2 class="h5 text-center">Add New Favourite</h2>
-                        <button class="add-new-card">
-                            <img src="assets/images/plusicon.png" alt="Add new favourite"
-                                class="add-icon" /><!-- or span/ icon from font awesome -->
-                        </button>
+                        <h2 class="h5" style="text-align:center">Favourite locations</h2>
                     </div>
                     <!-- Saved location cards -->
-                    <div class="favourite-location-container">
+                    <div id="favourites-container" class="favourite-location-container row">
                         <!--template of cards to add -->
-                        <div class="card favourite-card col mb-3 d-none">
-                            <div id="favourite-title" class="Location"></div>
-                            <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
-                            <!-- placeholder image-->
-                            <div class="temp-display"></div>
-                            <div class="feels-like"></div>
-                            <div class="weather-type"></div>
-                            <div class="humidity text-muted small">Rain Amount</div>
-                            <div class="wind-speed">Wind</div>
-
-                        </div>
 
                     </div>
                 </div>

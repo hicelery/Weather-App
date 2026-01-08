@@ -70,6 +70,16 @@ body {
     color: #000000;
     border: black 2px solid;
 }
+
+/* add favourite button styling */
+#add-favourite-btn {
+    font-size: 16px;
+    border-radius: 0px;
+    background-color: #f6ffa5;
+    color: #000000;
+    border: black 2px solid;
+    height: 39.2px;
+}
 /*Card styling*/
 .weather-card {
     flex: 1 1 auto;
@@ -91,6 +101,12 @@ body {
     margin: 0 auto;
     text-align: center;
 }
+
+.favourite-card {
+    text-align: center;
+    border-top: rgb(162, 5, 5) 4px solid;
+}
+
 .temp-display {
     font-size: 1.7rem;
     font-weight: bold;
@@ -137,15 +153,6 @@ body {
     font-size: 0.9rem;
     color: rgb(58, 58, 58) !important;
     margin-right: 5%;
-}
-
-.favourite-card {
-    flex: 1 1 auto;
-    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-    color: var(--bs-card-color);
-    border-radius: 0 !important;
-    min-width: 150px;
-    max-width: 300px;
 }
 
 .add-icon {
