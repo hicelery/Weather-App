@@ -148,3 +148,29 @@ footer h5 {
 footer p {
     margin: 1px;
 }
+
+/*media queries */
+/*medium screens */
+@media screen and (min-width: 768px) {
+    .weather-card-today {
+        margin-right: 25%;
+    }
+}
+/*large screens */
+@media screen and (min-width: 992px) {
+    .weather-card-today {
+        margin-right: 40%;
+    }
+}
+/* X Large screens */
+@media screen and (min-width: 1200px) {
+    .weather-card-today {
+        margin-right: 45%;
+    }
+}
+/* XXL screens */
+@media screen and (min-width: 1400px) {
+    .weather-card-today {
+        margin-right: 50%;
+    }
+}
