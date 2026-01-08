@@ -5,6 +5,8 @@
 nav .nav-item {
     background-color: rgb(255, 255, 255);
     border: black 1px solid;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 nav img {
     margin-left: 8px;
