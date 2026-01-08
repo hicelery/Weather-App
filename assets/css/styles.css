@@ -57,13 +57,19 @@ body {
     color: #000000;
     border: black 2px solid;
 }
+#applyDataFilters {
+    border-radius: 0px;
+    background-color: #f6ffa5;
+    color: #000000;
+    border: black 2px solid;
+}
 /*Card styling*/
 .weather-card {
     flex: 1 1 auto;
     color: rgb(226, 107, 39);
     border-radius: 4;
     min-width: 150px;
-    background-color: rgb(215, 215, 215);
+    background-color: rgb(219, 227, 240);
     opacity: 100%;
     padding: 10px;
 }
@@ -71,6 +77,12 @@ body {
 .temp-display {
     font-size: 1.7rem;
     font-weight: bold;
+}
+#forecast-container .weather-card {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: rgb(239, 90, 15) 4px solid;
+    text-align: center;
 }
 
 /* Secondary text color on cards */
