@@ -67,13 +67,19 @@ body {
 .weather-card {
     flex: 1 1 auto;
     color: rgb(226, 107, 39);
-    border-radius: 4;
+    border-radius: 15px;
     min-width: 150px;
     background-color: rgb(219, 227, 240);
     opacity: 100%;
     padding: 10px;
 }
 
+.weather-card-today {
+    flex: 1 1 auto;
+    border-top: #fdd90d 4px solid;
+    min-width: 150px;
+    opacity: 100%;
+}
 .temp-display {
     font-size: 1.7rem;
     font-weight: bold;
