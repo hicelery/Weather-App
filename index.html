@@ -226,7 +226,7 @@
                       <div class="day"></div>
                       <img src="null" alt="Weather Icon" class="weather-icon" />
                       <div class="temp-display">{Temp}</div>
-                      <div class="feels-like">{Feels Like}</div>
+                      <div class="feels-like temp-display">{Feels Like}</div>
                       <div class="weather-type">{Weather}</div>
                       <div class="humidity text-muted small">Rain Amount</div>
                       <div class="wind-speed">Wind</div>
@@ -239,7 +239,7 @@
                       <div class="day"></div>
                       <img src="null" alt="Weather Icon" class="weather-icon" />
                       <div class="temp-display"></div>
-                      <div class="feels-like"></div>
+                      <div class="feels-like temp-display"></div>
                       <div class="weather-type">{Weather}</div>
                       <div class="humidity text-muted small">Rain Amount</div>
                       <div class="wind-speed">Wind</div>
@@ -250,7 +250,7 @@
                       <div class="day"></div>
                       <img src="null" alt="Weather Icon" class="weather-icon" />
                       <div class="temp-display"></div>
-                      <div class="feels-like">{Feels Like}</div>
+                      <div class="feels-like temp-display">{Feels Like}</div>
                       <div class="weather-type">{Weather}</div>
                       <div class="humidity text-muted small">Rain Amount</div>
                       <div class="wind-speed">Wind</div>
@@ -261,7 +261,7 @@
                       <div class="day"></div>
                       <img src="" alt="Weather Icon" class="weather-icon" />
                       <div class="temp-display"></div>
-                      <div class="feels-like"></div>
+                      <div class="feels-like temp-display"></div>
                       <div class="weather-type"></div>
                       <div class="humidity text-muted small">Rain Amount</div>
                       <div class="wind-speed">Wind</div>
@@ -272,7 +272,7 @@
                       <div class="day"></div>
                       <img src="" alt="Weather Icon" class="weather-icon" />
                       <div class="temp-display"></div>
-                      <div class="feels-like"></div>
+                      <div class="feels-like temp-display"></div>
                       <div class="weather-type"></div>
                       <div class="humidity text-muted small">Rain Amount</div>
                       <div class="wind-speed">Wind</div>
@@ -298,39 +298,9 @@
               </button>
             </div>
             <!-- Saved location cards -->
-            <div class="d-none d-md-block">
-              <div class="card col mb-3">
-                <div class="weather-card">
-                  <div class="d-flex justify-content-between">
-                    <div>
-                      <div id="favourite-location" class="fw-semibold">
-                        {Location}
-                      </div>
-                      <div class="small text-muted">Weather</div>
-                    </div>
-                    <div class="text-end">
-                      <div class="fw-semibold">28°C</div>
-                      <div class="small text-muted">Sample data</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Placeholder for additional favourites -->
-              <div class="card col mb-3">
-                <div class="weather-card">
-                  <div class="d-flex justify-content-between">
-                    <div>
-                      <div class="fw-semibold">Add Card</div>
-                      <button class="add-new-card">
-                        <img
-                          src=""
-                          alt="Add new favourite"
-                          class="add-icon"
-                        /><!-- or span/ icon from font awesome -->
-                      </button>
-                    </div>
-                  </div>
+            <div class="d-flex d-md-block">
+                <div id="favourites-container" class="row justify-content-center">
+                    <div class="col-12"></div>
                 </div>
               </div>
             </div>
@@ -341,7 +311,7 @@
     <!-- Footer -->
     <footer>
       <h5>Bring Me Sunshine!</h5>
-      <p>Powered By <a href="https://openweathermap.org/">OpenWeatherMap</a></p>
+      <p>Powered By <a target="_blank" href="https://openweathermap.org/">OpenWeatherMap</a></p>
       <p class="small">All rights reserved © 2026</p>
     </footer>
 
