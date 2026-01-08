@@ -237,10 +237,7 @@ function addFavouriteLocation(event) {
    document.getElementById("max-favourites-msg").classList.remove("d-none");
    return;
   }
-
-  addCard(favouriteContainer);
-
-  // Wait for the API call to complete before accessing data
+  if (favouriteContainer.children.length === 1) {
   callWeatherAPI(favouriteLocation).then((favouriteData) => {
     console.log(favouriteData);
     document.getElementById("favourite-title").textContent =
@@ -254,6 +251,40 @@ function addFavouriteLocation(event) {
     document.getElementById("favourite-weather-type").textContent =
       favouriteData.list[0].weather[0].main;
   });
+ if (favouriteContainer.children.length === 1) {
+  callWeatherAPI(favouriteLocation).then((favouriteData) => {
+    console.log(favouriteData);
+    document.getElementById("favourite-title").textContent =
+      favouriteData.city.name;
+    document.getElementById("favourite-image").src =
+      "https://openweathermap.org/img/wn/" +
+      favouriteData.list[0].weather[0].icon +
+      "@2x.png";
+    document.getElementById("favourite-temp-display").textContent =
+      favouriteData.list[0].main.temp + "°C";
+    document.getElementById("favourite-weather-type").textContent =
+      favouriteData.list[0].weather[0].main;
+  });
+  return;
+ }
+
+  addCard(favouriteContainer);
+  callWeatherAPI(favouriteLocation).then((favouriteData) => {
+    console.log(favouriteData);
+    document.getElementById("favourite-title").textContent =
+      favouriteData.city.name;
+    document.getElementById("favourite-image").src =
+      "https://openweathermap.org/img/wn/" +
+      favouriteData.list[0].weather[0].icon +
+      "@2x.png";
+    document.getElementById("favourite-temp-display").textContent =
+      favouriteData.list[0].main.temp + "°C";
+    document.getElementById("favourite-weather-type").textContent =
+      favouriteData.list[0].weather[0].main;
+  });
+
+  // Wait for the API call to complete before accessing data
+  
 }
 
 function removeFavouriteLocation(event) {
