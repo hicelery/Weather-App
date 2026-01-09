@@ -10,6 +10,8 @@ nav {
 nav .nav-item {
     background-color: rgb(255, 255, 255);
     border: black 1px solid;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 nav img {
     margin-left: 8px;
@@ -27,30 +29,7 @@ body {
     background-size: cover;
     padding-top: 57px;
     /* Adjust padding to prevent content from being hidden behind navbar */
-    display: flex;
-    flex-direction: column;
 }
-main {
-    flex: 1 0 auto;
-}
-/* Footer Styling */
-footer {
-    background-color: rgb(226, 107, 39);
-    color: rgb(0, 0, 0);
-    padding: 20px 0;
-    text-align: center;
-    margin-top: auto;
-}
-
-footer h5 {
-    font-family: "boldonse", sans-serif;
-    font-size: 30px;
-}
-
-footer p {
-    margin: 1px;
-}
-/* Searchbar max width */
 .search-input {
     max-width: 420px;
 }
@@ -91,11 +70,21 @@ footer p {
     color: #000000;
     border: black 2px solid;
 }
+
+/* add favourite button styling */
+#add-favourite-btn {
+    font-size: 16px;
+    border-radius: 0px;
+    background-color: #f6ffa5;
+    color: #000000;
+    border: black 2px solid;
+    height: 39.2px;
+}
 /*Card styling*/
 .weather-card {
     flex: 1 1 auto;
     color: rgb(226, 107, 39);
-    border-radius: 4;
+    border-radius: 15px;
     min-width: 150px;
     max-width: 300px;
     background-color: rgb(219, 227, 240);
@@ -103,17 +92,52 @@ footer p {
     padding: 10px;
 }
 
+.weather-card-today {
+    flex: 1 1 auto;
+    border-top: #fdd90d 4px solid;
+    min-width: 150px;
+    max-width: 400px;
+    opacity: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.favourite-card {
+    text-align: center;
+    border-top: rgb(162, 5, 5) 4px solid;
+}
+
 .temp-display {
     font-size: 1.7rem;
     font-weight: bold;
 }
-#forecast-container .weather-card {
-    margin-top: 20px;
-    padding: 10px;
-    border-top: rgb(239, 90, 15) 4px solid;
-    text-align: center;
+#forecast-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 auto;
 }
 
+#forecast-container .forecast-card {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+#forecast-container .weather-card {
+    margin-top: 20px;
+    border-top: rgb(239, 90, 15) 4px solid;
+    text-align: center;
+    max-width: 100px;
+}
+
+.weather-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: block;
+}
 .day {
     font-size: 1.2rem;
     font-weight: bold;
@@ -128,19 +152,27 @@ footer p {
 .date-text {
     font-size: 0.9rem;
     color: rgb(58, 58, 58) !important;
-}
-
-.favourite-card {
-    flex: 1 1 auto;
-    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-    color: var(--bs-card-color);
-    border-radius: 0 !important;
-    min-width: 150px;
-    max-width: 300px;
+    margin-right: 5%;
 }
 
 .add-icon {
     max-width: 70%;
+}
+/* Footer Styling */
+footer {
+    background-color: rgb(226, 107, 39);
+    color: rgb(0, 0, 0);
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer h5 {
+    font-family: "boldonse", sans-serif;
+    font-size: 30px;
+}
+
+footer p {
+    margin: 1px;
 }
 
 /*media queries */
