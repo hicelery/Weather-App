@@ -118,20 +118,21 @@ footer p {
     color: rgb(226, 107, 39);
     border-radius: 15px;
     min-width: 150px;
-    max-width: 300px;
     background-color: rgb(219, 227, 240);
     opacity: 100%;
     padding: 10px;
 }
 
 .weather-card-today {
-    flex: 1 1 auto;
+    color: rgb(226, 107, 39);
     border-top: #fdd90d 4px solid;
-    min-width: 150px;
-    max-width: 400px;
+    border-radius: 15px;
+    background-color: rgb(219, 227, 240);
     opacity: 100%;
-    margin: 0 auto;
-    text-align: center;
+    min-width: 150px;
+    max-width: 90%;
+    padding: 0;
+    min-height: auto;
 }
 
 .favourite-card {
@@ -197,6 +198,9 @@ footer p {
 @media screen and (min-width: 768px) {
     .weather-card-today {
         max-width: 600px;
+    }
+    .weather-card {
+        max-width: 300px;
     }
 }
 

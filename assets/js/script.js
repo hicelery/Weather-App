@@ -73,10 +73,11 @@ function updateWeatherDisplay() {
     //Main current weather display
     document.getElementById("current-location").textContent =
         weatherData.city.name;
-    document.getElementById("temp-display").textContent =
-        weatherData.list[0].main.temp + "°C";
+    document.getElementById(
+        "temp-display"
+    ).textContent = `${weatherData.list[0].main.temp}°C`;
     document.getElementById("feels-like").textContent =
-        weatherData.list[0].main.feels_like + "°C";
+        "Feels like: " + weatherData.list[0].main.feels_like + "°C";
     document.getElementById("weather-type").textContent =
         weatherData.list[0].weather[0].main;
     document.getElementById("today-image").src =

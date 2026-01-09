@@ -47,8 +47,8 @@
         </div>
     </header>
     <main>
-        <div id="bg-image" class="container-fluid px-2 px-md-3">
-            <div class="py-4 ">
+        <div id="bg-image" class="container-fluid">
+            <div class="py-4 px-2 px-md-4">
                 <!-- Search section -->
                 <section id='searchbar' class="mb-4 d-flex flex-column align-items-center">
                     <p class="fst-italic mb-2">Enter a location to view weather forecast</p>
@@ -63,11 +63,12 @@
                 <section id="main-forecast">
                     <div class="row">
                         <!-- Forecast options column-->
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 py-3">
                             <h2 class="h5">Forecast Options</h2>
                             <div class="list-group">
                                 <!-- Radio button to select outputs-->
-                                <form id="forecast-options-form" class="d-flex flex-row flex-lg-column gap-2">
+                                <form id="forecast-options-form"
+                                    class="d-flex flex-column flex-md-row flex-xl-column gap-2">
                                     <button type="button" class="list-group-item list-group-item-action"
                                         aria-current="true">
                                         <input type="checkbox" id="tempCheck" name="fav_language" value="Temperature"
@@ -97,7 +98,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-9 p-2">
+                        <div class="col-lg-9 py-3">
                             <!-- Current location heading -->
                             <div class="d-flex justify-content-between align-items-center mb-2" style="height: 39.2px">
                                 <h2 class="h5">
@@ -110,37 +111,44 @@
                                         locations.</p>
                                 </h2>
 
-                                <span class="text-muted small">
+                                <span class="text-black-70 small">
                                     Today's Date:
                                     <strong><span id="current-date">{Date}</span></strong>
                                 </span>
                             </div>
-                            <!-- Today card -->
-                            <div class="card weather-card weather-card-today mb-3">
-                                <div class="weather-card">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-4 mb-3 mb-md-0">
-                                            <div class="text-center text-md-start">
-                                                <div id="temp-display" class="temp-display">
-                                                    {Temp}
+
+                            <!-- wrap forecast cards in a container-->
+                            <div class="container">
+                                <!-- Today card -->
+                                <div class="card weather-card-today mb-3 mx-auto">
+                                    <!-- Title Row -->
+                                    <div class="card-header bg-transparent border-0 py-3">
+                                        <h3 class="text-black mb-0"><strong>Today</strong></h3>
+                                    </div>
+                                    <!-- Content Row -->
+                                    <div class="card-body p-3">
+                                        <div class="row align-items-center g-3">
+                                            <!-- Left Column: Weather Info -->
+                                            <div class="col-md-6 text-center">
+                                                <div class="mb-3">
+                                                    <div id="temp-display" class="temp-display">
+                                                        {Temp}
+                                                    </div>
+                                                    <div id="feels-like" class="text-muted small">
+                                                        (Feels like)
+                                                    </div>
                                                 </div>
-                                                <div id="feels-like" class="text-muted small">
-                                                    (Feels like)
+                                                <div>
+                                                    <div id="weather-type" class="weather-type">
+                                                        {Weather}
+                                                    </div>
+                                                    <div id="wind-today" class="text-muted small">
+                                                        Wind
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4 mb-3 mb-md-0">
-                                            <div class="text-center text-md-start">
-                                                <div id="weather-type" class="weather-type">
-                                                    {Weather}
-                                                </div>
-                                                <div id="wind-today" class="text-muted small">
-                                                    Wind
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="d-flex align-items-center justify-content-center">
+                                            <!-- Right Column: Weather Icon -->
+                                            <div class="col-md-6 d-flex justify-content-center align-items-center">
                                                 <img id="today-image" alt="Weather Icon" class="weather-icon" />
                                             </div>
                                         </div>
@@ -148,6 +156,7 @@
                                 </div>
                             </div>
 
+                            <h2 class="h5">Upcoming Days:</h2>
                             <!-- Future days -->
                             <!-- All set to one row, adjust min width in CSS to control wrapping -->
                             <div id="forecast-container" class="row">
@@ -212,6 +221,7 @@
 
                             </div>
                         </div>
+                    </div>
                 </section>
                 <!-- Favourites area -->
 
@@ -226,8 +236,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
     </main>
     <!-- Footer -->
     <footer>
