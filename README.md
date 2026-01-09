@@ -70,17 +70,35 @@ Add saved locations underneath main forecast area
 <img src="assets\images\favourites-section.png">
 
 ## Meeting Intended Learning Outcomes
+LO1: Learners will be able to design and implement a one-page interactive Front-End web application using HTML, CSS, and JavaScript focusing on user experience design, accessibility, and responsive DOM manipulation.
+
+LO2: Learners will be able to test and validate a one-page web application through development, implementation, and deployment stages.
+
+LO3: Learners will be able to deploy a one-page web application to a Cloud platform ensuring functionality and security.
+
+LO4: Learners will be able to maximize future maintainability through thorough documentation, clear code structure, and organization.
+
+LO5: Learners will be able to implement and document front-end interactivity using core JavaScript, JavaScript libraries, or frameworks with a focus on DOM manipulation for a one-page web application.
+
+LO6: Learners will be able to leverage AI tools to orchestrate the software development process.
 
 ## Testing
 Lighthouse Testing and Code Validation Tests Completed 
 
 <img src="\assets\images\lighthouse-summary.png">
 
-<img src="assets\images\CSS-validator.png">
 
-<>
+<img src="assets\images\CSS-validator.png">
+ Minor warnings given, due to importing fonts
+
+<img src ="assets\images\html.webp">
+Warning given regarding trailing slashes and use of H5 in footer, now corrected.
 
 ## Deployment and workflow
+ 
+Project displayed in project board with each task assigned to member, given labels of urgency and updated regularly.
+
+<img src="assets\images\project-board.png">
 
 This project is deployed through github pages and follows a simplified agile gitflow methodology:
 
@@ -97,6 +115,8 @@ Example of gitflow:
 ## Use of AI in development and project retrospective.
 
 Ai used to create initial boilerplate from wireframe, streamlining bootstrap structuring. Due to fairly complex wireframe, this did have superfluous css classes that needed removed.
+
+Use of AI for generation of repetitive code and resolving functional bugs.
 
 ## Use of external resources
 
