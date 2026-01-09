@@ -1,9 +1,11 @@
 # Bring Me Sunshine
 
-Deployed link:
+Deployed Link: https://hicelery.github.io/WeatherApp/
+Repository Link: https://github.com/hicelery/WeatherApp/tree/main
 
 <img src ="assets\images\all-devices-white.png">
-## 📋 Project Overview
+
+## Project Overview
 
 A project plan and outline:
 
@@ -52,6 +54,7 @@ User story: As a Site Owner, I want the site to follow development best practice
 ## Functionality 
 Javascript interactivity is found in five main elements of the website:
 <img src="assets\images\Interactivity.png">
+
 1. Searchbar to update location
 Default when page loads to the users current geolocation or London
 2. Change Current Weather Display
@@ -63,9 +66,19 @@ Shows weather forecast for next 5 days by default, but can be altered based on u
 5. Favourites Section
 Add saved locations underneath main forecast area
 
+<img src="\assets\images\max-3.png">
+<img src="assets\images\favourites-section.png">
+
 ## Meeting Intended Learning Outcomes
 
 ## Testing
+Lighthouse Testing and Code Validation Tests Completed 
+
+<img src="\assets\images\lighthouse-summary.png">
+
+<img src="assets\images\CSS-validator.png">
+
+<>
 
 ## Deployment and workflow
 

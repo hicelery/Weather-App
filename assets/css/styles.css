@@ -1,6 +1,12 @@
 /* google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
 
+/* simple hover state for all buttons */
+.hover:hover {
+    background-color: rgb(249, 195, 94);
+    color: rgb(0, 0, 0);
+}
+
 /* Navbar styling */
 nav {
     top: 0;
@@ -27,6 +33,7 @@ nav .btn {
     background-color: rgb(226, 107, 39);
     color: rgb(0, 0, 0);
 }
+
 body {
     background: url("../images/Sunny_BG_1.jpg") center/cover no-repeat;
     min-height: 100vh;
@@ -51,7 +58,7 @@ footer {
     width: 100%;
 }
 
-footer h5 {
+footer .display-4 {
     font-family: "boldonse", sans-serif;
     font-size: 30px;
 }

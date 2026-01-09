@@ -25,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#searchbar">Search Weather</a>
+                        <a class="hover nav-link active" aria-current="page" href="#searchbar">Search Weather</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#favourites">Favourites</a>
+                        <a class="hover nav-link" href="#favourites">Favourites</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn nav-link" href="https://severeweather.wmo.int/" target="_blank"
+                        <a class="hover nav-link" href="https://severeweather.wmo.int/" target="_blank"
                             rel="noopener">View Extreme Weather</a>
                     </li>
                 </ul>
@@ -55,7 +55,7 @@
                     <form id="location-form" class="d-flex flex-column flex-sm-row gap-2">
                         <input type="text" id="user-input" class="form-control search-input"
                             placeholder="e.g. London, UK" aria-label="Location" />
-                        <button type="submit" class="btn btn-primary px-4">Search</button>
+                        <button type="submit" class="btn hover btn-primary px-4">Search</button>
                     </form>
                     <p id="error-message" class="d-none">Please enter a location</p>
                 </section>
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="col-12 py-5 py-md-3">
-                            <button id="add-favourite-btn" class="btn d-none">
+                            <button id="add-favourite-btn" class="btn hover d-none">
                                 Add to Favourites
                             </button>
                             <p id="max-favourites-msg" class="d-none">You may only add a maximum of 3
@@ -113,7 +113,7 @@
                                     <input type="number" id="forecastDays" placeholder="Number of days:"
                                         class="list-group-item" min="1" max="7" value="5" />
                                     <button id="applyDataFilters" type="submit"
-                                        class="btn list-group-item list-group-item-action active text-center">
+                                        class="btn hover list-group-item list-group-item-action active text-center">
                                         Apply
                                     </button>
                                 </form>
@@ -250,7 +250,7 @@
     </main>
     <!-- Footer -->
     <footer>
-        <h5>Bring Me Sunshine!</h5>
+        <p class="display-4">Bring Me Sunshine!</p>
         <p>Powered By <a target="_blank" href="https://openweathermap.org/">OpenWeatherMap</a></p>
         <p class="small">All rights reserved © 2026</p>
     </footer>
