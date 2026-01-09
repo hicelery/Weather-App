@@ -77,159 +77,160 @@
                                 </span>
 
                             </div>
-                            <div class="col-12 py-5 py-md-3">
-                                <button id="add-favourite-btn" class="btn d-none">
-                                    Add to Favourites
-                                </button>
-                                <p id="max-favourites-msg" class="d-none">You may only add a maximum of 3
-                                    favourite
-                                    locations.</p>
-                            </div>
-                            <!-- Forecast options column-->
-                            <div class="col-lg-3 py-3">
-                                <h2 class="h5">Forecast Options</h2>
-                                <div class="list-group">
-                                    <!-- Radio button to select outputs-->
-                                    <form id="forecast-options-form"
-                                        class="d-flex flex-column flex-md-row flex-xl-column gap-2">
-                                        <div class="list-group-item list-group-item-action" aria-current="true">
-                                            <input type="checkbox" id="tempCheck" class="filter-input"
-                                                name="fav_language" value="Temperature" checked />
-                                            <label for="tempCheck">Temperature</label><br />
-                                        </div>
-
-                                        <div class="list-group-item list-group-item-action">
-                                            <input type="checkbox" id="windCheck" name="fav_language" value="wind"
-                                                checked />
-                                            <label for="windCheck">Wind</label><br />
-                                        </div>
-                                        <div class="list-group-item list-group-item-action">
-                                            <input type="checkbox" id="humidityCheck" name="fav_language"
-                                                value="humidity" checked />
-                                            <label for="humidityCheck">Humidity</label><br />
-                                        </div>
-
-                                        <input type="number" id="forecastDays" placeholder="Number of days:"
-                                            class="list-group-item" min="1" max="7" value="5" />
-                                        <button id="applyDataFilters" type="submit"
-                                            class="btn list-group-item list-group-item-action active text-center">
-                                            Apply
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-lg-9 py-3">
-
-                                <!-- wrap forecast cards in a container-->
-                                <div class="container">
-                                    <!-- Today card -->
-                                    <div class="card weather-card-today mb-3 mx-auto">
-                                        <!-- Title Row -->
-                                        <div class="card-header bg-transparent border-0 py-3">
-                                            <h3 class="text-black mb-0"><strong>Today</strong></h3>
-                                        </div>
-                                        <!-- Content Row -->
-                                        <div class="card-body p-3">
-                                            <div class="row align-items-center g-3">
-                                                <!-- Left Column: Weather Icon -->
-                                                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                                                    <img id="today-image" src="assets/images/favicon.ico" alt="Weather Icon"
-                                                        class="weather-icon" />
-                                                </div>
-                                                <!-- Right Column: Weather Info -->
-                                                <div class="col-md-6 text-center">
-                                                    <div class="mb-3">
-                                                        <div id="temp-display" class="temp-display">
-                                                            {Temp}
-                                                        </div>
-                                                        <div id="feels-like" class="text-muted small">
-                                                            (Feels like)
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div id="weather-type" class="weather-type">
-                                                            {Weather}
-                                                        </div>
-                                                        <div id="wind-today" class="text-muted small">
-                                                            Wind
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <h2 class="h5">Upcoming Days:</h2>
-                                <!-- Future days -->
-                                <!-- All set to one row, adjust min width in CSS to control wrapping -->
-                                <div id="forecast-container" class="row">
-                                    <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                        <div class="card weather-card">
-                                            <div class="day"></div>
-                                            <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
-
-                                            <div class="temp-display">{Temp}</div>
-                                            <div class="feels-like">{Feels Like}</div>
-                                            <div class="weather-type">{Weather}</div>
-                                            <div class="humidity text-muted small">Rain Amount</div>
-                                            <div class="wind-speed">Wind</div>
-                                            <!-- Example placeholder for wind speed to be added by queries-->
-                                        </div>
+                        </div>
+                        <div class="col-12 py-5 py-md-3">
+                            <button id="add-favourite-btn" class="btn d-none">
+                                Add to Favourites
+                            </button>
+                            <p id="max-favourites-msg" class="d-none">You may only add a maximum of 3
+                                favourite
+                                locations.</p>
+                        </div>
+                        <!-- Forecast options column-->
+                        <div class="col-lg-3 py-3">
+                            <h2 class="h5">Forecast Options</h2>
+                            <div class="list-group">
+                                <!-- Radio button to select outputs-->
+                                <form id="forecast-options-form"
+                                    class="d-flex flex-column flex-md-row flex-xl-column gap-2">
+                                    <div class="list-group-item list-group-item-action" aria-current="true">
+                                        <input type="checkbox" id="tempCheck" class="filter-input" name="fav_language"
+                                            value="Temperature" checked />
+                                        <label for="tempCheck">Temperature</label><br />
                                     </div>
 
-                                    <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                        <div class="card weather-card">
-                                            <div class="day"></div>
-                                            <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
-                                            <div class="temp-display"></div>
-                                            <div class="feels-like"></div>
-                                            <div class="weather-type">{Weather}</div>
-                                            <div class="humidity text-muted small">Rain Amount</div>
-                                            <div class="wind-speed">Wind</div>
-                                        </div>
+                                    <div class="list-group-item list-group-item-action">
+                                        <input type="checkbox" id="windCheck" name="fav_language" value="wind"
+                                            checked />
+                                        <label for="windCheck">Wind</label><br />
                                     </div>
-                                    <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                        <div class="card weather-card">
-                                            <div class="day"></div>
-                                            <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
-                                            <div class="temp-display"> </div>
-                                            <div class="feels-like">{Feels Like}</div>
-                                            <div class="weather-type">{Weather}</div>
-                                            <div class="humidity text-muted small">Rain Amount</div>
-                                            <div class="wind-speed">Wind</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                        <div class="card weather-card">
-                                            <div class="day"></div>
-                                            <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
-                                            <div class="temp-display"> </div>
-                                            <div class="feels-like"></div>
-                                            <div class="weather-type"></div>
-                                            <div class="humidity text-muted small">Rain Amount</div>
-                                            <div class="wind-speed">Wind</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                        <div class="card weather-card">
-                                            <div class="day"></div>
-                                            <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
-                                            <div class="temp-display"></div>
-                                            <div class="feels-like"></div>
-                                            <div class="weather-type"></div>
-                                            <div class="humidity text-muted small">Rain Amount</div>
-                                            <div class="wind-speed">Wind</div>
-                                        </div>
+                                    <div class="list-group-item list-group-item-action">
+                                        <input type="checkbox" id="humidityCheck" name="fav_language" value="humidity"
+                                            checked />
+                                        <label for="humidityCheck">Humidity</label><br />
                                     </div>
 
-                                </div>
+                                    <input type="number" id="forecastDays" placeholder="Number of days:"
+                                        class="list-group-item" min="1" max="7" value="5" />
+                                    <button id="applyDataFilters" type="submit"
+                                        class="btn list-group-item list-group-item-action active text-center">
+                                        Apply
+                                    </button>
+                                </form>
                             </div>
                         </div>
+
+
+
+                        <div class="col-lg-9 py-3">
+
+                            <!-- wrap forecast cards in a container-->
+                            <div class="container">
+                                <!-- Today card -->
+                                <div class="card weather-card-today mb-3 mx-auto">
+                                    <!-- Title Row -->
+                                    <div class="card-header bg-transparent border-0 py-3">
+                                        <h3 class="text-black mb-0"><strong>Today</strong></h3>
+                                    </div>
+                                    <!-- Content Row -->
+                                    <div class="card-body p-3">
+                                        <div class="row align-items-center g-3">
+                                            <!-- Left Column: Weather Icon -->
+                                            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                                                <img id="today-image" src="assets/images/favicon.ico" alt="Weather Icon"
+                                                    class="weather-icon" />
+                                            </div>
+                                            <!-- Right Column: Weather Info -->
+                                            <div class="col-md-6 text-center">
+                                                <div class="mb-3">
+                                                    <div id="temp-display" class="temp-display">
+                                                        {Temp}
+                                                    </div>
+                                                    <div id="feels-like" class="text-muted small">
+                                                        (Feels like)
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div id="weather-type" class="weather-type">
+                                                        {Weather}
+                                                    </div>
+                                                    <div id="wind-today" class="text-muted small">
+                                                        Wind
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 class="h5">Upcoming Days:</h2>
+                            <!-- Future days -->
+                            <!-- All set to one row, adjust min width in CSS to control wrapping -->
+                            <div id="forecast-container" class="row">
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
+                                    <div class="card weather-card">
+                                        <div class="day"></div>
+                                        <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
+
+                                        <div class="temp-display">{Temp}</div>
+                                        <div class="feels-like">{Feels Like}</div>
+                                        <div class="weather-type">{Weather}</div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
+                                        <div class="wind-speed">Wind</div>
+                                        <!-- Example placeholder for wind speed to be added by queries-->
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
+                                    <div class="card weather-card">
+                                        <div class="day"></div>
+                                        <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
+                                        <div class="temp-display"></div>
+                                        <div class="feels-like"></div>
+                                        <div class="weather-type">{Weather}</div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
+                                        <div class="wind-speed">Wind</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
+                                    <div class="card weather-card">
+                                        <div class="day"></div>
+                                        <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
+                                        <div class="temp-display"> </div>
+                                        <div class="feels-like">{Feels Like}</div>
+                                        <div class="weather-type">{Weather}</div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
+                                        <div class="wind-speed">Wind</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
+                                    <div class="card weather-card">
+                                        <div class="day"></div>
+                                        <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
+                                        <div class="temp-display"> </div>
+                                        <div class="feels-like"></div>
+                                        <div class="weather-type"></div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
+                                        <div class="wind-speed">Wind</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
+                                    <div class="card weather-card">
+                                        <div class="day"></div>
+                                        <img src="assets/images/favicon.ico" alt="Weather Icon" class="weather-icon" />
+                                        <div class="temp-display"></div>
+                                        <div class="feels-like"></div>
+                                        <div class="weather-type"></div>
+                                        <div class="humidity text-muted small">Rain Amount</div>
+                                        <div class="wind-speed">Wind</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </section>
                 <!-- Favourites area -->
