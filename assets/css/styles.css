@@ -111,6 +111,7 @@ footer p {
     color: #000000;
     border: black 2px solid;
     height: 39.2px;
+    width: 100%;
 }
 /*Card styling*/
 .weather-card {
