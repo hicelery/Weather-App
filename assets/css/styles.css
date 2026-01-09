@@ -27,7 +27,30 @@ body {
     background-size: cover;
     padding-top: 57px;
     /* Adjust padding to prevent content from being hidden behind navbar */
+    display: flex;
+    flex-direction: column;
 }
+main {
+    flex: 1 0 auto;
+}
+/* Footer Styling */
+footer {
+    background-color: rgb(226, 107, 39);
+    color: rgb(0, 0, 0);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer h5 {
+    font-family: "boldonse", sans-serif;
+    font-size: 30px;
+}
+
+footer p {
+    margin: 1px;
+}
+/* Searchbar max width */
 .search-input {
     max-width: 420px;
 }
@@ -119,19 +142,29 @@ body {
 .add-icon {
     max-width: 70%;
 }
-/* Footer Styling */
-footer {
-    background-color: rgb(226, 107, 39);
-    color: rgb(0, 0, 0);
-    padding: 20px 0;
-    text-align: center;
-}
 
-footer h5 {
-    font-family: "boldonse", sans-serif;
-    font-size: 30px;
+/*media queries */
+/*medium screens */
+@media screen and (min-width: 768px) {
+    .weather-card-today {
+        margin-right: 25%;
+    }
 }
-
-footer p {
-    margin: 1px;
+/*large screens */
+@media screen and (min-width: 992px) {
+    .weather-card-today {
+        margin-right: 40%;
+    }
+}
+/* X Large screens */
+@media screen and (min-width: 1200px) {
+    .weather-card-today {
+        margin-right: 45%;
+    }
+}
+/* XXL screens */
+@media screen and (min-width: 1400px) {
+    .weather-card-today {
+        margin-right: 50%;
+    }
 }

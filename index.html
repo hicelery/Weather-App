@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bring me sunshine</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bring Me Sunshine</title>
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,7 +17,6 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo.png" alt="logo" class="logo" />
-
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,18 +40,11 @@
     </nav>
 
     <header id="hero" class="position-relative">
-
-
         <div class="container-fluid py-5">
             <div class="row align-items-center">
-
                 <h1 class="logo-text display-4 fw-bold">Bring me sunshine!</h1>
-
             </div>
         </div>
-
-
-
     </header>
     <main>
         <div id="bg-image">
@@ -71,7 +63,7 @@
                 <section id="main-forecast">
                     <div class="row">
                         <!-- Forecast options column-->
-                        <div class="col-lg-3 ">
+                        <div class="col-lg-3">
                             <h2 class="h5">Forecast Options</h2>
                             <div class="list-group">
                                 <!-- Radio button to select outputs-->
@@ -79,34 +71,48 @@
                                     <button type="button" class="list-group-item list-group-item-action"
                                         aria-current="true">
                                         <input type="checkbox" id="tempCheck" name="fav_language" value="Temperature"
-                                            checked>
-                                        <label for="tempCheck">Temperature</label><br>
+                                            checked />
+                                        <label for="tempCheck">Temperature</label><br />
                                     </button>
 
+                                    <button type="button" class="list-group-item list-group-item-action">
+                                        <input type="checkbox" id="windCheck" name="fav_language" value="wind"
+                                            checked />
+                                        <label for="windCheck">Wind</label><br />
+                                    </button>
 
-                                    <button type="button" class="list-group-item list-group-item-action"><input
-                                            type="checkbox" id="windCheck" name="fav_language" value="wind" checked>
-                                        <label for="windCheck">Wind</label><br></button>
-
-                                    <button type="button" class="list-group-item list-group-item-action"><input
-                                            type="checkbox" id="precipitationCheck" name="fav_language"
-                                            value="precipitation" checked>
-                                        <label for="precipitationCheck">Precipitation</label><br></button>
+                                    <button type="button" class="list-group-item list-group-item-action">
+                                        <input type="checkbox" id="humidityCheck" name="fav_language" value="humidity"
+                                            checked />
+                                        <label for="humidityCheck">Humidity</label><br />
+                                    </button>
 
                                     <input type="number" id="forecastDays" placeholder="Number of days:"
                                         class="list-group-item" min="1" max="7" value="5" />
                                     <button id="applyDataFilters" type="submit"
-                                        class="btn list-group-item list-group-item-action active text-center">Apply</button>
+                                        class="btn list-group-item list-group-item-action active text-center">
+                                        Apply
+                                    </button>
                                 </form>
                             </div>
                         </div>
 
                         <div class="col-lg-9">
                             <!-- Current location heading -->
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h2 class="h5">Current location: <strong id="current-location">LOCATION</strong></h2>
-                                <span class="text-muted small date-text">
-                                    Today's Date: <strong><span id="current-date">{Date}</span></strong>
+                            <div class="d-flex justify-content-between align-items-center mb-2" style="height: 39.2px">
+                                <h2 class="h5">
+                                    Current location:
+                                    <strong id="current-location" class="me-4">LOCATION</strong><button
+                                        id="add-favourite-btn" class="btn d-none">
+                                        Add to Favourites
+                                    </button>
+                                    <p id="max-favourites-msg" class="d-none">You may only add a maximum of 3 favourite
+                                        locations.</p>
+                                </h2>
+
+                                <span class="text-muted small">
+                                    Today's Date:
+                                    <strong><span id="current-date">{Date}</span></strong>
                                 </span>
                             </div>
                             <!-- Today card -->
@@ -115,14 +121,22 @@
                                     <div class="row align-items-center">
                                         <div class="col-md-4 mb-3 mb-md-0">
                                             <div class="text-center text-md-start">
-                                                <div id="temp-display" class="temp-display">{Temp}</div>
-                                                <div id="feels-like" class="text-muted small">(Feels like)</div>
+                                                <div id="temp-display" class="temp-display">
+                                                    {Temp}
+                                                </div>
+                                                <div id="feels-like" class="text-muted small">
+                                                    (Feels like)
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 mb-3 mb-md-0">
                                             <div class="text-center text-md-start">
-                                                <div id="weather-type" class="weather-type">{Weather}</div>
-                                                <div id="wind-today" class="text-muted small">Wind</div>
+                                                <div id="weather-type" class="weather-type">
+                                                    {Weather}
+                                                </div>
+                                                <div id="wind-today" class="text-muted small">
+                                                    Wind
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -137,11 +151,11 @@
                             <!-- Future days -->
                             <!-- All set to one row, adjust min width in CSS to control wrapping -->
                             <div id="forecast-container" class="row">
-                                <h3 class="h6 mb-3">Upcoming Days</h3>
-                                <div class="col forecast-card">
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
+                                        <img src="null" alt="Weather Icon" class="weather-icon" />
+
                                         <div class="temp-display">{Temp}</div>
                                         <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
@@ -151,10 +165,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col forecast-card">
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
+                                        <img src="null" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"></div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type">{Weather}</div>
@@ -162,10 +176,10 @@
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                                <div class="col forecast-card">
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
+                                        <img src="null" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"> </div>
                                         <div class="feels-like">{Feels Like}</div>
                                         <div class="weather-type">{Weather}</div>
@@ -173,10 +187,10 @@
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                                <div class="col forecast-card">
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
+                                        <img src="" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"> </div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type"></div>
@@ -184,10 +198,10 @@
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                                <div class="col forecast-card">
+                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
                                     <div class="card weather-card">
                                         <div class="day"></div>
-                                        <img src="assets/images/logo.png" alt="Weather Icon" class="weather-icon" />
+                                        <img src="" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"></div>
                                         <div class="feels-like"></div>
                                         <div class="weather-type"></div>
@@ -198,7 +212,6 @@
 
                             </div>
                         </div>
-                    </div>
                 </section>
                 <!-- Favourites area -->
                 <div id="favourites" class="container-fluid mt-5 row">
@@ -235,11 +248,9 @@
     </main>
     <!-- Footer -->
     <footer>
-        <h5>
-            Bring Me Sunshine!
-        </h5>
-        <p> Powered By <a href="https://openweathermap.org/">OpenWeatherMap</a></p>
-        <p class="small"> All rights reserved © 2026</p>
+        <h5>Bring Me Sunshine!</h5>
+        <p>Powered By <a target="_blank" href="https://openweathermap.org/">OpenWeatherMap</a></p>
+        <p class="small">All rights reserved © 2026</p>
     </footer>
 
 
