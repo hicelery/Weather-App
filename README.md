@@ -2,6 +2,7 @@
 
 Deployed link:
 
+<img src ="assets\images\all-devices-white.png">
 ## 📋 Project Overview
 
 A project plan and outline:
@@ -47,7 +48,23 @@ User story: As a Site Owner, I want the site to follow development best practice
 
  Our wireframes reflect the intented features to fill our user stories:
 <img width = "790" src="assets/images/wireframe.png">
- 
+
+## Functionality 
+Javascript interactivity is found in five main elements of the website:
+<img src="assets\images\Interactivity.png">
+1. Searchbar to update location
+Default when page loads to the users current geolocation or London
+2. Change Current Weather Display
+Shows weather summary for default location or when search is applied
+3. Filters and Forecast Duration
+User can select which data points are shown and for how many days to a maximum of 7
+4. Forecast Section
+Shows weather forecast for next 5 days by default, but can be altered based on user’s selection
+5. Favourites Section
+Add saved locations underneath main forecast area
+
+## Meeting Intended Learning Outcomes
+
 ## Testing
 
 ## Deployment and workflow
