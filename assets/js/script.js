@@ -1,5 +1,5 @@
 // Global variable with default location
-const apiKey = env.API_KEY;
+const apiKey = "81feab47f2b2b44f10ee9f0f9a026041";
 let weatherLocation = "London";
 const storedFavouriteLocations = [];
 let forecastDays = 5;
