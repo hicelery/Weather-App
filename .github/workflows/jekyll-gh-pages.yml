@@ -23,10 +23,7 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
-  
- env:
-          API_KEY: ${{ secrets.APIKEY }}
-
+ 
 
 jobs:
   # Build job
@@ -35,7 +32,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-       
+        env:
+          API_KEY: ${{ secrets.APIKEY }}       
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll
