@@ -245,15 +245,15 @@ function addFavouriteLocation(event) {
     // Wait for the API call to complete before accessing data
     callWeatherAPI(favouriteLocation).then((favouriteData) => {
         console.log(favouriteData);
-        document.getElementsByClassName("favourite-title").textContent =
+        document.getElementById("favourite-title").textContent =
             favouriteData.city.name;
-        document.getElementsByClassName("favourite-image").src =
+        document.getElementById("favourite-image").src =
             "https://openweathermap.org/img/wn/" +
             favouriteData.list[0].weather[0].icon +
             "@2x.png";
-        document.getElementsByClassName("favourite-temp-display").textContent =
+        document.getElementById("favourite-temp-display").textContent =
             favouriteData.list[0].main.temp + "°C";
-        document.getElementsByClassName("favourite-weather-type").textContent =
+        document.getElementById("favourite-weather-type").textContent =
             favouriteData.list[0].weather[0].main;
     });
 }
@@ -289,10 +289,10 @@ function addCard(container) {
       <div class="favourite-card weather-card card h-100 position-relative">
         <button class="remove-favourite-btn btn-close position-absolute top-0 end-0 m-2" aria-label="Remove favourite"></button>
         <div class="card-body">
-          <h5 class="favourite-title card-title fs-1">Location</h5>
-          <img class="favourite-image weather-icon mb-2" src="" alt="Weather icon">
-          <p class="favourite-weather-type weather-type">Weather Type</p>
-          <p class="favourite-temp-display temp-display">Temperature: --°C</p>
+          <h5 id="favourite-title" class="card-title fs-1">Location</h5>
+          <img id="favourite-image" class="weather-icon mb-2" src="" alt="Weather icon">
+          <p id="favourite-weather-type" class="weather-type">Weather Type</p>
+          <p id="favourite-temp-display" class="temp-display">Temperature: --°C</p>
         </div>
       </div>
     `;
