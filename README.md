@@ -1,8 +1,11 @@
 # Bring Me Sunshine
 
-Deployed link:
+Deployed Link: https://hicelery.github.io/WeatherApp/
+Repository Link: https://github.com/hicelery/WeatherApp/tree/main
 
-## 📋 Project Overview
+<img src ="assets\images\all-devices-white.png">
+
+## Project Overview
 
 A project plan and outline:
 
@@ -19,17 +22,83 @@ A project plan and outline:
 
 User story: As a First‑Time Visitor, I want a concise, clear, layout with consistent and familiar styling, so I can find weather information quickly and efficiently,
 
+Features: 
+ 1. Navbar and Footer with navigation points around the site. 
+ 2. Header section showing title and search bar
+ 3. Main primary panel showing updated information for today in chosen location.
+
 User story: As a Regular User, I would like customisability, and the ability to save my favourite locations, so I can personalise my experience.
 
+1. Filters section where user can choose to show or hide different weather elements, for example wind speed, temperature and feels like temperature.
+2. Quantity selector for user to choose number of days of forecast into the future the app shows with a maximum of 7 days to ensure smooth design is maintained.
+3. Favourites panel at the bottom of screen to give user the ability to save favourite locations while continuing to search other spots.
+
 User story: As a Site Owner, I want the site to follow accessibility best practices and responsive design, so everyone can access information.
+1. Ensure sufficient contrast for clear visual display of fonts and buttons.
+2. Supply text alternatives for images onsite.
+3. User can submit using keyboard entry as well as mouse clicks.
 
 User story: As a Site Owner, I want the site to follow development best practices, so it is secure and easy to maintain to minimize downtime.
+1. Code is well commmented, with each function explained.
+2. Variables are names appropriately and easy to find in relation to their purpose.
+3. Indendation and formatting is consistent to make document easier to follow.
 
 ## Solution Design Details
+ We focused on the idea of a sunny, beach themed design titled 'BringMeSunshine!' for the project. This resulted in a background page image of a sunny beach and a warm colour scheme of yellows and oranges. 
+
+ Final Title Font: <img src="assets\images\title-font.png"> 
+
+ Our wireframes reflect the intented features to fill our user stories:
+<img width = "790" src="assets/images/wireframe.png">
+
+## Functionality 
+Javascript interactivity is found in five main elements of the website:
+<img src="assets\images\Interactivity.png">
+
+1. Searchbar to update location
+Default when page loads to the users current geolocation or London
+2. Change Current Weather Display
+Shows weather summary for default location or when search is applied
+3. Filters and Forecast Duration
+User can select which data points are shown and for how many days to a maximum of 7
+4. Forecast Section
+Shows weather forecast for next 5 days by default, but can be altered based on user’s selection
+5. Favourites Section
+Add saved locations underneath main forecast area
+
+<img src="\assets\images\max-3.png">
+<img src="assets\images\favourites-section.png">
+
+## Meeting Intended Learning Outcomes
+LO1: Learners will be able to design and implement a one-page interactive Front-End web application using HTML, CSS, and JavaScript focusing on user experience design, accessibility, and responsive DOM manipulation.
+
+LO2: Learners will be able to test and validate a one-page web application through development, implementation, and deployment stages.
+
+LO3: Learners will be able to deploy a one-page web application to a Cloud platform ensuring functionality and security.
+
+LO4: Learners will be able to maximize future maintainability through thorough documentation, clear code structure, and organization.
+
+LO5: Learners will be able to implement and document front-end interactivity using core JavaScript, JavaScript libraries, or frameworks with a focus on DOM manipulation for a one-page web application.
+
+LO6: Learners will be able to leverage AI tools to orchestrate the software development process.
 
 ## Testing
+Lighthouse Testing and Code Validation Tests Completed 
+
+<img src="\assets\images\lighthouse-summary.png">
+
+
+<img src="assets\images\CSS-validator.png">
+ Minor warnings given, due to importing fonts
+
+<img src ="assets\images\html.webp">
+Warning given regarding trailing slashes and use of H5 in footer, now corrected.
 
 ## Deployment and workflow
+ 
+Project displayed in project board with each task assigned to member, given labels of urgency and updated regularly.
+
+<img src="assets\images\project-board.png">
 
 This project is deployed through github pages and follows a simplified agile gitflow methodology:
 
@@ -46,6 +115,8 @@ Example of gitflow:
 ## Use of AI in development and project retrospective.
 
 Ai used to create initial boilerplate from wireframe, streamlining bootstrap structuring. Due to fairly complex wireframe, this did have superfluous css classes that needed removed.
+
+Use of AI for generation of repetitive code and resolving functional bugs.
 
 ## Use of external resources
 
