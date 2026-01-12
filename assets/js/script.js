@@ -1,5 +1,5 @@
 // Global variable with default location
-const apiKey = "81feab47f2b2b44f10ee9f0f9a026041";
+const apiKey = env.API_KEY;
 let weatherLocation = "London";
 const storedFavouriteLocations = [];
 let forecastDays = 5;
@@ -22,11 +22,11 @@ todayDateElement.textContent = today.toLocaleDateString(undefined, options);
 
 //submit event listeners
 document
-  .getElementById("location-form")
-  .addEventListener("submit", handleSubmitButtonClick);
+    .getElementById("location-form")
+    .addEventListener("submit", handleSubmitButtonClick);
 document
-  .getElementById("forecast-options-form")
-  .addEventListener("submit", handleFormFilters);
+    .getElementById("forecast-options-form")
+    .addEventListener("submit", handleFormFilters);
 
 //Initialize weather display on page load
 initializeApp();
@@ -41,62 +41,63 @@ function initializeApp() {
     }
     //Call API add update display
     callWeatherAPI(weatherLocation).then((data) => {
-  weatherData = data;
-    updateWeatherDisplay(weatherLocation, forecastDays);
-})}
-
-/* API Call to Fetch Data From OpenWeatherMap */
-function callWeatherAPI(weatherLocation) {
-  console.log("Fetching weather data for", weatherLocation);
-  const endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=${weatherLocation}&appid=${apiKey}&units=metric`;
-  // This is now asynchronous, returning a promise (fetch) it then needs to be handled with .then() when called
-  return fetch(endpoint)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      return data; // keep the full object
+        weatherData = data;
+        updateWeatherDisplay(weatherLocation, forecastDays);
     });
 }
 
+/* API Call to Fetch Data From OpenWeatherMap */
+function callWeatherAPI(weatherLocation) {
+    console.log("Fetching weather data for", weatherLocation);
+    const endpoint = `https://api.openweathermap.org/data/2.5/forecast?q=${weatherLocation}&appid=${apiKey}&units=metric`;
+    // This is now asynchronous, returning a promise (fetch) it then needs to be handled with .then() when called
+    return fetch(endpoint)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            return data; // keep the full object
+        });
+}
+
 function updateWeatherDisplay() {
-  if (!weatherData || !weatherData.list || !weatherData.city) return; // this check ensures it only runs once weatherData is defined.
-  const container = document.getElementById("forecast-container");
-  forecastDays =
-    parseInt(document.getElementById("forecastDays").value, 10) || 1;
-  // Update forecast based on user input
+    if (!weatherData || !weatherData.list || !weatherData.city) return; // this check ensures it only runs once weatherData is defined.
+    const container = document.getElementById("forecast-container");
+    forecastDays =
+        parseInt(document.getElementById("forecastDays").value, 10) || 1;
+    // Update forecast based on user input
 
-  console.log(forecastDays); // Number of days to fetch
+    console.log(forecastDays); // Number of days to fetch
 
-  //Main current weather display
-  document.getElementById("current-location").textContent =
-    weatherData.city.name;
-  document.getElementById("temp-display").textContent =
-    weatherData.list[0].main.temp + "°C";
-  document.getElementById("feels-like").textContent =
-    weatherData.list[0].main.feels_like + "°C";
-  document.getElementById("weather-type").textContent =
-    weatherData.list[0].weather[0].main;
-  document.getElementById("today-image").src =
-    "https://openweathermap.org/img/wn/" +
-    weatherData.list[0].weather[0].icon +
-    "@2x.png";
-  document.getElementById(
-    "wind-today"
-  ).textContent = `${weatherData.list[0].wind.speed} m/s`;
+    //Main current weather display
+    document.getElementById("current-location").textContent =
+        weatherData.city.name;
+    document.getElementById("temp-display").textContent =
+        weatherData.list[0].main.temp + "°C";
+    document.getElementById("feels-like").textContent =
+        weatherData.list[0].main.feels_like + "°C";
+    document.getElementById("weather-type").textContent =
+        weatherData.list[0].weather[0].main;
+    document.getElementById("today-image").src =
+        "https://openweathermap.org/img/wn/" +
+        weatherData.list[0].weather[0].icon +
+        "@2x.png";
+    document.getElementById(
+        "wind-today"
+    ).textContent = `${weatherData.list[0].wind.speed} m/s`;
 
-  //Adjust number of forecast cards
-  while (container.querySelectorAll(".forecast-card").length < forecastDays) {
-    addCard(container);
-  }
-  while (container.querySelectorAll(".forecast-card").length > forecastDays) {
-    removeCard(container);
-  }
-  //Future Forecast display
-  for (let i = 0; i < forecastDays; i++) {
-    //Get data for each forecast day
-    let forecast = weatherData.list[i * 8];
+    //Adjust number of forecast cards
+    while (container.querySelectorAll(".forecast-card").length < forecastDays) {
+        addCard(container);
+    }
+    while (container.querySelectorAll(".forecast-card").length > forecastDays) {
+        removeCard(container);
+    }
+    //Future Forecast display
+    for (let i = 0; i < forecastDays; i++) {
+        //Get data for each forecast day
+        let forecast = weatherData.list[i * 8];
 
         //define variables for arrays of elements to be updated
         const dayElements = document.querySelectorAll(".forecast-card .day");
@@ -150,42 +151,41 @@ function updateWeatherDisplay() {
 /* Function to handle submit button click, save user input as a variable and then run call to API */
 
 function handleSubmitButtonClick(event) {
-  //hide error message and add to faves button on new submit
-  document.getElementById("add-favourite-btn").classList = "d-none";
-  document.getElementById("error-message").classList = "d-none";
-  event.preventDefault();
-  /* Handles empty input field */
-  if (!document.getElementById("user-input").value) {
-    document.getElementById("error-message").classList.toggle("d-none");
-    return;
-  }
-  /* Continues on if location is entered */
-  weatherLocation = document.getElementById("user-input").value;
-  console.log("User input:", weatherLocation);
+    //hide error message and add to faves button on new submit
+    document.getElementById("add-favourite-btn").classList = "d-none";
+    document.getElementById("error-message").classList = "d-none";
+    event.preventDefault();
+    /* Handles empty input field */
+    if (!document.getElementById("user-input").value) {
+        document.getElementById("error-message").classList.toggle("d-none");
+        return;
+    }
+    /* Continues on if location is entered */
+    weatherLocation = document.getElementById("user-input").value;
+    console.log("User input:", weatherLocation);
 
-  // Fetch new data, then update UI
-  callWeatherAPI(weatherLocation).then((data) => {
-    weatherData = data;
-    updateWeatherDisplay();
-  });
+    // Fetch new data, then update UI
+    callWeatherAPI(weatherLocation).then((data) => {
+        weatherData = data;
+        updateWeatherDisplay();
+    });
 
-  document.getElementById("add-favourite-btn").classList.remove("d-none");
+    document.getElementById("add-favourite-btn").classList.remove("d-none");
 }
 
 function handleFormFilters(event) {
-  event.preventDefault();
-  //get filter values
-  const showWind = document.getElementById("windCheck").checked;
-  const showTemp = document.getElementById("tempCheck").checked;
-  const showHumidity =
-    document.getElementById("humidityCheck").checked;
+    event.preventDefault();
+    //get filter values
+    const showWind = document.getElementById("windCheck").checked;
+    const showTemp = document.getElementById("tempCheck").checked;
+    const showHumidity = document.getElementById("humidityCheck").checked;
 
-  //Get all wind speed elements
+    //Get all wind speed elements
 
-  let windElements = document.querySelectorAll(".wind-speed");
-  let tempElements = document.querySelectorAll(".temp-display");
-  let feelsLikeElements = document.querySelectorAll(".feels-like");
-  let humidityElements = document.querySelectorAll(".humidity");
+    let windElements = document.querySelectorAll(".wind-speed");
+    let tempElements = document.querySelectorAll(".temp-display");
+    let feelsLikeElements = document.querySelectorAll(".feels-like");
+    let humidityElements = document.querySelectorAll(".humidity");
 
     //loop through and remove or add based on filter
     windElements.forEach((element) => {
@@ -202,7 +202,7 @@ function handleFormFilters(event) {
             element.classList.add("d-none");
         }
     });
-      feelsLikeElements.forEach((element) => {
+    feelsLikeElements.forEach((element) => {
         if (showTemp) {
             element.classList.remove("d-none");
         } else {
@@ -228,84 +228,82 @@ function handleFormFilters(event) {
 }
 
 function addFavouriteLocation(event) {
-  event.preventDefault();
-  const maxMsg = document.getElementById("max-favourites-msg");
-  if (maxMsg) maxMsg.classList.add("d-none");
+    event.preventDefault();
+    const maxMsg = document.getElementById("max-favourites-msg");
+    if (maxMsg) maxMsg.classList.add("d-none");
 
-  const favouriteLocation =
-    document.getElementById("current-location").textContent;
+    const favouriteLocation =
+        document.getElementById("current-location").textContent;
 
-  if (favouriteContainer.children.length >= 3) {
-    if (maxMsg) maxMsg.classList.remove("d-none");
-    return;
-  }
+    if (favouriteContainer.children.length >= 3) {
+        if (maxMsg) maxMsg.classList.remove("d-none");
+        return;
+    }
 
-  addCard(favouriteContainer);
+    addCard(favouriteContainer);
 
-  // Wait for the API call to complete before accessing data
-  callWeatherAPI(favouriteLocation).then((favouriteData) => {
-    console.log(favouriteData);
-    document.getElementById("favourite-title").textContent =
-      favouriteData.city.name;
-    document.getElementById("favourite-image").src =
-      "https://openweathermap.org/img/wn/" +
-      favouriteData.list[0].weather[0].icon +
-      "@2x.png";
-    document.getElementById("favourite-temp-display").textContent =
-      favouriteData.list[0].main.temp + "°C";
-    document.getElementById("favourite-weather-type").textContent =
-      favouriteData.list[0].weather[0].main;
-  });
+    // Wait for the API call to complete before accessing data
+    callWeatherAPI(favouriteLocation).then((favouriteData) => {
+        console.log(favouriteData);
+        document.getElementsByClassName("favourite-title").textContent =
+            favouriteData.city.name;
+        document.getElementsByClassName("favourite-image").src =
+            "https://openweathermap.org/img/wn/" +
+            favouriteData.list[0].weather[0].icon +
+            "@2x.png";
+        document.getElementsByClassName("favourite-temp-display").textContent =
+            favouriteData.list[0].main.temp + "°C";
+        document.getElementsByClassName("favourite-weather-type").textContent =
+            favouriteData.list[0].weather[0].main;
+    });
 }
 
-
-
 function removeFavouriteLocation(event) {
-  const closeBtn = event.target.closest(".remove-favourite-btn");
-  if (!closeBtn) return;
-  event.preventDefault();
-  const card = closeBtn.closest(".forecast-card");
-  if (card) card.remove();
-  const maxMsg = document.getElementById("max-favourites-msg");
-  if (maxMsg && favouriteContainer.children.length <= 3) {
-    maxMsg.classList.add("d-none");
-  }
+    const closeBtn = event.target.closest(".remove-favourite-btn");
+    if (!closeBtn) return;
+    event.preventDefault();
+    const card = closeBtn.closest(".forecast-card");
+    if (card) card.remove();
+    const maxMsg = document.getElementById("max-favourites-msg");
+    if (maxMsg && favouriteContainer.children.length <= 3) {
+        maxMsg.classList.add("d-none");
+    }
 }
 // Favourite Location Event Listener - Must go underneath function definitions to work
 document
-  .getElementById("add-favourite-btn")
-  .addEventListener("click", addFavouriteLocation);
+    .getElementById("add-favourite-btn")
+    .addEventListener("click", addFavouriteLocation);
 
 favouriteContainer.addEventListener("click", removeFavouriteLocation);
 
 //Add a new forecast card to container, by cloning first card or creating new if empty
 function addCard(container) {
-  const firstCard = container.querySelector(".forecast-card");
-  if (firstCard) {
-    const newCard = firstCard.cloneNode(true);
-    container.appendChild(newCard);
-  } else {
-    const newCard = document.createElement("div");
-    newCard.className = "forecast-card col-md-4 mb-3";
-    newCard.innerHTML = `
+    const firstCard = container.querySelector(".forecast-card");
+    if (firstCard) {
+        const newCard = firstCard.cloneNode(true);
+        container.appendChild(newCard);
+    } else {
+        const newCard = document.createElement("div");
+        newCard.className = "forecast-card col-md-4 mb-3";
+        newCard.innerHTML = `
       <div class="favourite-card weather-card card h-100 position-relative">
         <button class="remove-favourite-btn btn-close position-absolute top-0 end-0 m-2" aria-label="Remove favourite"></button>
         <div class="card-body">
-          <h5 id="favourite-title" class="card-title fs-1">Location</h5>
-          <img id="favourite-image" src="" alt="Weather icon" class="weather-icon mb-2">
-          <p id="favourite-weather-type" class="weather-type">Weather Type</p>
-          <p id="favourite-temp-display" class="temp-display">Temperature: --°C</p>
+          <h5 class="favourite-title card-title fs-1">Location</h5>
+          <img class="favourite-image weather-icon mb-2" src="" alt="Weather icon">
+          <p class="favourite-weather-type weather-type">Weather Type</p>
+          <p class="favourite-temp-display temp-display">Temperature: --°C</p>
         </div>
       </div>
     `;
-    container.appendChild(newCard);
-  }
+        container.appendChild(newCard);
+    }
 }
 
 //Remove last forecast card from container
 function removeCard(container) {
-  if (container.children.length > 0) {
-    let lastCard = container.lastElementChild;
-    container.removeChild(lastCard);
-  }
+    if (container.children.length > 0) {
+        let lastCard = container.lastElementChild;
+        container.removeChild(lastCard);
+    }
 }
