@@ -1,4 +1,4 @@
-# Bring Me Sunshine
+# Weatherapp
 
 Deployed Link: https://hicelery.github.io/WeatherApp/
 Repository Link: https://github.com/hicelery/WeatherApp/tree/main
