@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}My Favorite Locations - WeatherApp{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="mb-4">
+                <i class="fas fa-heart"></i> My Favorite Locations
+            </h2>
+
+            {% if favorites %}
+            <div class="row" id="favoritesContainer">
+                {% for favorite in favorites %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm" data-location-id="{{ favorite.location.id }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ favorite.location.name }}</h5>
+                            <p class="card-text">
+                                <strong>Country:</strong> {{ favorite.location.country }}
+                            </p>
+                            <p class="card-text">
+                                <strong>Coordinates:</strong><br>
+                                Lat: {{ favorite.location.latitude|floatformat:2 }}<br>
+                                Lon: {{ favorite.location.longitude|floatformat:2 }}
+                            </p>
+                            <p class="card-text text-muted small">
+                                Added: {{ favorite.added_at|date:"M d, Y" }}
+                            </p>
+                            <div class="btn-group w-100" role="group">
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="showFavoriteWeather({{ favorite.location.latitude }}, {{ favorite.location.longitude }}, '{{ favorite.location.name }}')">
+                                    <i class="fas fa-cloud-sun"></i> View Weather
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeFavorite({{ favorite.location.id }})">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="alert alert-info" role="alert">
+                <i class="fas fa-info-circle"></i>
+                You don't have any favorite locations yet.
+                <a href="{% url 'home' %}" class="alert-link">Go search for locations</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Store CSRF token -->
+<script>
+    const csrfToken = '{{ csrf_token }}';
+</script>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

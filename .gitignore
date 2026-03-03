@@ -1,0 +1,57 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment Variables
+env.py
+.env
+.env.local
+.env.*.local
+
+# Database
+*.sqlite3
+*.db
+
+# Django
+/media/
+/staticfiles/
+/static/
+*.egg-info/
+dist/
+build/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+*.pot
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Temporary files
+*.tmp
+temp/
+
+# Production
+.git/
+
+# Cloudinary
+cloudinary_settings.json

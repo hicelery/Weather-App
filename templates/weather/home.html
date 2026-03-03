@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Weather Dashboard - WeatherApp{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Search Section -->
+    <div class="row mb-5">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-lg">
+                <div class="card-body p-4">
+                    <h2 class="card-title mb-4">
+                        <i class="fas fa-search"></i> Search Weather
+                    </h2>
+                    
+                    <form id="searchForm" class="row g-3">
+                        {% csrf_token %}
+                        <div class="col-md-9">
+                            <input type="text" class="form-control form-control-lg" id="locationInput" 
+                                   placeholder="Search for a city..." autocomplete="off">
+                            <div id="searchResults" class="list-group mt-2" style="display: none; position: absolute; width: 100%; max-height: 300px; overflow-y: auto; z-index: 1000;"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Current Weather Display -->
+                    <div id="weatherContainer" style="display: none;" class="mt-5">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3 id="locationName"></h3>
+                                        <p class="text-muted" id="locationCountry"></p>
+                                        <div id="weatherIcon" class="display-1"></div>
+                                        <h1 id="temperature" class="display-3"></h1>
+                                        <p id="weatherDescription" class="lead"></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="list-group">
+                                            <div class="list-group-item">
+                                                <span class="fw-bold">Feels Like:</span>
+                                                <span id="feelsLike" class="float-end"></span>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <span class="fw-bold">Humidity:</span>
+                                                <span id="humidity" class="float-end"></span>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <span class="fw-bold">Pressure:</span>
+                                                <span id="pressure" class="float-end"></span>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <span class="fw-bold">Wind Speed:</span>
+                                                <span id="windSpeed" class="float-end"></span>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <span class="fw-bold">Visibility:</span>
+                                                <span id="visibility" class="float-end"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {% if user.is_authenticated %}
+                                <div class="mt-4">
+                                    <button id="favoriteBtn" class="btn btn-danger" onclick="toggleFavorite()">
+                                        <i class="fas fa-heart"></i> Add to Favorites
+                                    </button>
+                                </div>
+                                {% else %}
+                                <div class="mt-4">
+                                    <p class="text-warning">
+                                        <a href="{% url 'account_login' %}">Log in</a> to save favorite locations
+                                    </p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="errorContainer" style="display: none;" class="mt-5">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong>
+                            <span id="errorMessage"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+
+                    <!-- Loading Spinner -->
+                    <div id="loadingContainer" style="display: none;" class="mt-5 text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-3">Fetching weather data...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorite Locations Section -->
+    {% if user.is_authenticated and favorites %}
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mb-4">
+                <i class="fas fa-star"></i> Your Favorite Locations
+            </h3>
+            <div class="row" id="favoritesContainer">
+                {% for favorite in favorites %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm" data-location-id="{{ favorite.location.id }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ favorite.location.name }}</h5>
+                            <p class="card-text text-muted">{{ favorite.location.country }}</p>
+                            <button class="btn btn-sm btn-outline-danger" onclick="removeFavorite({{ favorite.location.id }})">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary" onclick="showFavoriteWeather({{ favorite.location.latitude }}, {{ favorite.location.longitude }}, '{{ favorite.location.name }}')">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Store CSRF token and location data -->
+<script>
+    const csrfToken = '{{ csrf_token }}';
+    let currentLocationId = null;
+    let currentLocationData = null;
+</script>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
