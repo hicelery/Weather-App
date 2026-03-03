@@ -57,6 +57,7 @@ temp/
 cloudinary_settings.json
 
 #local files
-IMPLEMENTATION.md
+IMPLEMENTATION_SUMMARY.md
 PROJECT_COMPLETION_REPORT.md
 QUICK_REFERENCE.md
+START_HERE.md
