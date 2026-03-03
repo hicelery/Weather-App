@@ -2,7 +2,7 @@
 
 A modern, responsive weather application built with Django, Bootstrap 5, and real-time AJAX functionality.
 
-## 🌤️ Features
+## 🌤️Features
 
 - **User Authentication**: Email-verified registration and login with django-allauth
 - **Weather Search**: Real-time weather search with autocomplete suggestions
@@ -15,7 +15,7 @@ A modern, responsive weather application built with Django, Bootstrap 5, and rea
 - **Cloud Storage**: Cloudinary integration for profile pictures
 - **Production Ready**: Heroku deployment configuration included
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 - **Backend**: Django 4.2.11
 - **Database**: PostgreSQL
@@ -26,7 +26,7 @@ A modern, responsive weather application built with Django, Bootstrap 5, and rea
 - **Server**: Gunicorn + WhiteNoise
 - **Deployment**: Heroku
 
-## 📋 Project Structure
+## Project Structure
 
 ```
 Weather-App/
@@ -64,7 +64,7 @@ Weather-App/
 └── manage.py              # Django management
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Local Development
 
@@ -117,7 +117,7 @@ Create a `.env` file with:
 
 See `.env.example` for complete list.
 
-## 🔑 API Endpoints
+## API Endpoints
 
 ### Weather API
 
@@ -139,7 +139,7 @@ See `.env.example` for complete list.
 - `GET /accounts/logout/` - Logout
 - `GET /accounts/email/` - Email settings/profile
 
-## 🎨 Customization
+## Customization
 
 ### Styling
 
@@ -156,7 +156,7 @@ See `.env.example` for complete list.
 
 - Create `templates/account/` for allauth custom emails
 
-## 🛡️ Security Features
+## Security Features
 
 - CSRF protection on all forms
 - Secure password hashing
@@ -166,7 +166,7 @@ See `.env.example` for complete list.
 - Content Security Policy headers
 - XSS protection
 
-## 📦 Dependencies
+## Dependencies
 
 See `requirements.txt` for full list:
 
@@ -180,7 +180,7 @@ See `requirements.txt` for full list:
 - whitenoise (static file serving)
 - dj-database-url (heroku database)
 
-## 🚢 Deployment
+## Deployment
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed Heroku deployment steps.
 
@@ -194,7 +194,7 @@ git push heroku main
 heroku run python manage.py migrate
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "No API key configured"
 
@@ -216,17 +216,13 @@ heroku run python manage.py migrate
 - Run: `python manage.py collectstatic`
 - Check: `STATIC_ROOT` and `STATICFILES_DIRS` in settings
 
-## 📚 Documentation
+## Documentation
 
 - [Django Docs](https://docs.djangoproject.com/)
 - [django-allauth](https://django-allauth.readthedocs.io/)
 - [OpenWeather API](https://openweathermap.org/api)
 - [Cloudinary Docs](https://cloudinary.com/documentation)
 - [Bootstrap 5](https://getbootstrap.com/docs/5.0/)
-
-## 📄 License
-
-MIT License - feel free to use for your own projects
 
 ## 👨‍💻 Contributing
 
@@ -237,7 +233,7 @@ Contributions welcome! Please:
 3. Make your changes
 4. Submit a pull request
 
-## 🤝 Support
+## Support
 
 For issues or questions:
 
@@ -246,11 +242,6 @@ For issues or questions:
 - Email support or open discussion
 
 ---
-
-**Happy weather tracking! 🌦️**
-
-Our wireframes reflect the intented features to fill our user stories:
-<img width = "790" src="assets/images/wireframe.png">
 
 ## Functionality
 
@@ -270,59 +261,3 @@ Javascript interactivity is found in five main elements of the website:
 
 <img src="\assets\images\max-3.png">
 <img src="assets\images\favourites-section.png">
-
-## Meeting Intended Learning Outcomes
-
-LO1: Learners will be able to design and implement a one-page interactive Front-End web application using HTML, CSS, and JavaScript focusing on user experience design, accessibility, and responsive DOM manipulation.
-
-LO2: Learners will be able to test and validate a one-page web application through development, implementation, and deployment stages.
-
-LO3: Learners will be able to deploy a one-page web application to a Cloud platform ensuring functionality and security.
-
-LO4: Learners will be able to maximize future maintainability through thorough documentation, clear code structure, and organization.
-
-LO5: Learners will be able to implement and document front-end interactivity using core JavaScript, JavaScript libraries, or frameworks with a focus on DOM manipulation for a one-page web application.
-
-LO6: Learners will be able to leverage AI tools to orchestrate the software development process.
-
-## Testing
-
-Lighthouse Testing and Code Validation Tests Completed
-
-<img src="\assets\images\lighthouse-summary.png">
-
-<img src="assets\images\CSS-validator.png">
- Minor warnings given, due to importing fonts
-
-<img src ="assets\images\html.webp">
-Warning given regarding trailing slashes and use of H5 in footer, now corrected.
-
-## Deployment and workflow
-
-Project displayed in project board with each task assigned to member, given labels of urgency and updated regularly.
-
-<img src="assets\images\project-board.png">
-
-This project is deployed through github pages and follows a simplified agile gitflow methodology:
-
-- Each day of the project being considered one 'sprint'.
-- Main branch is preserved as the deployed and live branch, whilst all development work will be conducted on feature branches.
-- Code deployments to the live project environment will only available through a pull request to main. This enables a CI/CD approach.
-- All feautures must be tested on the 'develop' branch before being considered a release candidate to main.
-  This ensures the deployed project maintains a stable codebase, and provides a scaleable workflow should the project scope increase and more developers were required to join the project.
-
-Example of gitflow:
-
-<img width="790" height="322" alt="278049" src="https://github.com/user-attachments/assets/44e137c1-28ac-4581-baab-3ca3dcc6eb54" />
-
-## Use of AI in development and project retrospective.
-
-Ai used to create initial boilerplate from wireframe, streamlining bootstrap structuring. Due to fairly complex wireframe, this did have superfluous css classes that needed removed.
-
-Use of AI for generation of repetitive code and resolving functional bugs.
-
-## Use of external resources
-
-https://unsplash.com/ - For hero image assets
-
-No other external code was used in this project.
