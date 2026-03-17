@@ -26,6 +26,10 @@
                                 <i class="fas fa-search"></i> Search
                             </button>
                         </div>
+                        <div class="col-md-12">
+                            <label for="forecastDays" class="form-label">Forecast Days (1-7)</label>
+                            <input type="number" class="form-control form-control-lg" id="forecastDays" placeholder="Forecast Days" step="1" min="1" max="7" value="5">
+                        </div>
                     </form>
 
                     <!-- Current Weather Display -->
@@ -65,7 +69,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                                 {% if user.is_authenticated %}
                                 <div class="mt-4">
                                     <button id="favoriteBtn" class="btn btn-danger" onclick="toggleFavorite()">
@@ -83,7 +86,15 @@
                         </div>
                     </div>
 
-                    <!-- Error Message -->
+                    <!-- Forecast Cards Section -->
+                    <div id="forecastCardsContainer" style="display: none;" class="mt-5">
+                        <h4 class="mb-4">
+                            <i class="fas fa-calendar"></i> Forecast
+                        </h4>
+                        <div class="row" id="forecastCardsRow">
+                            <!-- Forecast cards will be inserted here by JavaScript -->
+                        </div>
+                    </div>
                     <div id="errorContainer" style="display: none;" class="mt-5">
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Error!</strong>

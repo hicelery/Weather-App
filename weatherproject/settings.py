@@ -35,7 +35,7 @@ SECRET_KEY = config(
     'SECRET_KEY', default='django-insecure-@mewgmfc3t@)h$f5d@)y!$8_qqlgap==d1i%uj0+s*@jbvkz7l')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
@@ -209,7 +209,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_UNIQUE_EMAIL = True

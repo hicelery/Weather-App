@@ -28,7 +28,6 @@ env.py
 # Django
 /media/
 /staticfiles/
-/static/
 *.egg-info/
 dist/
 build/
@@ -61,3 +60,4 @@ IMPLEMENTATION_SUMMARY.md
 PROJECT_COMPLETION_REPORT.md
 QUICK_REFERENCE.md
 START_HERE.md
+DEPLOYMENT.md
