@@ -18,9 +18,11 @@ try:
 except ImportError:
     pass
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-change-in-production')
+if not os.environ.get('SECRET_KEY') and not os.getenv('DYNO'):  # DYNO is set on Heroku
+    print("WARNING: SECRET_KEY not set. Using fallback key for development.")
 
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*.herokuapp.com',
                  'localhost',
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -69,7 +72,11 @@ WSGI_APPLICATION = 'weather_proj.wsgi.application'
 
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -91,7 +98,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 
-OPENWEATHER_API_KEY = os.environ.get('OPENWEATHER_API_KEY')
+OPENWEATHER_API_KEY = os.environ.get('OPENWEATHER_API_KEY', '')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
