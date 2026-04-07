@@ -88,8 +88,15 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# Only set STATICFILES_DIRS locally; Heroku doesn't have this directory
+if os.path.isdir(BASE_DIR / 'static'):
+    STATICFILES_DIRS = [BASE_DIR / 'static']
+else:
+    STATICFILES_DIRS = []
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Use different storage backends based on environment
+IS_HEROKU = os.getenv('DYNO', False)
 
 
 
@@ -103,6 +110,6 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.StaticFilesStorage" if IS_HEROKU else "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
