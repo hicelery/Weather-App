@@ -102,15 +102,17 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-# Only set STATICFILES_DIRS locally; Heroku doesn't have this directory
-if os.path.isdir(BASE_DIR / 'static'):
-    STATICFILES_DIRS = [BASE_DIR / 'static']
-else:
-    STATICFILES_DIRS = []
+# Always include STATICFILES_DIRS; Django will handle missing directories gracefully
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Use different storage backends based on environment
-IS_HEROKU = os.getenv('DYNO', False)
+# WhiteNoise configuration for serving static files
+WHITENOISE_AUTOREFRESH = os.environ.get('DEBUG', 'False') == 'True'
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_MIMETYPES = {
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
+}
 
 cloudinary.config(
     cloud_name=os.environ.get('CLOUD_NAME'),
