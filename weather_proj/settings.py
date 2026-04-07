@@ -4,8 +4,7 @@ Django settings for weather_proj project.
 
 from pathlib import Path
 import os
-if os.path.isfile('env.py'):
-    import env
+
 import sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,8 +16,9 @@ try:
     import env
 except ImportError:
     pass
-
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-change-in-production')
+if os.path.isfile('env.py'):
+    import env
+SECRET_KEY = os.environ.get('SECRET_KEY')
 if not os.environ.get('SECRET_KEY') and not os.getenv('DYNO'):  # DYNO is set on Heroku
     print("WARNING: SECRET_KEY not set. Using fallback key for development.")
 
@@ -72,11 +72,7 @@ WSGI_APPLICATION = 'weather_proj.wsgi.application'
 
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -110,4 +106,3 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
