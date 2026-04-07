@@ -25,16 +25,19 @@ if os.path.isfile('env.py'):
     import env
 
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-if not os.environ.get('SECRET_KEY') and not os.getenv('DYNO'):
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-change-in-production')
-    print("WARNING: SECRET_KEY not set. Using fallback key for development.")
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-change-in-production')
+if not os.environ.get('SECRET_KEY'):
+    print("WARNING: SECRET_KEY not set in environment variables. Using fallback key.")
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*.herokuapp.com',
-                 'localhost',
-                 '127.0.0.1',]
+ALLOWED_HOSTS = ['weather-now-26eb2cea9bf0.herokuapp.com', '*.herokuapp.com', 'localhost', '127.0.0.1']
+
+# CSRF and security settings for Heroku
+CSRF_TRUSTED_ORIGINS = [
+    'https://weather-now-26eb2cea9bf0.herokuapp.com',
+    'https://*.herokuapp.com',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
