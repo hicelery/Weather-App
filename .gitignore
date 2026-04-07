@@ -4,3 +4,4 @@ env_django/
 .venv/
 venv/
 env.py
+.env.example
