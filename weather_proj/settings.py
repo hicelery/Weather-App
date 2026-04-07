@@ -2,10 +2,15 @@
 Django settings for weather_proj project.
 """
 
+
 from pathlib import Path
 import os
-
+import dj_database_url
+if os.path.isfile('env.py'):
+    import env
 import sys
+import cloudinary
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -18,8 +23,11 @@ except ImportError:
     pass
 if os.path.isfile('env.py'):
     import env
+
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
-if not os.environ.get('SECRET_KEY') and not os.getenv('DYNO'):  # DYNO is set on Heroku
+if not os.environ.get('SECRET_KEY') and not os.getenv('DYNO'):
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-change-in-production')
     print("WARNING: SECRET_KEY not set. Using fallback key for development.")
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
@@ -70,7 +78,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'weather_proj.wsgi.application'
 
-import dj_database_url
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
@@ -98,7 +105,12 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Use different storage backends based on environment
 IS_HEROKU = os.getenv('DYNO', False)
 
-
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUD_NAME'),
+    api_key=os.environ.get('API_KEY'),
+    api_secret=os.environ.get('API_SECRET'),
+    secure=True
+)
 
 
 OPENWEATHER_API_KEY = os.environ.get('OPENWEATHER_API_KEY', '')
