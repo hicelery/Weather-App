@@ -87,12 +87,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+cloudinary.config(secure=True)
 
-CLOUDINARY_STORAGE = getattr(env, 'CLOUDINARY_STORAGE', {})
-if CLOUDINARY_STORAGE:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-OPENWEATHER_API_KEY = getattr(env, 'OPENWEATHER_API_KEY', '')
+
+OPENWEATHER_API_KEY = os.environ.get('OPENWEATHER_API_KEY')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
