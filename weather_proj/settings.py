@@ -4,6 +4,8 @@ Django settings for weather_proj project.
 
 from pathlib import Path
 import os
+if os.path.isfile('env.py'):
+    import env
 import sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,9 +18,13 @@ try:
 except ImportError:
     pass
 
-SECRET_KEY = getattr(env, 'SECRET_KEY', 'django-insecure-replace-me')
-DEBUG = getattr(env, 'DEBUG', True)
-ALLOWED_HOSTS = getattr(env, 'ALLOWED_HOSTS', ['localhost', '127.0.0.1'])
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+DEBUG = False
+
+ALLOWED_HOSTS = ['*.herokuapp.com',
+                 'localhost',
+                 '127.0.0.1',]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -63,7 +69,7 @@ WSGI_APPLICATION = 'weather_proj.wsgi.application'
 
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(default=getattr(env, 'DATABASE_URL', 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')))
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 AUTH_PASSWORD_VALIDATORS = [
