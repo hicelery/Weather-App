@@ -5,3 +5,6 @@ env_django/
 venv/
 env.py
 .env.example
+
+*.sqlite3
+db.sqlite3
