@@ -35,7 +35,12 @@ nav .btn {
 }
 
 body {
-    background: url("../images/Sunny_BG_1.jpg") center/cover no-repeat;
+    background: #286a85;
+    background: linear-gradient(
+        0deg,
+        rgba(40, 106, 133, 1) 0%,
+        rgba(163, 175, 181, 1) 100%
+    );
     min-height: 100vh;
     background-size: cover;
     padding-top: 57px;
@@ -50,8 +55,8 @@ main {
 
 /* Footer Styling */
 footer {
-    background-color: rgb(226, 107, 39);
-    color: rgb(0, 0, 0);
+    background-color: rgb(35, 35, 37);
+    color: rgb(255, 255, 255);
     padding: 20px 0;
     text-align: center;
     margin-top: auto;
@@ -171,7 +176,8 @@ footer p {
     margin-top: 20px;
     border-top: rgb(239, 90, 15) 4px solid;
     text-align: center;
-    max-width: 100px;
+    max-width: 200px;
+    min-height: 250px;
 }
 
 .weather-icon {
