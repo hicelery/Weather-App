@@ -40,7 +40,7 @@ def weather_api(request):
         pass
     
     # 3. No cached/recent data - fetch from OpenWeather API
-    url = f"https://api.openweathermap.org/data/2.5/forecast?q={query}&appid={api_key}&units=metric"
+    url = f"https://api.openweathermap.org/data/3.0/onecall?q={query}&appid={api_key}&units=metric"
     try:
         response = requests.get(url)
         data = response.json()

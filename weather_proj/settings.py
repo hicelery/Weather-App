@@ -6,32 +6,39 @@ Django settings for weather_proj project.
 from pathlib import Path
 import os
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env
 import sys
 import cloudinary
+from importlib import import_module
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Import env.py into sys.modules if it's there
 try:
     if str(BASE_DIR) not in sys.path:
         sys.path.insert(0, str(BASE_DIR))
-    import env
+    import_module('env')
 except ImportError:
     pass
-if os.path.isfile('env.py'):
-    import env
 
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-change-in-production')
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-fallback-key-change-in-production',
+)
 if not os.environ.get('SECRET_KEY'):
-    print("WARNING: SECRET_KEY not set in environment variables. Using fallback key.")
+    print(
+        'WARNING: SECRET_KEY not set in environment variables. '
+        'Using fallback key.'
+    )
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['weather-now-26eb2cea9bf0.herokuapp.com', '*.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'weather-now-26eb2cea9bf0.herokuapp.com',
+    '*.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 # CSRF and security settings for Heroku
 CSRF_TRUSTED_ORIGINS = [
@@ -82,9 +89,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'weather_proj.wsgi.application'
 
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+if (
+    DEBUG
+    or os.environ.get('USE_SQLITE', 'False') == 'True'
+    or not os.environ.get('DATABASE_URL')
+):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
 
 if 'test' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
@@ -96,10 +115,30 @@ CACHES = {
     }
 }
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        ),
+    },
+    {
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'MinimumLengthValidator'
+        ),
+    },
+    {
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'CommonPasswordValidator'
+        ),
+    },
+    {
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'NumericPasswordValidator'
+        ),
+    },
 ]
 
 LANGUAGE_CODE = 'en-us'
