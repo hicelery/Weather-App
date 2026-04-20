@@ -3,6 +3,14 @@
 from django.db import migrations, models
 
 
+def ensure_searchquery_table(apps, schema_editor):
+    SearchQuery = apps.get_model('weather', 'SearchQuery')
+    existing_tables = schema_editor.connection.introspection.table_names()
+
+    if SearchQuery._meta.db_table not in existing_tables:
+        schema_editor.create_model(SearchQuery)
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -10,6 +18,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(
+            ensure_searchquery_table,
+            migrations.RunPython.noop,
+        ),
         migrations.RenameField(
             model_name='searchquery',
             old_name='query',
