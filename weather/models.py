@@ -14,3 +14,11 @@ class SearchQuery(models.Model):
 
     def __str__(self):
         return f"{self.location} at {self.timestamp}"
+
+
+class FavouriteLocations(models.Model):
+    location = models.CharField(max_length=255)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.location} at {self.timestamp}"
