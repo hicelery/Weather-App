@@ -108,9 +108,10 @@ function updateWeatherDisplay() {
         const weatherIconElements = document.querySelectorAll(".forecast-card .weather-icon");
         const windSpeedElements = document.querySelectorAll(".forecast-card .wind-speed");
         const humidityElements = document.querySelectorAll(".forecast-card .humidity");
-        if (dayElements[i]) {
+        // Indexing starts at 0, but we want to skip the first card for today, so we use i-1 for the day name
+        if (dayElements[i-1]) {
             const date = new Date(forecast.dt_txt);
-            dayElements[i].textContent = date.toLocaleDateString(undefined, { weekday: "long" });
+            dayElements[i-1].textContent = date.toLocaleDateString(undefined, { weekday: "long" });
         }
         if (tempElements[i])
             tempElements[i].textContent = forecast.main.temp + " °C";
