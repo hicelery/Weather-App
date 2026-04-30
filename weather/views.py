@@ -48,10 +48,22 @@ def weather_api(request):
     # 3. No cached/recent data - fetch from OpenWeather API
     url = "https://api.openweathermap.org/data/2.5/forecast"
     params = {
-        "q": query,
         "appid": api_key,
         "units": "metric"
     }
+    # Detect if query contains coordinates (lat,lon format)
+    if "," in query:
+        try:
+            parts = query.split(",")
+            lat = float(parts[0].strip())
+            lon = float(parts[1].strip())
+            params["lat"] = lat
+            params["lon"] = lon
+        except (ValueError, IndexError):
+            # If parsing fails, treat as city name
+            params["q"] = query
+    else:
+        params["q"] = query
     try:
         response = requests.get(url, params=params, timeout=10)
 

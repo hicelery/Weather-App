@@ -3,14 +3,13 @@ let weatherLocation = "London";
 const storedFavouriteLocations = [];
 let forecastDays = 5;
 let weatherData = null;
+let userLocation = "";
 const todayDateElement = document.getElementById("current-date");
 const container = document.getElementById("forecast-container");
 const favouriteContainer = document.getElementById("favourites-container");
-let userLocation = "";
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-        userLocation = `${position.coords.latitude},${position.coords.longitude}`;
-    });
+const currentLocationBtn = document.getElementById("current-location-btn");
+if (currentLocationBtn) {
+    currentLocationBtn.addEventListener("click", getCurrentLocationWeather);
 }
 const today = new Date();
 const options = { year: "numeric", month: "long", day: "numeric" };
@@ -28,17 +27,35 @@ if (forecastOptionsForm) {
 initializeApp();
 
 function initializeApp() {
-    if (userLocation) {
-        weatherLocation = userLocation;
-    }
-    else {
-        weatherLocation = "London";
-    }
-    callWeatherAPI(weatherLocation).then((data) => {
+    getCurrentLocation().then((location) => {
+        weatherLocation = location || "London";
+        return callWeatherAPI(weatherLocation);
+    }).then((data) => {
         weatherData = data;
         updateWeatherDisplay();
     });
 }
+
+function getCurrentLocation() {    
+    return new Promise((resolve) => {
+        if (!navigator.geolocation) {
+            resolve("");
+            return;
+        }
+        navigator.geolocation.getCurrentPosition((position) => {
+            userLocation = `${position.coords.latitude},${position.coords.longitude}`;
+            resolve(userLocation);
+        }, () => resolve(""));
+    });
+}
+
+function getCurrentLocationWeather() {
+    getCurrentLocation().then((location) => callWeatherAPI(location || userLocation || weatherLocation)).then((data) => {
+        weatherData = data;
+        updateWeatherDisplay();
+    });
+}
+
 
 function callWeatherAPI(location) {
     console.log("Fetching weather data for", location);

@@ -135,7 +135,7 @@ footer p {
     opacity: 100%;
     padding: 10px;
     height: 30vh;
-    min-height: 250px;
+    min-height: fit-content;
 }
 
 .weather-card-today {
