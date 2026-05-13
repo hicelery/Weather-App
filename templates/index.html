@@ -73,6 +73,35 @@
                     </form>
                     <p id="error-message" class="d-none">Please enter a location</p>
                 </section>
+                <section id='searchfilters' class="mb-4 d-flex justify-content-center">
+                    <form id="forecast-options-form" class="d-flex flex-column flex-lg-row gap-2 gap-lg-3 align-items-start align-items-lg-center justify-content-around">
+                        <div class="d-flex align-items-center gap-2 filter">
+                            <input type="checkbox" id="tempCheck" class="filter-input btn" name="fav_language"
+                                value="Temperature" checked />
+                            <label for="tempCheck" class="mb-0">Temperature</label>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2 filter">
+                            <input type="checkbox" id="windCheck" class="filter-input btn" name="fav_language" value="wind"
+                                checked />
+                            <label for="windCheck" class="mb-0">Wind</label>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2 filter">
+                            <input type="checkbox" id="humidityCheck" class="filter-input btn" name="fav_language" value="humidity"
+                                checked />
+                            <label for="humidityCheck" class="mb-0">Humidity</label>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2 filter">
+                            <input type="number" id="forecastDays" placeholder="Number of days:"
+                                class="form-control" min="1" max="7" value="5" />
+                        </div>
+                        <button id="applyDataFilters" type="submit" class="btn btn-primary hover">
+                            Apply
+                        </button>
+                    </form>
+                </section>
 
                 <section id="main-forecast">
                     <div class="row">
@@ -102,35 +131,9 @@
                         </div>
                         <!-- Forecast options column-->
                         <div class="col-lg-3 py-3">
-                            <h2 class="h5">Forecast Options</h2>
+                            <h2 class="h5">Favourite locations</h2>
                             <div class="list-group">
-                                <!-- Radio button to select outputs-->
-                                <form id="forecast-options-form"
-                                    class="d-flex flex-column flex-md-row flex-xl-column gap-2">
-                                    <div class="list-group-item list-group-item-action" aria-current="true">
-                                        <input type="checkbox" id="tempCheck" class="filter-input" name="fav_language"
-                                            value="Temperature" checked />
-                                        <label for="tempCheck">Temperature</label><br />
-                                    </div>
-
-                                    <div class="list-group-item list-group-item-action">
-                                        <input type="checkbox" id="windCheck" name="fav_language" value="wind"
-                                            checked />
-                                        <label for="windCheck">Wind</label><br />
-                                    </div>
-                                    <div class="list-group-item list-group-item-action">
-                                        <input type="checkbox" id="humidityCheck" name="fav_language" value="humidity"
-                                            checked />
-                                        <label for="humidityCheck">Humidity</label><br />
-                                    </div>
-
-                                    <input type="number" id="forecastDays" placeholder="Number of days:"
-                                        class="list-group-item" min="1" max="7" value="5" />
-                                    <button id="applyDataFilters" type="submit"
-                                        class="btn btn-primary hover list-group-item list-group-item-action text-center">
-                                        Apply
-                                    </button>
-                                </form>
+                                
                             </div>
                         </div>
 

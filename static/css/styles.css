@@ -108,6 +108,12 @@ footer p {
     color: #000000;
     border: black 2px solid;
 }
+
+#filter {
+    align-self: center;
+    max-width: 25%;
+}
+
 #applyDataFilters {
     border-radius: 0px;
     background-color: #f6ffa5;
@@ -223,10 +229,19 @@ footer p {
     .weather-card-today {
         max-width: 650px;
     }
+}
 
-    #forecast-options-form {
-        flex-direction: column !important;
-    }
+#forecast-options-form {
+    width: 70vw;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 12px;
+    border-radius: 0px;
+}
+
+#forecast-options-form input[type="number"] {
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+    min-width: 100px;
 }
 
 @media screen and (min-width: 1200px) {
