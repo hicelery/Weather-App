@@ -68,7 +68,6 @@ function callWeatherAPI(location) {
         return response.json();
     })
         .then(function (data) {
-        console.log(data);
         return data;
     })
         .catch(function (error) {
