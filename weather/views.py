@@ -15,11 +15,13 @@ def landing(request):
 
 
 def index(request):
-    favorite_locations = []
+    favourite_locations = []
     if request.user.is_authenticated:
-        favorite_locations = FavouriteLocations.objects.filter(
+        favourite_locations = FavouriteLocations.objects.filter(
             user=request.user)
-    return render(request, 'weather/index.html', {'favorite_locations': favorite_locations})
+    return render(request,
+                  'weather/index.html',
+                  {'favourite_locations': favourite_locations})
 
 
 def weather_api(request):
@@ -108,7 +110,7 @@ def add_favourite_location(request, location):
         FavouriteLocations.objects.create(location=location, user=request.user)
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
-    except Exception as e:
+    except Exception:
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -119,5 +121,5 @@ def delete_favourite_location(request, location):
         FavouriteLocations.objects.filter(
             location=location, user=request.user).delete()
         return redirect(request.META.get('HTTP_REFERER', '/'))
-    except Exception as e:
+    except Exception:
         return redirect(request.META.get('HTTP_REFERER', '/'))
