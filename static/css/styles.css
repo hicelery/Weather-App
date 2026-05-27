@@ -5,8 +5,8 @@
 
 /* simple hover state for all buttons */
 .hover:hover {
-    background-color: rgb(249, 195, 94);
-    color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
 /* Navbar styling */
@@ -18,7 +18,7 @@ nav {
 
 nav .nav-item {
     background-color: rgb(255, 255, 255);
-    border: black 1px solid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -45,7 +45,7 @@ body {
     );
     min-height: 100vh;
     background-size: cover;
-    padding-top: 57px;
+    padding-top: 100px;
     /* Adjust padding to prevent content from being hidden behind navbar */
     display: flex;
     flex-direction: column;
@@ -81,9 +81,9 @@ footer p {
 /* Searchbar styling */
 
 #location-form .search-input {
-    border-radius: 0px;
+    border-radius: 50px;
     background-color: rgb(255, 255, 255);
-    border: black 2px solid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 70vw;
 }
 
@@ -97,16 +97,17 @@ footer p {
 }
 
 #location-form .search-input {
-    border-radius: 0px;
+    border-radius: 50px;
     background-color: rgb(255, 255, 255);
-    border: black 2px solid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding-left: 15px;
 }
 
 #location-form .btn {
-    border-radius: 0px;
+    border-radius: 50px;
     background-color: #f6ffa5;
     color: #000000;
-    border: black 2px solid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #filter {
@@ -118,7 +119,7 @@ footer p {
     border-radius: 0px;
     background-color: #f6ffa5;
     color: #000000;
-    border: black 2px solid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 /* Main Forecast page */
 #forecast-today {

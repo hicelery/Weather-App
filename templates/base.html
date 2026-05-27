@@ -22,6 +22,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'weather:index' %}">
                 <img src="{% static 'images/logo.png' %}" alt="logo" class="logo" />
+                <span class="zalando">Weather Now</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,13 +50,7 @@
             </div>
         </div>
     </nav>
-
-    <header id="hero" class="position-relative">
-        <div class="container-fluid py-5">
-            <div class="row align-items-center">
-                <h1 class="zalando display-4 fw-bold">Weather Now</h1>
-            </div>
-        </div>
+    <header>
     </header>
     <main>
         {% block content %}

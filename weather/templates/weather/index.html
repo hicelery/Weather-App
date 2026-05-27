@@ -2,25 +2,22 @@
 {% load static %}
 {% block content%}
         <div id="mainpage" class="container-fluid">
-                <!-- Search section -->
-                <section id='searchbar' class="mb-4 d-flex flex-column align-items-center">
-                    <p class="fst-italic mb-2">Enter a location to view weather forecast</p>
-                    <form id="location-form" class="d-flex flex-column flex-sm-row gap-2">
-                        <input type="text" id="user-input" class="form-control search-input"
-                            placeholder="e.g. London, UK" aria-label="Location" />
-                        <button type="button" id="current-location-btn" class="btn hover btn-secondary px-4" aria-label="Use Current Location" title="Use Current Location">
-                            <i class="fas fa-crosshairs"></i>
-                        </button>
-                        <button type="submit" class="btn hover btn-primary px-4">Search</button>
-                    </form>
-                    <p id="error-message" class="d-none">Please enter a location</p>
-                </section>
-
-
-
                 <section id="main-forecast">
                     <div id="forecast-today">
                         <div class="forecast-container">
+                            <!-- Search section -->
+                            <div id='searchbar' class="mb-1 d-flex flex-column align-items-center">
+                                <p class="fst-italic mb-2">Enter a location to view weather forecast</p>
+                                <form id="location-form" class="d-flex flex-column flex-sm-row gap-2">
+                                    <input type="text" id="user-input" class="form-control search-input"
+                                        placeholder="e.g. London, UK" aria-label="Location" />
+                                    <button type="button" id="current-location-btn" class="btn hover btn-secondary px-4" aria-label="Use Current Location" title="Use Current Location">
+                                        <i class="fas fa-crosshairs"></i>
+                                    </button>
+                                    <button type="submit" class="btn hover btn-primary px-4">Search</button>
+                                </form>
+                                <p id="error-message" class="d-none">Please enter a location</p>
+                            </div>
                             <!-- Top Bar: Location Search -->
                             <div class="forecast-top-bar d-flex justify-content-between align-items-center">
                                 <div class="location-search d-flex align-items-center">
