@@ -1,65 +1,7 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Now</title>
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-    <style>
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap');
-</style>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-
-<body>
-    <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}">
-                <img src="{% static 'images/logo.png' %}" alt="logo" class="logo" />
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="hover nav-link" href="#favourites">Favourites</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="hover nav-link" href="https://severeweather.wmo.int/" target="_blank"
-                            rel="noopener">View Extreme Weather</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="hover nav-link" href="#searchbar"><i class="fas fa-sign-out-alt"></i> Log out</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="hover nav-link" href="#searchbar"><i class="fas fa-sign-in-alt"></i> Log in</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <header id="hero" class="position-relative">
-        <div class="container-fluid py-5">
-            <div class="row align-items-center">
-                <h1 class="zalando display-4 fw-bold">Weather Now</h1>
-            </div>
-        </div>
-    </header>
-    <main>
-        <div id="bg-image" class="container-fluid">
-            <div class="py-4 px-2 px-md-4">
+{% block content%}
+        <div id="mainpage" class="container-fluid">
                 <!-- Search section -->
                 <section id='searchbar' class="mb-4 d-flex flex-column align-items-center">
                     <p class="fst-italic mb-2">Enter a location to view weather forecast</p>
@@ -73,8 +15,11 @@
                     </form>
                     <p id="error-message" class="d-none">Please enter a location</p>
                 </section>
+
+
                 <section id='searchfilters' class="mb-4 d-flex justify-content-center">
                     <form id="forecast-options-form" class="d-flex flex-column flex-lg-row gap-2 gap-lg-3 align-items-start align-items-lg-center justify-content-around">
+                        
                         <div class="d-flex align-items-center gap-2 filter">
                             <input type="checkbox" id="tempCheck" class="filter-input btn" name="fav_language"
                                 value="Temperature" checked />
@@ -104,7 +49,46 @@
                 </section>
 
                 <section id="main-forecast">
-                    <div class="row">
+                    <div id="forecast-today">
+                        <div class="forecast-container">
+                            <!-- Top Bar: Location Search -->
+                            <div class="forecast-top-bar d-flex justify-content-between align-items-center">
+                                <div class="location-search d-flex align-items-center">
+                                    <span id="current-location" class="ms-2 zalando">LOCATION</span>
+                                </div>
+                            </div>
+
+                            <!-- Main Weather Display -->
+                            <div class="weather-main d-flex justify-content-between align-items-center">
+                                <!-- Left: Weather Info -->
+                                <div class="weather-left">
+                                    <div class="weather-label">Weather</div>
+                                    <div class="weather-subtext">Now</div>
+                                    <div id="todaydetails-temp" class="temp-display zalando"></div>
+                                    <div class="feels-like-text">Feels like <span id="feels-like-display"></span></div>
+                                    <div id="todaydetails-wind" class="wind-display zalando d-none"></div>
+                                </div>
+
+                                <!-- Right: Weather Icon -->
+                                <div class="weather-right">
+                                    <img id="today-image" src="{% static 'images/sun.png' %}" alt="Weather Icon" class="weather-icon-large" />
+                                </div>
+                            </div>
+
+                            <!-- Bottom: Wind & Humidity Info -->
+                            <div class="weather-bottom-info d-flex justify-content-end gap-4">
+                                <div class="bottom-info-item">
+                                    <span class="info-label">High:</span>
+                                    <span id="wind-speed-display" class="info-value"></span>
+                                </div>
+                                <div class="bottom-info-item">
+                                    <span class="info-label">Low:</span>
+                                    <span id="humidity-display" class="info-value"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                         <div class="col-12 py-5 py-md-3">
                             <!-- Current location heading -->
                             <div class="d-flex justify-content-between  mb-2" style="height: 39.2px">
@@ -122,12 +106,12 @@
                             </div>
                         </div>
                         <div class="col-12 py-5 py-md-3">
-                            <button id="add-favourite-btn" class="btn hover d-none">
-                                Add to Favourites
-                            </button>
-                            <p id="max-favourites-msg" class="d-none">You may only add a maximum of 3
-                                favourite
-                                locations.</p>
+                                <form method="POST" id="add-fav-form" action="">
+                                {% csrf_token %}
+                                <button id='add-favourite-btn' type="submit">Add to Favorites</button>
+                                <p id="max-favourites-msg" class="d-none">You may only add a maximum of 3 favourite locations.</p>
+                            </form>
+                            
                         </div>
                         <!-- Forecast options column-->
                         <div class="col-lg-3 py-3">
@@ -243,25 +227,5 @@
 
                     </div>
                 </div>
-            </div>
         </div>
-    </main>
-    <!-- Footer -->
-    <footer>
-        <p class="display-4">Weather Now</p>
-        <p>Powered By <a target="_blank" href="https://openweathermap.org/">OpenWeatherMap</a></p>
-        <p class="small">MHW © 2026</p>
-    </footer>
-
-
-    <!-- Custom JS -->
-    <!--main js functionality-->
-    <script src="{% static 'js/script.js' %}"></script>
-    <!--collapse navbar on click-->
-    <script src="{% static 'js/navbar.js' %}"></script>
-
-    <!-- Bootstrap 5 JS (optional, if you later add interactive components) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-
-</html>
+    {% endblock %}

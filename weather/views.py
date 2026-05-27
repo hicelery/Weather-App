@@ -1,5 +1,5 @@
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.conf import settings
 from django.core.cache import cache
@@ -10,8 +10,16 @@ from datetime import timedelta
 from .models import SearchQuery, FavouriteLocations
 
 
+def landing(request):
+    return render(request, 'landing.html')
+
+
 def index(request):
-    return render(request, 'index.html')
+    favorite_locations = []
+    if request.user.is_authenticated:
+        favorite_locations = FavouriteLocations.objects.filter(
+            user=request.user)
+    return render(request, 'weather/index.html', {'favorite_locations': favorite_locations})
 
 
 def weather_api(request):
@@ -98,10 +106,10 @@ def add_favourite_location(request, location):
     # This functions returns favourite locations and weather data
     try:
         FavouriteLocations.objects.create(location=location, user=request.user)
-        return JsonResponse({"success": "True"}, status=201)
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+
     except Exception as e:
-        return JsonResponse({"error": f"Error adding favourite location: {e}"},
-                            status=500)
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @require_POST
@@ -110,9 +118,6 @@ def delete_favourite_location(request, location):
     try:
         FavouriteLocations.objects.filter(
             location=location, user=request.user).delete()
-        return JsonResponse({"success": "True"}, status=200)
+        return redirect(request.META.get('HTTP_REFERER', '/'))
     except Exception as e:
-        return JsonResponse(
-            {"error": f"Error deleting favourite location: {e}"},
-            status=500
-        )
+        return redirect(request.META.get('HTTP_REFERER', '/'))

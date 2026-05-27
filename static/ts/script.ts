@@ -8,6 +8,12 @@ const container = document.getElementById("forecast-container") as HTMLElement;
 const favouriteContainer = document.getElementById(
     "favourites-container",
 ) as HTMLElement;
+const currentLocationBtn = document.getElementById(
+    "current-location-btn",
+) as HTMLButtonElement | null;
+if (currentLocationBtn) {
+    currentLocationBtn.addEventListener("click", getCurrentLocationWeather);
+}
 let userLocation: string = "";
 
 //Get user's location if available
@@ -29,38 +35,107 @@ if (todayDateElement) {
 }
 
 //submit event listeners
-const locationForm = document.getElementById("location-form");
+const locationForm = document.getElementById(
+    "location-form",
+) as HTMLFormElement | null;
 if (locationForm) {
     locationForm.addEventListener("submit", handleSubmitButtonClick);
 }
 
-const forecastOptionsForm = document.getElementById("forecast-options-form");
+const forecastOptionsForm = document.getElementById(
+    "forecast-options-form",
+) as HTMLFormElement | null;
 if (forecastOptionsForm) {
     forecastOptionsForm.addEventListener("submit", handleFormFilters);
 }
 
+// Scale current-location text to fit forecast-today width
+window.addEventListener("resize", scaleCurrentLocationText);
+
 //Initialize weather display on page load
 initializeApp();
 
+function scaleCurrentLocationText(): void {
+    const currentLocationEl = document.getElementById(
+        "current-location",
+    ) as HTMLElement | null;
+    const forecastTodayEl = document.getElementById(
+        "forecast-today",
+    ) as HTMLElement | null;
+
+    if (!currentLocationEl || !forecastTodayEl) return;
+
+    // Reset font size to measure
+    currentLocationEl.style.fontSize = "";
+
+    const maxWidth = forecastTodayEl.offsetWidth;
+    let fontSize = 12; // Start small
+
+    // Binary search for optimal font size
+    let minSize = 8;
+    let maxSize = 144;
+
+    while (minSize <= maxSize) {
+        const midSize = Math.floor((minSize + maxSize) / 2);
+        currentLocationEl.style.fontSize = midSize + "px";
+
+        if (currentLocationEl.scrollWidth <= maxWidth) {
+            // Text fits, try larger
+            fontSize = midSize;
+            minSize = midSize + 1;
+        } else {
+            // Text doesn't fit, try smaller
+            maxSize = midSize - 1;
+        }
+    }
+
+    currentLocationEl.style.fontSize = fontSize + "px";
+}
+
 /* Initialize Application */
 function initializeApp(): void {
-    //get default values
-    if (userLocation) {
-        weatherLocation = userLocation;
-    } else {
-        weatherLocation = "London"; // Default location if geolocation fails
-    }
-    //Call API add update display
-    callWeatherAPI(weatherLocation).then((data) => {
-        weatherData = data;
-        updateWeatherDisplay();
+    getCurrentLocation()
+        .then((location) => {
+            weatherLocation = location || "London";
+            return callWeatherAPI(weatherLocation);
+        })
+        .then((data) => {
+            weatherData = data;
+            updateWeatherDisplay();
+        });
+}
+
+function getCurrentLocation(): Promise<string> {
+    return new Promise((resolve) => {
+        if (!navigator.geolocation) {
+            resolve("");
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                userLocation = `${position.coords.latitude},${position.coords.longitude}`;
+                resolve(userLocation);
+            },
+            () => resolve(""),
+        );
     });
+}
+
+function getCurrentLocationWeather(): void {
+    getCurrentLocation()
+        .then((location) =>
+            callWeatherAPI(location || userLocation || weatherLocation),
+        )
+        .then((data) => {
+            weatherData = data;
+            updateWeatherDisplay();
+        });
 }
 
 /* API Call to Fetch Data From Django Backend */
 function callWeatherAPI(location: string): Promise<any> {
     console.log("Fetching weather data for", location);
-    const endpoint = `/api/weather/?q=${encodeURIComponent(location)}`;
+    const endpoint = `/weather/api/weather/?q=${encodeURIComponent(location)}`;
 
     return fetch(endpoint)
         .then(function (response) {
@@ -84,41 +159,62 @@ function updateWeatherDisplay(): void {
 
     const forecastDaysInput = document.getElementById(
         "forecastDays",
-    ) as HTMLSelectElement;
+    ) as HTMLInputElement | null;
     if (forecastDaysInput) {
         forecastDays = parseInt(forecastDaysInput.value, 10) || 1;
     }
-    console.log(forecastDays); // Number of days to fetch
+    console.log(forecastDays);
 
-    //Main current weather display
-    const currentLocationEl = document.getElementById("current-location");
+    const currentLocationEl = document.getElementById(
+        "current-location",
+    ) as HTMLElement | null;
     if (currentLocationEl)
         currentLocationEl.textContent = weatherData.city.name;
 
-    const tempDisplayEl = document.getElementById("temp-display");
+    const tempDisplayEl = document.getElementById(
+        "todaydetails-temp",
+    ) as HTMLElement | null;
     if (tempDisplayEl)
         tempDisplayEl.textContent = weatherData.list[0].main.temp + "°C";
 
-    const feelsLikeEl = document.getElementById("feels-like");
+    const feelsLikeEl = document.getElementById(
+        "feels-like-display",
+    ) as HTMLElement | null;
     if (feelsLikeEl)
         feelsLikeEl.textContent = weatherData.list[0].main.feels_like + "°C";
 
-    const weatherTypeEl = document.getElementById("weather-type");
+    const weatherTypeEl = document.getElementById(
+        "todaydetails-weather",
+    ) as HTMLElement | null;
     if (weatherTypeEl)
         weatherTypeEl.textContent = weatherData.list[0].weather[0].main;
 
     const todayImageEl = document.getElementById(
         "today-image",
-    ) as HTMLImageElement;
+    ) as HTMLImageElement | null;
     if (todayImageEl)
         todayImageEl.src =
-            "https://openweathermap.org/img/wn/" +
-            weatherData.list[0].weather[0].icon +
-            "@2x.png";
+            "/static/images/weathericons/" +
+            weatherData.list[0].weather[0].main +
+            ".png";
 
-    const windTodayEl = document.getElementById("wind-today");
+    const windTodayEl = document.getElementById(
+        "todaydetails-wind",
+    ) as HTMLElement | null;
     if (windTodayEl)
         windTodayEl.textContent = `${weatherData.list[0].wind.speed} m/s`;
+
+    const windSpeedDisplayEl = document.getElementById(
+        "wind-speed-display",
+    ) as HTMLElement | null;
+    if (windSpeedDisplayEl)
+        windSpeedDisplayEl.textContent = `${weatherData.list[0].wind.speed} m/s`;
+
+    const humidityDisplayEl = document.getElementById(
+        "humidity-display",
+    ) as HTMLElement | null;
+    if (humidityDisplayEl)
+        humidityDisplayEl.textContent = `${weatherData.list[0].main.humidity}%`;
 
     //Adjust number of forecast cards
     if (container) {
@@ -162,11 +258,15 @@ function updateWeatherDisplay(): void {
             ".forecast-card .humidity",
         );
 
-        if (dayElements[i]) {
+        // Indexing starts at 0, but we want to skip the first card for today, so we use i-1 for the day name
+        if (dayElements[i - 1]) {
             const date = new Date(forecast.dt_txt);
-            dayElements[i].textContent = date.toLocaleDateString(undefined, {
-                weekday: "long",
-            });
+            dayElements[i - 1].textContent = date.toLocaleDateString(
+                undefined,
+                {
+                    weekday: "long",
+                },
+            );
         }
 
         if (tempElements[i])
@@ -179,25 +279,34 @@ function updateWeatherDisplay(): void {
             (weatherIconElements[i] as HTMLImageElement).src =
                 "https://openweathermap.org/img/wn/" +
                 forecast.weather[0].icon +
-                "@2x.png";
+                "@4x.png";
         }
         if (windSpeedElements[i])
             windSpeedElements[i].textContent = `${forecast.wind.speed} KPH`;
         if (humidityElements[i])
             humidityElements[i].textContent = forecast.main.humidity + " %";
     }
+
+    // Scale current-location text to fit forecast-today width
+    scaleCurrentLocationText();
 }
 
 function handleSubmitButtonClick(event: Event): void {
-    const addFavBtn = document.getElementById("add-favourite-btn");
-    if (addFavBtn) addFavBtn.classList.remove("d-none"); // Actually logic says to hide initially but code had it as ="d-none"
+    const addFavBtn = document.getElementById(
+        "add-favourite-btn",
+    ) as HTMLButtonElement | null;
+    if (addFavBtn) addFavBtn.classList.remove("d-none");
 
-    const errorMsg = document.getElementById("error-message");
+    const errorMsg = document.getElementById(
+        "error-message",
+    ) as HTMLElement | null;
     if (errorMsg) errorMsg.classList.add("d-none");
 
     event.preventDefault();
 
-    const userInput = document.getElementById("user-input") as HTMLInputElement;
+    const userInput = document.getElementById(
+        "user-input",
+    ) as HTMLInputElement | null;
     if (!userInput || !userInput.value) {
         if (errorMsg) errorMsg.classList.remove("d-none");
         return;
@@ -212,16 +321,33 @@ function handleSubmitButtonClick(event: Event): void {
             updateWeatherDisplay();
         }
     });
+
+    updateFavoriteForm(weatherData?.city?.name || weatherLocation);
+}
+
+function updateFavoriteForm(location: string): void {
+    const form = document.getElementById(
+        "add-fav-form",
+    ) as HTMLFormElement | null;
+    if (form) {
+        form.action =
+            `{% url 'weather:add_favourite_location' location='PLACEHOLDER' %}`.replace(
+                "PLACEHOLDER",
+                encodeURIComponent(location),
+            );
+    }
 }
 
 function handleFormFilters(event: Event): void {
     event.preventDefault();
-    const showWind = (document.getElementById("windCheck") as HTMLInputElement)
-        ?.checked;
-    const showTemp = (document.getElementById("tempCheck") as HTMLInputElement)
-        ?.checked;
+    const showWind = (
+        document.getElementById("windCheck") as HTMLInputElement | null
+    )?.checked;
+    const showTemp = (
+        document.getElementById("tempCheck") as HTMLInputElement | null
+    )?.checked;
     const showHumidity = (
-        document.getElementById("humidityCheck") as HTMLInputElement
+        document.getElementById("humidityCheck") as HTMLInputElement | null
     )?.checked;
 
     const windElements = document.querySelectorAll(".wind-speed");
@@ -255,12 +381,16 @@ function handleFormFilters(event: Event): void {
 
 function addFavouriteLocation(event: Event): void {
     event.preventDefault();
-    const maxMsg = document.getElementById("max-favourites-msg");
+    const maxMsg = document.getElementById(
+        "max-favourites-msg",
+    ) as HTMLElement | null;
     if (maxMsg) maxMsg.classList.add("d-none");
 
-    const currentLocationEl = document.getElementById("current-location");
+    const currentLocationEl = document.getElementById(
+        "current-location",
+    ) as HTMLElement | null;
     const favouriteLocation = currentLocationEl
-        ? currentLocationEl.textContent
+        ? currentLocationEl.textContent || ""
         : "";
 
     if (favouriteContainer && favouriteContainer.children.length >= 3) {
@@ -275,12 +405,14 @@ function addFavouriteLocation(event: Event): void {
     if (favouriteLocation) {
         callWeatherAPI(favouriteLocation).then((favouriteData) => {
             if (favouriteData && favouriteData.city) {
-                const favTitle = document.getElementById("favourite-title");
+                const favTitle = document.getElementById(
+                    "favourite-title",
+                ) as HTMLElement | null;
                 if (favTitle) favTitle.textContent = favouriteData.city.name;
 
                 const favImg = document.getElementById(
                     "favourite-image",
-                ) as HTMLImageElement;
+                ) as HTMLImageElement | null;
                 if (favImg)
                     favImg.src =
                         "https://openweathermap.org/img/wn/" +
@@ -289,53 +421,36 @@ function addFavouriteLocation(event: Event): void {
 
                 const favTemp = document.getElementById(
                     "favourite-temp-display",
-                );
+                ) as HTMLElement | null;
                 if (favTemp)
                     favTemp.textContent =
                         favouriteData.list[0].main.temp + "°C";
 
                 const favWeather = document.getElementById(
                     "favourite-weather-type",
-                );
+                ) as HTMLElement | null;
                 if (favWeather)
                     favWeather.textContent =
                         favouriteData.list[0].weather[0].main;
             }
         });
     }
-
-    const endpoint = `/api/favourites/?q=${encodeURIComponent(favouriteLocation)}`;
-    fetch(endpoint, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ location: favouriteLocation }),
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log("Favourite saved:", data);
-        })
-        .catch((error) => {
-            console.error("Error saving favourite:", error);
-        });
 }
 
 function removeFavouriteLocation(event: Event): void {
     const target = event.target as HTMLElement;
-    const closeBtn = target.closest(".remove-favourite-btn");
+    const closeBtn = target.closest(
+        ".remove-favourite-btn",
+    ) as HTMLElement | null;
     if (!closeBtn) return;
 
     event.preventDefault();
-    const card = closeBtn.closest(".forecast-card");
+    const card = closeBtn.closest(".forecast-card") as HTMLElement | null;
     if (card) card.remove();
 
-    const maxMsg = document.getElementById("max-favourites-msg");
+    const maxMsg = document.getElementById(
+        "max-favourites-msg",
+    ) as HTMLElement | null;
     if (
         maxMsg &&
         favouriteContainer &&
@@ -345,7 +460,9 @@ function removeFavouriteLocation(event: Event): void {
     }
 }
 
-const addFavBtn = document.getElementById("add-favourite-btn");
+const addFavBtn = document.getElementById(
+    "add-favourite-btn",
+) as HTMLButtonElement | null;
 if (addFavBtn) {
     addFavBtn.addEventListener("click", addFavouriteLocation);
 }

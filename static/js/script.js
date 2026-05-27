@@ -24,7 +24,51 @@ const forecastOptionsForm = document.getElementById("forecast-options-form");
 if (forecastOptionsForm) {
     forecastOptionsForm.addEventListener("submit", handleFormFilters);
 }
+const addFavBtn = document.getElementById("add-favourite-btn");
+if (addFavBtn) {
+    addFavBtn.addEventListener("click", addFavouriteLocation);
+}
+if (favouriteContainer) {
+    favouriteContainer.addEventListener("click", removeFavouriteLocation);
+}
+
+// Scale current-location text to fit forecast-today width
+window.addEventListener("resize", scaleCurrentLocationText);
+
 initializeApp();
+
+function scaleCurrentLocationText() {
+    const currentLocationEl = document.getElementById("current-location");
+    const forecastTodayEl = document.getElementById("forecast-today");
+    
+    if (!currentLocationEl || !forecastTodayEl) return;
+    
+    // Reset font size to measure
+    currentLocationEl.style.fontSize = "";
+    
+    const maxWidth = forecastTodayEl.offsetWidth;
+    let fontSize = 12; // Start small
+    
+    // Binary search for optimal font size
+    let minSize = 8;
+    let maxSize = 144;
+    
+    while (minSize <= maxSize) {
+        const midSize = Math.floor((minSize + maxSize) / 2);
+        currentLocationEl.style.fontSize = midSize + "px";
+        
+        if (currentLocationEl.scrollWidth <= maxWidth) {
+            // Text fits, try larger
+            fontSize = midSize;
+            minSize = midSize + 1;
+        } else {
+            // Text doesn't fit, try smaller
+            maxSize = midSize - 1;
+        }
+    }
+    
+    currentLocationEl.style.fontSize = fontSize + "px";
+}
 
 function initializeApp() {
     getCurrentLocation().then((location) => {
@@ -59,7 +103,7 @@ function getCurrentLocationWeather() {
 
 function callWeatherAPI(location) {
     console.log("Fetching weather data for", location);
-    const endpoint = `/api/weather/?q=${encodeURIComponent(location)}`;
+    const endpoint = `/weather/api/weather/?q=${encodeURIComponent(location)}`;
     return fetch(endpoint)
         .then(function (response) {
         if (!response.ok) {
@@ -68,6 +112,7 @@ function callWeatherAPI(location) {
         return response.json();
     })
         .then(function (data) {
+            console.log("Weather data received:", data);
         return data;
     })
         .catch(function (error) {
@@ -87,21 +132,28 @@ function updateWeatherDisplay() {
     const currentLocationEl = document.getElementById("current-location");
     if (currentLocationEl)
         currentLocationEl.textContent = weatherData.city.name;
-    const tempDisplayEl = document.getElementById("temp-display");
+    const tempDisplayEl = document.getElementById("todaydetails-temp");
     if (tempDisplayEl)
         tempDisplayEl.textContent = weatherData.list[0].main.temp + "°C";
-    const feelsLikeEl = document.getElementById("feels-like");
+    const feelsLikeEl = document.getElementById("feels-like-display");
     if (feelsLikeEl)
         feelsLikeEl.textContent = weatherData.list[0].main.feels_like + "°C";
-    const weatherTypeEl = document.getElementById("weather-type");
+    const weatherTypeEl = document.getElementById("todaydetails-weather");
     if (weatherTypeEl)
         weatherTypeEl.textContent = weatherData.list[0].weather[0].main;
     const todayImageEl = document.getElementById("today-image");
     if (todayImageEl)
-        todayImageEl.src = "https://openweathermap.org/img/wn/" + weatherData.list[0].weather[0].icon + "@2x.png";
-    const windTodayEl = document.getElementById("wind-today");
+        todayImageEl.src = "/static/images/weathericons/" + weatherData.list[0].weather[0].main + ".png";
+
+    const windTodayEl = document.getElementById("todaydetails-wind");
     if (windTodayEl)
         windTodayEl.textContent = `${weatherData.list[0].wind.speed} m/s`;
+    const windSpeedDisplayEl = document.getElementById("wind-speed-display");
+    if (windSpeedDisplayEl)
+        windSpeedDisplayEl.textContent = `${weatherData.list[0].wind.speed} m/s`;
+    const humidityDisplayEl = document.getElementById("humidity-display");
+    if (humidityDisplayEl)
+        humidityDisplayEl.textContent = `${weatherData.list[0].main.humidity}%`;
     if (container) {
         while (container.querySelectorAll(".forecast-card").length < forecastDays) {
             addCard(container);
@@ -136,13 +188,16 @@ function updateWeatherDisplay() {
         if (weatherTypeElements[i])
             weatherTypeElements[i].textContent = forecast.weather[0].main;
         if (weatherIconElements[i]) {
-            weatherIconElements[i].src = "https://openweathermap.org/img/wn/" + forecast.weather[0].icon + "@2x.png";
+            weatherIconElements[i].src = "https://openweathermap.org/img/wn/" + forecast.weather[0].icon + "@4x.png";
         }
         if (windSpeedElements[i])
             windSpeedElements[i].textContent = `${forecast.wind.speed} KPH`;
         if (humidityElements[i])
             humidityElements[i].textContent = forecast.main.humidity + " %";
     }
+    
+    // Scale current-location text to fit forecast-today width
+    scaleCurrentLocationText();
 }
 
 
@@ -168,6 +223,7 @@ function handleSubmitButtonClick(event) {
             updateWeatherDisplay();
         }
     });
+    updateFavoriteForm(currentLocation);
 }
 
 function handleFormFilters(event) {
@@ -231,6 +287,11 @@ function addFavouriteLocation(event) {
     }
 }
 
+function updateFavoriteForm(location) {
+    const form = document.getElementById('add-fav-form');
+    form.action = "{% url 'weather:add_favourite_location' location='PLACEHOLDER' %}".replace('PLACEHOLDER', encodeURIComponent(location));
+}
+
 
 function removeFavouriteLocation(event) {
     const target = event.target;
@@ -245,13 +306,6 @@ function removeFavouriteLocation(event) {
     if (maxMsg && favouriteContainer && favouriteContainer.children.length <= 3) {
         maxMsg.classList.add("d-none");
     }
-}
-const addFavBtn = document.getElementById("add-favourite-btn");
-if (addFavBtn) {
-    addFavBtn.addEventListener("click", addFavouriteLocation);
-}
-if (favouriteContainer) {
-    favouriteContainer.addEventListener("click", removeFavouriteLocation);
 }
 
 

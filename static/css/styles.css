@@ -120,6 +120,39 @@ footer p {
     color: #000000;
     border: black 2px solid;
 }
+/* Main Forecast page */
+#forecast-today {
+    width: 90vw;
+    min-height: 95vh;
+    background: #286a85;
+    background: linear-gradient(
+        0deg,
+        rgba(40, 106, 133, 1) 0%,
+        rgba(163, 175, 181, 1) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+#location {
+    display: none;
+}
+
+#todaydetails {
+    display: none;
+}
+
+#weather-icon {
+    display: none;
+}
+
+#today-image {
+    display: none;
+}
 
 /* add favourite button styling */
 #add-favourite-btn {
@@ -214,9 +247,280 @@ footer p {
     max-width: 70%;
 }
 
-/*media queries */
-/*medium screens */
-@media screen and (min-width: 768px) {
+#forecast-options-form {
+    width: 70vw;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 12px;
+    border-radius: 0px;
+}
+
+#forecast-options-form input[type="number"] {
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+    min-width: 100px;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 2px solid #000;
+    border-radius: 0px;
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-height: 40px;
+}
+
+.filter:hover {
+    background-color: #f6ffa5;
+}
+
+.filter input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+}
+
+.filter label {
+    margin: 0;
+    cursor: pointer;
+    flex: 1;
+    font-weight: normal;
+}
+
+.filter input[type="number"] {
+    border: 2px solid #000;
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+    flex: 1;
+    min-width: 100px;
+}
+
+/* Landing page styling */
+.landing-container {
+    flex: 1;
+    padding: 40px 20px;
+}
+
+.landing-card {
+    background-color: rgb(219, 227, 240);
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 350px;
+}
+
+.landing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.landing-card-icon {
+    font-size: 4rem;
+    color: #286a85;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.landing-card-title {
+    color: #286a85;
+    font-size: 2rem;
+}
+
+.landing-card-text {
+    color: #555;
+    font-size: 1rem;
+}
+
+.landing-card-btn {
+    background-color: #f6ffa5;
+    border: 2px solid black;
+    color: black;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.landing-card-btn:hover {
+    transform: scale(1.05);
+    background-color: #f6ffa5 !important;
+}
+
+/* Forecast Today Redesign */
+.forecast-container {
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.forecast-top-bar {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+}
+
+.location-search {
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.toggle-switch {
+    position: relative;
+    width: 45px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: left 0.3s;
+}
+
+.toggle-input:checked + .toggle-label {
+    left: 23px;
+}
+
+.weather-main {
+    flex: 1;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.weather-left {
+    flex: 1;
+    color: white;
+}
+
+.weather-label {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 5px;
+}
+
+.weather-subtext {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 15px;
+}
+
+.weather-left .temp-display {
+    font-size: 5rem;
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.feels-like-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+}
+
+.feels-like-text span {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.weather-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-icon-large {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.weather-bottom-info {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bottom-info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.info-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+}
+@media screen and (max-width: 768px) {
+    .landing-card .card-body {
+        padding: 2rem 1.5rem !important;
+    }
+
+    .landing-card-title {
+        font-size: 1.5rem !important;
+    }
+
+    .landing-card-icon {
+        font-size: 3rem !important;
+    }
+
+    .forecast-container {
+        padding: 20px;
+    }
+
+    .weather-main {
+        flex-direction: column;
+    }
+
+    .weather-left .temp-display {
+        font-size: 3rem;
+    }
+
+    .weather-icon-large {
+        width: 150px;
+        height: 150px;
+    }
+
+    .forecast-top-bar {
+        margin-bottom: 20px;
+    }
+
+    .weather-bottom-info {
+        justify-content: center !important;
+    }
+
     .weather-card-today {
         max-width: 600px;
     }
@@ -229,19 +533,6 @@ footer p {
     .weather-card-today {
         max-width: 650px;
     }
-}
-
-#forecast-options-form {
-    width: 70vw;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 12px;
-    border-radius: 0px;
-}
-
-#forecast-options-form input[type="number"] {
-    border-radius: 0px;
-    background-color: rgb(255, 255, 255);
-    min-width: 100px;
 }
 
 @media screen and (min-width: 1200px) {
