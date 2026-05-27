@@ -112,7 +112,6 @@ function callWeatherAPI(location) {
         return response.json();
     })
         .then(function (data) {
-            console.log("Weather data received:", data);
         return data;
     })
         .catch(function (error) {
