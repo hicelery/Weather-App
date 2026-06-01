@@ -3,7 +3,7 @@
 {% block content%}
         <div id="mainpage" class="container-fluid">
                 <section id="main-forecast">
-                    <div id="forecast-today">
+                    <div id="forecast-today" class="mb-4">
                         <div class="forecast-container">
                             <!-- Search section -->
                             <div id='searchbar' class="mb-1 d-flex flex-column align-items-center">
@@ -73,7 +73,7 @@
                     </div>
                 </section>
 
-
+                <h3 class="display-6 mb-3 text-center zalando">Future Forecast</h3>
 
                     <section id='searchfilters' class="mb-4 d-flex justify-content-center">
 
@@ -98,7 +98,7 @@
                                 <label for="humidityCheck" class="mb-0">Humidity</label>
                             </div>
 
-                            <div class="d-flex align-items-center gap-2 filter">
+                            <div class="d-flex align-items-center gap-2">
                                 <input type="number" id="forecastDays" placeholder="Number of days:"
                                     class="form-control" min="1" max="7" value="5" />
                             </div>
