@@ -4,7 +4,7 @@
 <div class="container-fluid d-flex align-items-center justify-content-center landing-container">
     <div class="row w-100 g-4">
         <!-- GitHub Option -->
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="col-md-5 d-flex align-items-center justify-content-center">
             <div class="card landing-card">
                 <div class="card-body text-center p-5">
                     <i class="fab fa-github landing-card-icon"></i>
@@ -17,11 +17,16 @@
             </div>
         </div>
 
+        <!-- Divider -->
+        <div class="col-md-1 d-none d-md-flex align-items-center justify-content-center">
+            <div style="border-left: 2px solid rgba(0,0,0,0.1); height: 80%;"></div>
+        </div>
+
         <!-- Weather App Option -->
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="col-md-5 d-flex align-items-center justify-content-center">
             <div class="card landing-card">
                 <div class="card-body text-center p-5">
-                    <i class="fas fa-cloud-sun landing-card-icon"></i>
+                    <img src="{% static 'images/weather-app-preview.png' %}" alt="Weather App Preview" class="landing-card-preview">
                     <h2 class="zalando card-title mb-3 landing-card-title">Weather App</h2>
                     <p class="card-text mb-4 landing-card-text">Enter the app and check the weather forecast</p>
                     <a href="{% url 'weather:index' %}" class="btn btn-primary hover landing-card-btn">

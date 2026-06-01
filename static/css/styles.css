@@ -50,6 +50,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 main {
     flex: 1 0 auto;
@@ -72,19 +73,6 @@ footer .display-4 {
 
 footer p {
     margin: 1px;
-}
-
-.search-input {
-    font-size: 1.2rem;
-    padding: 10px;
-}
-/* Searchbar styling */
-
-#location-form .search-input {
-    border-radius: 50px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 70vw;
 }
 
 /*Hero Section*/
@@ -121,9 +109,10 @@ footer p {
     color: #000000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 /* Main Forecast page */
 #forecast-today {
-    width: 90vw;
+    max-width: 90vw;
     background: #286a85;
     background: linear-gradient(
         0deg,
@@ -136,6 +125,24 @@ footer p {
     border-radius: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: auto;
+}
+
+/* Searchbar styling */
+.search-input {
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+#forecast-top-bar {
+    max-width: 80%;
+}
+
+#location-form .search-input {
+    border-radius: 50px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    box-sizing: border-box;
 }
 
 #location {
@@ -163,7 +170,8 @@ footer p {
 #add-favourite-btn:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-/*Card styling*/
+
+/*Further Card styling*/
 .weather-card {
     flex: 1 1 auto;
     color: rgb(226, 107, 39);
@@ -322,6 +330,17 @@ footer p {
     display: block;
 }
 
+.landing-card-preview {
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
 .landing-card-title {
     color: #286a85;
     font-size: 2rem;
@@ -449,6 +468,15 @@ footer p {
     font-weight: 600;
     color: white;
 }
+
+/* Custom responsive utility classes for Bootstrap extensions */
+@media (min-width: 768px) {
+    #location-form .search-input {
+        max-width: 400px;
+        flex: 0 1 auto;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .landing-card .card-body {
         padding: 2rem 1.5rem !important;
@@ -504,5 +532,137 @@ footer p {
 @media screen and (min-width: 1200px) {
     .weather-card-today {
         max-width: 700px;
+    }
+}
+
+/* Extra small screens (320px - 576px) */
+@media screen and (max-width: 575px) {
+    #forecast-today {
+        max-width: 95vw;
+        border-radius: 25px;
+        padding: 15px;
+    }
+
+    .forecast-container {
+        padding: 15px 10px;
+    }
+
+    #location-form {
+        flex-wrap: wrap;
+    }
+
+    #location-form .search-input {
+        font-size: 1rem;
+        padding: 8px 10px;
+        border-radius: 25px;
+        max-width: 100%;
+        flex: 1 1 auto;
+        min-width: 150px;
+    }
+
+    #location-form .btn {
+        border-radius: 25px;
+        padding: 8px 10px !important;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+
+    #current-location-btn {
+        min-width: 40px;
+    }
+
+    .weather-left {
+        margin-bottom: 20px;
+    }
+
+    .weather-icon-large {
+        width: 120px;
+        height: 120px;
+    }
+
+    .weather-left .temp-display {
+        font-size: 2rem;
+    }
+
+    .search-input {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    #forecast-top-bar {
+        max-width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .weather-bottom-info {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    .bottom-info-item {
+        font-size: 0.9rem;
+    }
+
+    .weather-card {
+        min-width: 120px;
+        height: auto;
+        padding: 8px;
+    }
+
+    .weather-card-today {
+        max-width: 100%;
+    }
+
+    .weather-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .temp-display {
+        font-size: 1.3rem;
+    }
+
+    .day {
+        font-size: 1rem;
+    }
+
+    #searchfilters {
+        padding: 0 10px;
+    }
+
+    #forecast-options-form {
+        width: 100%;
+    }
+
+    #forecastDays {
+        width: 100%;
+    }
+
+    #applyDataFilters {
+        width: 100%;
+    }
+
+    .landing-card {
+        max-width: 90vw;
+    }
+}
+
+/* Small screens to medium (576px - 768px) */
+@media screen and (min-width: 576px) and (max-width: 768px) {
+    #forecast-today {
+        max-width: 92vw;
+    }
+
+    .weather-left .temp-display {
+        font-size: 2.5rem;
+    }
+
+    .search-input {
+        font-size: 1.1rem;
+    }
+
+    .weather-card {
+        max-width: 180px;
     }
 }

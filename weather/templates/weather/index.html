@@ -6,20 +6,20 @@
                     <div id="forecast-today" class="mb-4">
                         <div class="forecast-container">
                             <!-- Search section -->
-                            <div id='searchbar' class="mb-1 d-flex flex-column align-items-center">
+                            <div id="searchbar" class="mb-1 d-flex flex-column align-items-center">
                                 <p class="fst-italic mb-2">Enter a location to view weather forecast</p>
-                                <form id="location-form" class="d-flex flex-column flex-sm-row gap-2">
-                                    <input type="text" id="user-input" class="form-control search-input"
-                                        placeholder="e.g. London, UK" aria-label="Location" />
-                                    <button type="button" id="current-location-btn" class="btn hover btn-secondary px-4" aria-label="Use Current Location" title="Use Current Location">
+                                <form id="location-form" class="d-flex flex-row gap-2 w-100 px-2 px-md-0 justify-content-center">
+                                    <input type="text" id="user-input" class="form-control search-input flex-grow-1"
+                                        placeholder="e.g. London, UK" aria-label="Location" style="max-width: 400px;" />
+                                    <button type="button" id="current-location-btn" class="btn hover btn-secondary px-2 px-md-4" aria-label="Use Current Location" title="Use Current Location">
                                         <i class="fas fa-crosshairs"></i>
                                     </button>
-                                    <button type="submit" class="btn hover btn-primary px-4">Search</button>
+                                    <button type="submit" class="btn hover btn-primary px-3 px-md-4">Search</button>
                                 </form>
                                 <p id="error-message" class="d-none">Please enter a location</p>
                             </div>
                             <!-- Top Bar: Location Search -->
-                            <div class="forecast-top-bar d-flex justify-content-between align-items-center">
+                            <div id="forecast-top-bar" class="d-flex justify-content-between align-items-center">
                                 <div class="location-search d-flex align-items-center">
                                     <span id="current-location" class="ms-2 zalando">LOCATION</span>
                                 </div>
@@ -33,9 +33,9 @@
                             </div>
 
                             <!-- Main Weather Display -->
-                            <div class="weather-main d-flex justify-content-between align-items-center">
+                            <div class="weather-main d-flex flex-column flex-md-row justify-content-md-between align-items-center gap-3 gap-md-0">
                                 <!-- Left: Weather Info -->
-                                <div class="weather-left">
+                                <div class="weather-left text-center text-md-start">
                                     <div class="weather-label">Weather</div>
                                     <div class="weather-subtext">Now</div>
                                     <div id="todaydetails-temp" class="temp-display zalando"></div>
@@ -50,14 +50,14 @@
                             </div>
 
                             <!-- Bottom: Wind & Humidity Info -->
-                            <div class="weather-bottom-info d-flex justify-content-between gap-4">
+                            <div class="weather-bottom-info d-flex justify-content-between gap-2 gap-md-4 flex-wrap">
                                 <div>
                                     <span class="bottom-info-item">
                                         Today's Date:
                                         <strong><span id="current-date">{Date}</span></strong>
                                     </span>
                                 </div>
-                                <div class="d-flex justify-content-end gap-4">
+                                <div class="d-flex justify-content-end gap-2 gap-md-4 flex-wrap">
                                     <div class="bottom-info-item">
                                         <span class="info-label">Windspeed:</span>
                                         <span id="wind-speed-display" class="info-value"></span>
@@ -76,33 +76,30 @@
                 <h3 class="display-6 mb-3 text-center zalando">Future Forecast</h3>
 
                     <section id='searchfilters' class="mb-4 d-flex justify-content-center">
-
-                        
-                        <form id="forecast-options-form" class="d-flex flex-column flex-lg-row gap-2 gap-lg-3 align-items-start align-items-lg-center justify-content-around">
-                            
-                            <div class="d-flex align-items-center gap-2 filter">
+                        <form id="forecast-options-form" class="d-flex flex-column flex-md-row gap-2 gap-md-3 align-items-start align-items-md-center justify-content-center justify-content-md-around w-100 px-2">
+                            <div class="d-flex align-items-center gap-2 filter w-100 w-md-auto">
                                 <input type="checkbox" id="tempCheck" class="filter-input btn" name="fav_language"
                                     value="Temperature" checked />
                                 <label for="tempCheck" class="mb-0">Temperature</label>
                             </div>
 
-                            <div class="d-flex align-items-center gap-2 filter">
+                            <div class="d-flex align-items-center gap-2 filter w-100 w-md-auto">
                                 <input type="checkbox" id="windCheck" class="filter-input btn" name="fav_language" value="wind"
                                     checked />
                                 <label for="windCheck" class="mb-0">Wind</label>
                             </div>
 
-                            <div class="d-flex align-items-center gap-2 filter">
+                            <div class="d-flex align-items-center gap-2 filter w-100 w-md-auto">
                                 <input type="checkbox" id="humidityCheck" class="filter-input btn" name="fav_language" value="humidity"
                                     checked />
                                 <label for="humidityCheck" class="mb-0">Humidity</label>
                             </div>
 
-                            <div class="d-flex align-items-center gap-2">
+                            <div class="d-flex align-items-center gap-2 w-100 w-md-auto">
                                 <input type="number" id="forecastDays" placeholder="Number of days:"
                                     class="form-control" min="1" max="7" value="5" />
                             </div>
-                            <button id="applyDataFilters" type="submit" class="btn btn-primary hover">
+                            <button id="applyDataFilters" type="submit" class="btn btn-primary hover w-100 w-md-auto">
                                 Apply
                             </button>
                         </form>
@@ -110,21 +107,19 @@
 
                 <!-- Future forecast-->
                     <section id="forecast-cards" class="mb-5">
-                        <div class="col-lg-9 py-3">
-                            
-
+                        <div class="w-100 py-3 px-2 px-md-0">
                             <!-- wrap forecast cards in a container-->
-                            <div class="container-fluid" style="width: 90%">
-                                <div class="row">
+                            <div class="container-fluid px-0">
+                                <div class="row g-2 g-md-3">
 
                                 <!-- Today card -->
-                                <div class="col-6 col-md-4 col-lg-3 forecast-card mb-3">
-                                    <div class="card weather-card weather-card-today">
+                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
+                                    <div class="card weather-card weather-card-today h-100">
                                     <!-- Title Row -->
                                         <div class="card-header bg-transparent border-0">
                                             <h3 class="text-black mb-0"><strong>Today</strong></h3>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="card-body d-flex flex-column justify-content-between">
                                         <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"></div>
                                         <div class="feels-like"></div>
@@ -153,8 +148,8 @@
                                     </div>
                                 </div> -->
 
-                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                    <div class="card weather-card">
+                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
+                                    <div class="card weather-card h-100">
                                         <div class="day"></div>
                                         <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"></div>
@@ -164,8 +159,8 @@
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                    <div class="card weather-card">
+                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
+                                    <div class="card weather-card h-100">
                                         <div class="day"></div>
                                         <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"> </div>
@@ -175,8 +170,8 @@
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                    <div class="card weather-card">
+                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
+                                    <div class="card weather-card h-100">
                                         <div class="day"></div>
                                         <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"> </div>
@@ -186,8 +181,8 @@
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                    <div class="card weather-card">
+                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
+                                    <div class="card weather-card h-100">
                                         <div class="day"></div>
                                         <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
                                         <div class="temp-display"></div>
@@ -197,24 +192,19 @@
                                         <div class="wind-speed">Wind</div>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
                         </div>
-                    </div>
-
-                    </div>
-                </section>
+                    </section>
 
                 
                 <!-- Favourites area -->
-
                 <div id="favourites" class="row">
                     <div class="col-12">
-                        <h2 class="h5" style="text-align:center">Favourite locations</h2>
+                        <h2 class="h5 text-center">Favourite locations</h2>
                     </div>
                     <!-- Saved location cards -->
-                    <div id="favourites-container" class="favourite-location-container row">
+                    <div id="favourites-container" class="favourite-location-container row w-100">
                         <!--template of cards to add -->
-
                     </div>
                 </div>
         </div>
