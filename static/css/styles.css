@@ -5,8 +5,9 @@
 
 /* simple hover state for all buttons */
 .hover:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
+    transform: scale(1.01);
+    transition: transform 0.2s ease;
 }
 
 /* Navbar styling */
@@ -251,7 +252,8 @@ footer p {
 }
 
 #forecast-options-form {
-    width: 70vw;
+    width: 80%;
+    max-width: 1200px;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 12px;
     border-radius: 50px;
@@ -264,6 +266,8 @@ footer p {
 }
 
 .filter {
+    margin-left: 5px;
+    margin-right: 5px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -272,12 +276,7 @@ footer p {
     border-radius: 0px;
     background-color: rgba(255, 255, 255, 0.9);
     cursor: pointer;
-    transition: background-color 0.2s;
     min-height: 40px;
-}
-
-.filter:hover {
-    background-color: #f6ffa5;
 }
 
 .filter input[type="checkbox"] {
@@ -292,6 +291,16 @@ footer p {
     font-weight: normal;
 }
 
+@media screen and (min-width: 768px) {
+    .filter {
+        border: none;
+        border-right: 1px solid #9a989845;
+        background-color: transparent;
+        padding: 8px 3px;
+        min-height: auto;
+    }
+}
+
 .filter input[type="number"] {
     border: 2px solid #000;
     border-radius: 50px;
@@ -304,6 +313,11 @@ footer p {
 .landing-container {
     flex: 1;
     padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-around;
+    gap: 20px;
+    align-items: stretch;
 }
 
 .landing-card {
@@ -316,6 +330,9 @@ footer p {
         box-shadow 0.3s ease;
     width: 100%;
     max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .landing-card:hover {
@@ -323,11 +340,18 @@ footer p {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
+.landing-img-container {
+    height: 150px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .landing-card-icon {
     font-size: 4rem;
     color: #286a85;
     margin-bottom: 20px;
-    display: block;
 }
 
 .landing-card-preview {
@@ -628,11 +652,11 @@ footer p {
     }
 
     #searchfilters {
-        padding: 0 10px;
+        padding: 10px 10px;
     }
 
     #forecast-options-form {
-        width: 100%;
+        width: 90%;
     }
 
     #forecastDays {

@@ -2,12 +2,14 @@
 {% load static %}
 {% block content %}
 <div class="container-fluid d-flex align-items-center justify-content-center landing-container">
-    <div class="row w-100 g-4">
+    <div class="row w-100 g-4 mt-5 justify-content-center">
         <!-- GitHub Option -->
         <div class="col-md-5 d-flex align-items-center justify-content-center">
             <div class="card landing-card">
                 <div class="card-body text-center p-5">
-                    <i class="fab fa-github landing-card-icon"></i>
+                    <div class="landing-img-container mb-4">
+                                            <i class="fab fa-github landing-card-icon"></i>
+                    </div>
                     <h2 class="zalando card-title mb-3 landing-card-title">Visit GitHub</h2>
                     <p class="card-text mb-4 landing-card-text">Check out the project source code and contribute</p>
                     <a href="https://github.com/hicelery/weather-app" target="_blank" rel="noopener noreferrer" class="btn btn-primary hover landing-card-btn">
@@ -25,8 +27,10 @@
         <!-- Weather App Option -->
         <div class="col-md-5 d-flex align-items-center justify-content-center">
             <div class="card landing-card">
-                <div class="card-body text-center p-5">
-                    <img src="{% static 'images/weather-app-preview.png' %}" alt="Weather App Preview" class="landing-card-preview">
+                <div class="card-body text-center p-5" class="landing-card-icon">
+                    <div class="landing-img-container mb-4">
+                        <img src="{% static 'images/preview.webp' %}" alt="Weather App Preview" class="landing-card-preview">
+                    </div>                    
                     <h2 class="zalando card-title mb-3 landing-card-title">Weather App</h2>
                     <p class="card-text mb-4 landing-card-text">Enter the app and check the weather forecast</p>
                     <a href="{% url 'weather:index' %}" class="btn btn-primary hover landing-card-btn">
