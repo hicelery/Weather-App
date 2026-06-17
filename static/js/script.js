@@ -155,7 +155,7 @@ function updateWeatherDisplay() {
         humidityDisplayEl.textContent = `${weatherData.list[0].main.humidity}%`;
     if (container) {
         while (container.querySelectorAll(".forecast-card").length < forecastDays) {
-            addCard(container);
+            addForecastCard(container);
         }
         while (container.querySelectorAll(".forecast-card").length > forecastDays) {
             const cards = container.querySelectorAll(".forecast-card");
@@ -228,13 +228,24 @@ function handleSubmitButtonClick(event) {
 function handleFormFilters(event) {
     var _a, _b, _c;
     event.preventDefault();
+    
+    // Read visibility filter checkboxes
     const showWind = (_a = document.getElementById("windCheck")) === null || _a === void 0 ? void 0 : _a.checked;
     const showTemp = (_b = document.getElementById("tempCheck")) === null || _b === void 0 ? void 0 : _b.checked;
     const showHumidity = (_c = document.getElementById("humidityCheck")) === null || _c === void 0 ? void 0 : _c.checked;
+    
+    // Update number of forecast days
+    const forecastDaysInput = document.getElementById("forecastDays");
+    if (forecastDaysInput) {
+        forecastDays = parseInt(forecastDaysInput.value, 10) || 5;
+    }
+    
+    // Toggle visibility of elements based on filter checkboxes
     const windElements = document.querySelectorAll(".wind-speed");
     const tempElements = document.querySelectorAll(".temp-display");
     const feelsLikeElements = document.querySelectorAll(".feels-like");
     const humidityElements = document.querySelectorAll(".humidity");
+    
     windElements.forEach((element) => {
         showWind ? element.classList.remove("d-none") : element.classList.add("d-none");
     });
@@ -247,6 +258,8 @@ function handleFormFilters(event) {
     humidityElements.forEach((element) => {
         showHumidity ? element.classList.remove("d-none") : element.classList.add("d-none");
     });
+    
+    // Refresh display with new forecast days count and visibility settings
     updateWeatherDisplay();
 }
 
@@ -307,6 +320,31 @@ function removeFavouriteLocation(event) {
     }
 }
 
+function addForecastCard(containerToUse) {
+
+    const firstCard = containerToUse.querySelector("#forecast-container");
+    if (firstCard) {
+        const newCard = firstCard.cloneNode(true);
+        containerToUse.appendChild(newCard);
+    }
+    else {
+        const newCard = document.createElement("div");
+        newCard.className = "col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2";
+        newCard.innerHTML = `
+            <div class="card weather-card h-100">
+                <div class="day"></div>
+                <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
+                <div class="temp-display"></div>
+                <div class="feels-like"></div>
+                <div class="weather-type">{Weather}</div>
+                <div class="humidity text-muted small">Rain Amount</div>
+                <div class="wind-speed">Wind</div>
+                </div>
+            </div>
+    `;
+        containerToUse.appendChild(newCard);
+    }
+}
 
 function addCard(containerToUse) {
     const firstCard = containerToUse.querySelector(".forecast-card");

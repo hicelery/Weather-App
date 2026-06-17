@@ -97,7 +97,7 @@
 
                             <div class="d-flex align-items-center gap-2 w-100 w-md-auto">
                                 <input type="number" id="forecastDays" placeholder="Number of days:"
-                                    class="form-control" min="1" max="7" value="5" />
+                                    class="form-control" min="1" max="5" value="5" />
                             </div>
                             <button id="applyDataFilters" type="submit" class="btn btn-primary hover w-100 w-md-auto">
                                 Apply
@@ -110,89 +110,29 @@
                         <div class="w-100 py-3 px-2 px-md-0">
                             <!-- wrap forecast cards in a container-->
                             <div class="container-fluid px-0">
-                                <div class="row g-2 g-md-3">
+                                <div id='forecast-container' class="row g-2 g-md-3 d-flex flex-row justify-content-evenly">
 
-                                <!-- Today card -->
-                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
-                                    <div class="card weather-card weather-card-today h-100">
-                                    <!-- Title Row -->
-                                        <div class="card-header bg-transparent border-0">
-                                            <h3 class="text-black mb-0"><strong>Today</strong></h3>
+                                    <!-- Today card -->
+                                    <div class="col-6 col-sm-4 col-md-2 col-lg-2 forecast-card mb-2">
+                                        <div class="card weather-card weather-card-today h-100">
+                                        <!-- Title Row -->
+                                            <div class="card-header bg-transparent border-0">
+                                                <h3 class="text-black mb-0"><strong>Today</strong></h3>
+                                            </div>
+                                            <div class="card-body d-flex flex-column justify-content-between">
+                                            <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
+                                            <div class="temp-display"></div>
+                                            <div class="feels-like"></div>
+                                            <div class="weather-type">{Weather}</div>
+                                            <div class="humidity text-muted small">Rain Amount</div>
+                                            <div class="wind-speed">Wind</div>
+                                            </div>
                                         </div>
-                                        <div class="card-body d-flex flex-column justify-content-between">
-                                        <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display"></div>
-                                        <div class="feels-like"></div>
-                                        <div class="weather-type">{Weather}</div>
-                                        <div class="humidity text-muted small">Rain Amount</div>
-                                        <div class="wind-speed">Wind</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            
+                                    </div>                               
 
-                                <!-- Future days -->
-                                <!-- All set to one row, adjust min width in CSS to control wrapping -->
-<!--   
-                                <div class="col-6 col-md-4 col-lg-2 forecast-card">
-                                    <div class="card weather-card">
-                                        <div class="day"></div>
-                                        <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
+                                    <!-- Future days -->
+                                    <!-- All set to one row, adjust min width in CSS to control wrapping -->
 
-                                        <div class="temp-display">{Temp}</div>
-                                        <div class="feels-like">{Feels Like}</div>
-                                        <div class="weather-type">{Weather}</div>
-                                        <div class="humidity text-muted small">Rain Amount</div>
-                                        <div class="wind-speed">Wind</div>
-                                         Example placeholder for wind speed to be added by queries
-                                    </div>
-                                </div> -->
-
-                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
-                                    <div class="card weather-card h-100">
-                                        <div class="day"></div>
-                                        <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display"></div>
-                                        <div class="feels-like"></div>
-                                        <div class="weather-type">{Weather}</div>
-                                        <div class="humidity text-muted small">Rain Amount</div>
-                                        <div class="wind-speed">Wind</div>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
-                                    <div class="card weather-card h-100">
-                                        <div class="day"></div>
-                                        <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display"> </div>
-                                        <div class="feels-like">{Feels Like}</div>
-                                        <div class="weather-type">{Weather}</div>
-                                        <div class="humidity text-muted small">Rain Amount</div>
-                                        <div class="wind-speed">Wind</div>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
-                                    <div class="card weather-card h-100">
-                                        <div class="day"></div>
-                                        <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display"> </div>
-                                        <div class="feels-like"></div>
-                                        <div class="weather-type"></div>
-                                        <div class="humidity text-muted small">Rain Amount</div>
-                                        <div class="wind-speed">Wind</div>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-sm-4 col-md-3 col-lg-2 forecast-card mb-2">
-                                    <div class="card weather-card h-100">
-                                        <div class="day"></div>
-                                        <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
-                                        <div class="temp-display"></div>
-                                        <div class="feels-like"></div>
-                                        <div class="weather-type"></div>
-                                        <div class="humidity text-muted small">Rain Amount</div>
-                                        <div class="wind-speed">Wind</div>
-                                    </div>
-                                </div>
-                                </div>
                         </div>
                     </section>
 
