@@ -52,10 +52,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
-    'cloudinary',
     'weather',
+    'allauth',
+    'allauth.account',
+    'cloudinary',
+    'cloudinary_storage',
+
 ]
 
 MIDDLEWARE = [
@@ -67,6 +70,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'weather_proj.urls'

@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.landing, name='landing'),
     path('admin/', admin.site.urls),
     path('weather/', include('weather.urls', namespace='weather')),
+    path('accounts/', include('allauth.urls')),
 ]

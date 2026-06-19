@@ -8,11 +8,12 @@ crispy-bootstrap5==2026.3
 cryptography==46.0.5
 defusedxml==0.7.1
 dj-database-url==2.1.0
-Django==4.2.11
-django-allauth==0.57.0
+Django==6.0.6
+django-allauth==65.18.0
 django-cloudinary-storage==0.3.0
 django-crispy-forms==2.3
 djangorestframework==3.14.0
+git-filter-repo==2.47.0
 gunicorn==21.2.0
 idna==3.11
 oauthlib==3.3.1
