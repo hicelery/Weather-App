@@ -24,7 +24,7 @@
                                     <span id="current-location" class="ms-2 zalando">LOCATION</span>
                                 </div>
                                 <div>
-                                    <form method="POST" id="add-fav-form" action="">
+                                    <form method="POST" id="add-fav-form" action="{% url 'weather:add_favourite_location' location='placeholder' %}">
                                         {% csrf_token %}
                                         <button id='add-favourite-btn' type="submit">Add to Favorites</button>
                                         <p id="max-favourites-msg" class="d-none">You may only add a maximum of 3 favourite locations.</p>
@@ -148,4 +148,5 @@
                     </div>
                 </div>
         </div>
+
     {% endblock %}

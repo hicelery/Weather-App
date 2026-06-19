@@ -21,4 +21,4 @@ class FavouriteLocations(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.location} at {self.timestamp}"
+        return f"{self.location} for user: {self.user}"

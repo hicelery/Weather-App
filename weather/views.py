@@ -106,12 +106,16 @@ def weather_api(request):
 @login_required
 def add_favourite_location(request, location):
     # This functions returns favourite locations and weather data
-    try:
-        FavouriteLocations.objects.create(location=location, user=request.user)
+    if location == 'placeholder':
         return redirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        try:
+            FavouriteLocations.objects.create(
+                location=location, user=request.user)
+            return redirect(request.META.get('HTTP_REFERER', '/'))
 
-    except Exception:
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        except Exception:
+            return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @require_POST

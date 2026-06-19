@@ -78,6 +78,7 @@ function initializeApp() {
         weatherData = data;
         updateWeatherDisplay();
     });
+     updateFavoriteForm(currentLocation);
 }
 
 function getCurrentLocation() {    
@@ -222,7 +223,6 @@ function handleSubmitButtonClick(event) {
             updateWeatherDisplay();
         }
     });
-    updateFavoriteForm(currentLocation);
 }
 
 function handleFormFilters(event) {
@@ -265,17 +265,25 @@ function handleFormFilters(event) {
 
 
 function addFavouriteLocation(event) {
-    event.preventDefault();
     const maxMsg = document.getElementById("max-favourites-msg");
     if (maxMsg)
         maxMsg.classList.add("d-none");
     const currentLocationEl = document.getElementById("current-location");
     const favouriteLocation = currentLocationEl ? currentLocationEl.textContent : "";
     if (favouriteContainer && favouriteContainer.children.length >= 3) {
+        event.preventDefault();
         if (maxMsg)
             maxMsg.classList.remove("d-none");
         return;
     }
+    
+    // Update form action with current location before submission
+    if (favouriteLocation && favouriteLocation !== 'LOCATION') {
+        const form = document.getElementById('add-fav-form');
+        const newAction = `{% url 'weather:add_favourite_location' location='PLACEHOLDER' %}`.replace('PLACEHOLDER', encodeURIComponent(favouriteLocation));
+        form.action = newAction;
+    }
+    
     if (favouriteContainer) {
         addCard(favouriteContainer);
     }
@@ -299,11 +307,6 @@ function addFavouriteLocation(event) {
     }
 }
 
-function updateFavoriteForm(location) {
-    const form = document.getElementById('add-fav-form');
-    form.action = "{% url 'weather:add_favourite_location' location='PLACEHOLDER' %}".replace('PLACEHOLDER', encodeURIComponent(location));
-}
-
 
 function removeFavouriteLocation(event) {
     const target = event.target;
@@ -319,6 +322,7 @@ function removeFavouriteLocation(event) {
         maxMsg.classList.add("d-none");
     }
 }
+
 
 function addForecastCard(containerToUse) {
 
