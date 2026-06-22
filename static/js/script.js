@@ -378,38 +378,6 @@ function removeFavouriteLocation(event) {
     }
 }
 
-function getFavouriteLocatios(event) {
-    fetch('/weather/api/favourites/')
-    .then(response => response.json())
-    .then(data => {
-    if (data.success) {
-      favLocs = data
-    }
-  })
-
-    if (favouriteContainer) {
-        for (i in favLocs){
-            addCard(favouriteContainer);
-            callWeatherAPI(i).then((favouriteData) => {
-                if (favouriteData && favouriteData.city) {
-                    const favTitle = document.getElementById("favourite-title");
-                    if (favTitle)
-                        favTitle.textContent = favouriteData.city.name;
-                    const favImg = document.getElementById("favourite-image");
-                    if (favImg)
-                        favImg.src = "https://openweathermap.org/img/wn/" + favouriteData.list[0].weather[0].icon + "@2x.png";
-                    const favTemp = document.getElementById("favourite-temp-display");
-                    if (favTemp)
-                        favTemp.textContent = favouriteData.list[0].main.temp + "°C";
-                    const favWeather = document.getElementById("favourite-weather-type");
-                    if (favWeather)
-                        favWeather.textContent = favouriteData.list[0].weather[0].main;
-                }
-            });
-        }
-    }
-}
-
 
 function addForecastCard(containerToUse) {
 
