@@ -6,6 +6,9 @@ app_name = 'weather'
 urlpatterns = [
     path('', views.index, name='index'),
     path('api/weather/', views.weather_api, name='weather_api'),
+    path('api/favourites/',
+         views.get_favourite_location,
+         name='get_favourites'),
     path('api/favourites/add/<str:location>/',
          views.add_favourite_location,
          name='add_favourite_location'),

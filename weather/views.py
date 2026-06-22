@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from datetime import timedelta
 from .models import SearchQuery, FavouriteLocations
 
@@ -105,17 +105,25 @@ def weather_api(request):
 @require_POST
 @login_required
 def add_favourite_location(request, location):
-    # This functions returns favourite locations and weather data
+    # Add a favourite location and return JSON response
     if location == 'placeholder':
-        return redirect(request.META.get('HTTP_REFERER', '/'))
-    else:
-        try:
-            FavouriteLocations.objects.create(
-                location=location, user=request.user)
-            return redirect(request.META.get('HTTP_REFERER', '/'))
+        return JsonResponse({
+            'success': False,
+            'error': 'Invalid location'
+        }, status=400)
 
-        except Exception:
-            return redirect(request.META.get('HTTP_REFERER', '/'))
+    try:
+        FavouriteLocations.objects.create(
+            location=location, user=request.user)
+        return JsonResponse({
+            'success': True,
+            'message': f'{location} added to favourites'
+        })
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        }, status=400)
 
 
 @require_POST
@@ -124,6 +132,33 @@ def delete_favourite_location(request, location):
     try:
         FavouriteLocations.objects.filter(
             location=location, user=request.user).delete()
-        return redirect(request.META.get('HTTP_REFERER', '/'))
-    except Exception:
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        return JsonResponse({
+            'success': True,
+            'message': f'{location} removed from favourites'
+        })
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        }, status=400)
+
+
+@require_GET
+@login_required
+def get_favourite_location(request):
+    try:
+        favourite_locations = FavouriteLocations.objects.filter(
+            user=request.user
+        ).values('id', 'location').order_by('-id')
+
+        locations_list = list(favourite_locations)
+        return JsonResponse({
+            'success': True,
+            'locations': locations_list,
+            'count': len(locations_list)
+        })
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        }, status=500)
