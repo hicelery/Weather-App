@@ -168,6 +168,7 @@ footer p {
     font-weight: 350;
     margin-left: 10px;
     margin-right: 10px;
+    width: 40%;
 }
 
 #add-favourite-btn:hover {
