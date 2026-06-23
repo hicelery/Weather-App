@@ -28,9 +28,7 @@ const addFavBtn = document.getElementById("add-favourite-btn");
 if (addFavBtn) {
     addFavBtn.addEventListener("click", addFavouriteLocation);
 }
-if (favouriteContainer) {
-    favouriteContainer.addEventListener("click", removeFavouriteLocation);
-}
+
 
 // Scale current-location text to fit forecast-today width
 window.addEventListener("resize", scaleCurrentLocationText);
@@ -102,7 +100,23 @@ function getCurrentLocationWeather() {
     });
 }
 
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
+
+//main weather API call - fetch from backend (backend handles cache etc)
 function callWeatherAPI(location) {
     console.log("Fetching weather data for", location);
     const endpoint = `/weather/api/weather/?q=${encodeURIComponent(location)}`;
@@ -123,6 +137,7 @@ function callWeatherAPI(location) {
     });
 }
 
+//Main forecast display js
 function updateWeatherDisplay() {
     if (!weatherData || !weatherData.list || !weatherData.city)
         return;
@@ -268,6 +283,12 @@ function handleFormFilters(event) {
 }
 
 
+/** Favourite location functions
+ *  Add / remove functions
+ *  Get and update display function (called by add and remove)
+ */
+
+
 function addFavouriteLocation(event) {
     event.preventDefault();
     const maxMsg = document.getElementById("max-favourites-msg");
@@ -334,44 +355,68 @@ function addFavouriteLocation(event) {
     }
 }
 
-
-
-function removeFavouriteLocation(event) {
+function confirmModal(event){
+    //show delete confirmation modal when remove favourite clicked.
     const target = event.target;
     const closeBtn = target.closest(".remove-favourite-btn");
     if (!closeBtn)
         return;
     event.preventDefault();
     const card = closeBtn.closest(".forecast-card");
-    if (card) {
-        const locationTitle = card.querySelector("#favourite-title");
-        const locationName = locationTitle ? locationTitle.textContent.trim() : "";
+    if (!card) return;
+    window.cardToDelete = card;
+    const modal = new window.bootstrap.Modal(
+        document.getElementById("deleteConfirmModal"),
+    );
+    modal.show();
+}
+
+//run removeFav when modal confirmed
+const confirmDeleteBtn = document.getElementById(
+    "confirmDeleteBtn",
+    );
+if (confirmDeleteBtn) {
+    confirmDeleteBtn.addEventListener("click", () => {
+        removeFavouriteLocation(window.cardToDelete);
+        // Close modal
+        const modal = window.bootstrap.Modal.getInstance(
+            document.getElementById("deleteConfirmModal"),
+        );
+        if (modal) modal.hide();
+    });
+}
+
+
+
+function removeFavouriteLocation(card) {
+    if (!card) return; 
+
+    const locationTitle = card.querySelector(".favourite-title");
+    const locationName = locationTitle ? locationTitle.textContent.trim() : "";
         
         // Make fetch request to remove favourite location
-        if (locationName && locationName !== "Location") {
-            const url = `/weather/api/favourites/remove/${encodeURIComponent(locationName)}/`;
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': getCookie('csrftoken'),
-                    'Content-Type': 'application/json'
+    if (locationName && locationName !== "Location") {
+        const url = `/weather/api/favourites/remove/${encodeURIComponent(locationName)}/`;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json'
                 }
-            })
-            .then(response => {
-                if (response.ok) {
-                    card.remove();
-                } else {
-                    alert('Failed to remove favourite location');
-                }
-            })
-            .catch(error => {
-                console.error('Error removing favourite:', error);
-                alert('Error removing favourite location');
-            });
-        } else {
-            card.remove();
+        })
+        .then(response => {
+            if (response.ok) {
+                card.remove();
+                alert('Removed favourite location');
+            } else {
+                alert('Failed to remove favourite location');
+            }
+        })
+        .catch(error => {
+            console.error('Error removing favourite:', error);
+            alert('Error removing favourite location');
+        }); 
         }
-    }
     const maxMsg = document.getElementById("max-favourites-msg");
     if (maxMsg && favouriteContainer && favouriteContainer.children.length <= 3) {
         maxMsg.classList.add("d-none");
@@ -410,6 +455,7 @@ function addCard(containerToUse) {
     if (firstCard) {
         const newCard = firstCard.cloneNode(true);
         containerToUse.appendChild(newCard);
+        return newCard;
     }
     else {
         const newCard = document.createElement("div");
@@ -418,32 +464,24 @@ function addCard(containerToUse) {
       <div class="favourite-card weather-card card h-100 position-relative">
         <button class="remove-favourite-btn btn-close position-absolute top-0 end-0 m-2" aria-label="Remove favourite"></button>
         <div class="card-body">
-          <h5 id="favourite-title" class="card-title fs-1">Location</h5>
-          <img id="favourite-image" class="weather-icon mb-2" src="" alt="Weather icon">
-          <p id="favourite-weather-type" class="weather-type">Weather Type</p>
-          <p id="favourite-temp-display" class="temp-display">Temperature: --°C</p>
+          <h5 class="favourite-title card-title fs-1">Location</h5>
+          <img class="favourite-image weather-icon mb-2" src="" alt="Weather icon">
+          <p class="favourite-weather-type weather-type">Weather Type</p>
+          <p class="favourite-temp-display temp-display">Temperature: --°C</p>
         </div>
       </div>
     `;
-        containerToUse.appendChild(newCard);
-    }
-}
-
-
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
+        const removeBtn = newCard.querySelector(".remove-favourite-btn");
+        if (removeBtn) {
+            removeBtn.addEventListener("click", confirmModal);
         }
+        
+        containerToUse.appendChild(newCard);
+                return newCard;
     }
-    return cookieValue;
 }
+
+
 
 // Load favourite locations from the API endpoint
 function loadFavouriteLocations() {
@@ -455,25 +493,25 @@ function loadFavouriteLocations() {
                 favouriteContainer.innerHTML = '';
                 // Add a card for each favourite location
                 data.locations.forEach(location => {
-                    addCard(favouriteContainer);
+                    const favouriteCard = addCard(favouriteContainer);
                     // Load weather data for this location
                     callWeatherAPI(location.location).then((weatherData) => {
-                        if (weatherData && weatherData.city) {
-                            const cards = favouriteContainer.querySelectorAll('.favourite-card');
-                            const lastCard = cards[cards.length - 1];
-                            if (lastCard) {
-                                const favTitle = lastCard.querySelector('#favourite-title');
-                                if (favTitle) favTitle.textContent = weatherData.city.name;
-                                
-                                const favImg = lastCard.querySelector('#favourite-image');
-                                if (favImg) favImg.src = "https://openweathermap.org/img/wn/" + weatherData.list[0].weather[0].icon + "@2x.png";
-                                
-                                const favTemp = lastCard.querySelector('#favourite-temp-display');
-                                if (favTemp) favTemp.textContent = weatherData.list[0].main.temp + "°C";
-                                
-                                const favWeather = lastCard.querySelector('#favourite-weather-type');
-                                if (favWeather) favWeather.textContent = weatherData.list[0].weather[0].main;
-                            }
+                        if (weatherData && weatherData.city && favouriteCard) {
+                            const favTitle = favouriteCard.querySelector('.favourite-title');
+                            if (favTitle)
+                                favTitle.textContent = weatherData.city.name;
+
+                            const favImg = favouriteCard.querySelector('.favourite-image');
+                            if (favImg)
+                                favImg.src = "https://openweathermap.org/img/wn/" + weatherData.list[0].weather[0].icon + "@2x.png";
+
+                            const favTemp = favouriteCard.querySelector('.favourite-temp-display');
+                            if (favTemp)
+                                favTemp.textContent = weatherData.list[0].main.temp + "°C";
+
+                            const favWeather = favouriteCard.querySelector('.favourite-weather-type');
+                            if (favWeather)
+                                favWeather.textContent = weatherData.list[0].weather[0].main;
                         }
                     });
                 });

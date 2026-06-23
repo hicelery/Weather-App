@@ -20,5 +20,10 @@ class FavouriteLocations(models.Model):
     location = models.CharField(max_length=255)
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
+    constraints = [
+        models.UniqueConstraint(
+            fields=["location", "user"], name="user_location"),
+    ]
+
     def __str__(self):
         return f"{self.location}, {self.user}"
