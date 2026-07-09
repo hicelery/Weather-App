@@ -30,7 +30,7 @@
                             </div>
 
                             <!-- Main Weather Display -->
-                            <div class="weather-main d-flex flex-column flex-md-row justify-content-md-between align-items-center gap-3 gap-md-0">
+                            <div class="weather-main d-flex flex-column flex-md-row justify-content-md-between align-items-center gap-3 gap-md-0" aria-label="Today's Forecast">
                                 <!-- Left: Weather Info -->
                                 <div class="weather-left text-center text-md-start">
                                     <div class="weather-label">Weather</div>
@@ -74,29 +74,29 @@
 
                     <section id='searchfilters' class="mb-4 d-flex justify-content-center">
                         <form id="forecast-options-form" class="d-flex flex-column flex-md-row gap-2 gap-md-3 align-items-start align-items-md-center justify-content-center justify-content-md-around w-100 px-2">
-                            <div class="d-flex align-items-center gap-2 filter w-100 w-md-auto">
+                            <div class="d-flex align-items-center gap-2 filter filter-item w-100 w-md-auto">
                                 <input type="checkbox" id="tempCheck" class="filter-input btn" name="fav_language"
                                     value="Temperature" checked />
                                 <label for="tempCheck" class="mb-0">Temperature</label>
                             </div>
 
-                            <div class="d-flex align-items-center gap-2 filter w-100 w-md-auto">
+                            <div class="d-flex align-items-center gap-2 filter filter-item w-100 w-md-auto">
                                 <input type="checkbox" id="windCheck" class="filter-input btn" name="fav_language" value="wind"
                                     checked />
                                 <label for="windCheck" class="mb-0">Wind</label>
                             </div>
 
-                            <div class="d-flex align-items-center gap-2 filter w-100 w-md-auto">
+                            <div class="d-flex align-items-center gap-2 filter filter-item w-100 w-md-auto">
                                 <input type="checkbox" id="humidityCheck" class="filter-input btn" name="fav_language" value="humidity"
                                     checked />
                                 <label for="humidityCheck" class="mb-0">Humidity</label>
                             </div>
 
-                            <div class="d-flex align-items-center gap-2 w-100 w-md-auto">
+                            <div class="d-flex align-items-center gap-2 filter filter-item w-100 w-md-auto">
                                 <input type="number" id="forecastDays" placeholder="Number of days:"
                                     class="form-control" min="1" max="5" value="5" />
                             </div>
-                            <button id="applyDataFilters" type="submit" class="btn btn-primary hover w-100 w-md-auto">
+                            <button id="applyDataFilters" type="submit" class="btn btn-primary hover filter-item w-100 w-md-auto">
                                 Apply
                             </button>
                         </form>

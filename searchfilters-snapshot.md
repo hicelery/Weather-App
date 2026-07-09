@@ -1,0 +1,36 @@
+- generic [active] [ref=e1] [box=0,0,1021,1456]:
+  - navigation [ref=e2] [box=0,0,1021,76]:
+    - generic [ref=e3] [box=0,8,1021,60]:
+      - link "logo Weather Now" [ref=e4] [cursor=pointer] [box=12,8,219,60]:
+        - /url: /weather/
+        - img "logo" [ref=e5] [box=20,13,56,50]
+        - text: Weather Now
+      - list [ref=e7] [box=734,18,275,40]:
+        - listitem [ref=e8] [box=739,18,175,40]
+        - listitem [ref=e10] [box=924,18,80,40]
+  - banner [box=0,100,1021,0]
+  - main [ref=e13] [box=0,100,1021,1231]:
+    - generic [ref=e14] [box=0,100,1021,1231]:
+      - generic [ref=e17] [box=44,100,932,652]:
+        - generic [ref=e18] [box=74,130,872,82]
+        - generic [ref=e26] [box=74,216,187,147]
+        - generic "Today's Forecast" [ref=e29] [box=74,363,872,250]
+        - generic [ref=e36] [box=74,653,872,69]
+      - heading "Future Forecast" [level=3] [ref=e45] [box=12,776,997,45]
+      - generic [ref=e47] [box=12,837,997,64]:
+        - generic [ref=e48] [cursor=pointer] [box=25,849,175,40]
+        - generic [ref=e51] [cursor=pointer] [box=226,849,175,40]
+        - generic [ref=e54] [cursor=pointer] [box=428,849,175,40]
+        - spinbutton "Number of days:" [ref=e58] [box=624,850,170,38]: "5"
+        - button "Apply" [ref=e59] [cursor=pointer] [box=810,850,191,38]
+      - generic [ref=e65] [box=30,977,500,250]:
+        - heading "Today" [level=3] [ref=e67] [box=47,989,466,32]
+        - generic [ref=e69] [box=31,1029,498,197]
+      - heading "Favourite locations" [level=2] [ref=e76] [box=12,1299,997,24]
+  - contentinfo [ref=e77] [box=0,1331,1021,125]:
+    - paragraph [ref=e78] [box=1,1352,1019,36]: Weather Now
+    - paragraph [ref=e79] [box=1,1389,1019,24]:
+      - text: Powered By
+      - link "OpenWeatherMap" [ref=e80] [cursor=pointer] [box=489,1390,130,22]:
+        - /url: https://openweathermap.org/
+    - paragraph [ref=e81] [box=1,1414,1019,21]: MHW © 2026

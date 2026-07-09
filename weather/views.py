@@ -1,13 +1,22 @@
 import requests
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import JsonResponse
 from django.conf import settings
 from django.core.cache import cache
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_GET
 from datetime import timedelta
 from .models import SearchQuery, FavouriteLocations
+
+
+def _require_authenticated_json(request):
+    if request.user.is_authenticated:
+        return None
+
+    return JsonResponse({
+        'success': False,
+        'error': 'Authentication required'
+    }, status=401)
 
 
 def landing(request):
@@ -103,8 +112,11 @@ def weather_api(request):
 
 
 @require_POST
-@login_required
 def add_favourite_location(request, location):
+    unauthenticated_response = _require_authenticated_json(request)
+    if unauthenticated_response:
+        return unauthenticated_response
+
     # Add a favourite location and return JSON response
     if location == 'placeholder':
         return JsonResponse({
@@ -127,8 +139,11 @@ def add_favourite_location(request, location):
 
 
 @require_POST
-@login_required
 def delete_favourite_location(request, location):
+    unauthenticated_response = _require_authenticated_json(request)
+    if unauthenticated_response:
+        return unauthenticated_response
+
     try:
         FavouriteLocations.objects.filter(
             location=location, user=request.user).delete()
@@ -144,8 +159,11 @@ def delete_favourite_location(request, location):
 
 
 @require_GET
-@login_required
 def get_favourite_location(request):
+    unauthenticated_response = _require_authenticated_json(request)
+    if unauthenticated_response:
+        return unauthenticated_response
+
     try:
         favourite_locations = FavouriteLocations.objects.filter(
             user=request.user

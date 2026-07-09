@@ -486,7 +486,21 @@ function addCard(containerToUse) {
 // Load favourite locations from the API endpoint
 function loadFavouriteLocations() {
     fetch('/weather/api/favourites/')
-        .then(response => response.json())
+        .then(response => {
+            const contentType = response.headers.get("content-type") || "";
+
+            if (!contentType.includes("application/json")) {
+                throw new Error(`Expected JSON from favourites API, got ${contentType || 'unknown content type'}`);
+            }
+
+            return response.json().then(data => {
+                if (!response.ok) {
+                    throw new Error(data.error || `Favourites API request failed with status ${response.status}`);
+                }
+
+                return data;
+            });
+        })
         .then(data => {
             if (data.success && favouriteContainer) {
                 // Clear existing cards

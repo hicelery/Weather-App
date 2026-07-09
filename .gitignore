@@ -10,3 +10,6 @@ env.py
 db.sqlite3
 
 node_modules/
+
+.vscode/
+.playwright-mcp/
