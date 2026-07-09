@@ -15,3 +15,7 @@ python manage.py clear_old_searches
 - Rigourous implementation of external OpenWeatherMap API.
 - Tiered caching of API calls to limit server-round trips.
 - AJAX updates to invoke custom endpoints without client refresh/user-journey interruptions.
+
+## Testing:
+
+Playwright used to test browser accessibility for screen readers. Github copilot cli agent created to oversee and sure up test suite.
