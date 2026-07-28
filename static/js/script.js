@@ -155,7 +155,7 @@ function updateWeatherDisplay() {
     const feelsLikeEl = document.getElementById("feels-like-display");
     if (feelsLikeEl)
         feelsLikeEl.textContent = weatherData.list[0].main.feels_like + "°C";
-    const weatherTypeEl = document.getElementById("todaydetails-weather");
+    const weatherTypeEl = document.getElementById("weather-label");
     if (weatherTypeEl)
         weatherTypeEl.textContent = weatherData.list[0].weather[0].main;
     const todayImageEl = document.getElementById("today-image");
@@ -182,15 +182,14 @@ function updateWeatherDisplay() {
             }
         }
     }
-    //take first dt_txt. for i up to 5 add 1 to dt, then take max temp for entries starting with that dt_txt
+    const dailyForecasts = buildDailyForecasts(weatherData.list);
     for (let i = 0; i < forecastDays; i++) {
-        //update config to take max temp from each day, rather than temp 24 hours from now.
-        let forecast = weatherData.list[i * 8];
+        const forecast = dailyForecasts[i];
         if (!forecast)
             continue;
         const dayElements = document.querySelectorAll(".forecast-card .day");
-        const tempElements = document.querySelectorAll(".forecast-card .temp-display");
-        const feelsLikeElements = document.querySelectorAll(".forecast-card .feels-like");
+        const maxTempElements = document.querySelectorAll(".forecast-card .max-temp");
+        const minTempElements = document.querySelectorAll(".forecast-card .min-temp");
         const weatherTypeElements = document.querySelectorAll(".forecast-card .weather-type");
         const weatherIconElements = document.querySelectorAll(".forecast-card .weather-icon");
         const windSpeedElements = document.querySelectorAll(".forecast-card .wind-speed");
@@ -200,10 +199,10 @@ function updateWeatherDisplay() {
             const date = new Date(forecast.dt_txt);
             dayElements[i-1].textContent = date.toLocaleDateString(undefined, { weekday: "long" });
         }
-        if (tempElements[i])
-            tempElements[i].textContent = forecast.main.temp + " °C";
-        if (feelsLikeElements[i])
-            feelsLikeElements[i].textContent = forecast.main.feels_like + " °C";
+        if (maxTempElements[i])
+            maxTempElements[i].textContent = `${Math.round(forecast.maxTemp)} °C`;
+        if (minTempElements[i])
+            minTempElements[i].textContent = `${Math.round(forecast.minTemp)} °C`;
         if (weatherTypeElements[i])
             weatherTypeElements[i].textContent = forecast.weather[0].main;
         if (weatherIconElements[i]) {
@@ -217,6 +216,25 @@ function updateWeatherDisplay() {
     
     // Scale current-location text to fit forecast-today width
     scaleCurrentLocationText();
+}
+
+function buildDailyForecasts(forecastList) {
+    const forecastDaysMap = new Map();
+    forecastList.forEach((forecast) => {
+        const dateKey = forecast.dt_txt.slice(0, 10);
+        if (!forecastDaysMap.has(dateKey)) {
+            forecastDaysMap.set(dateKey, []);
+        }
+        forecastDaysMap.get(dateKey).push(forecast);
+    });
+    return Array.from(forecastDaysMap.values()).map((dayForecasts) => {
+        const temperatures = dayForecasts.map((forecast) => forecast.main.temp);
+        return {
+            ...dayForecasts[0],
+            minTemp: Math.min(...temperatures),
+            maxTemp: Math.max(...temperatures)
+        };
+    });
 }
 
 
@@ -261,17 +279,17 @@ function handleFormFilters(event) {
     
     // Toggle visibility of elements based on filter checkboxes
     const windElements = document.querySelectorAll(".wind-speed");
-    const tempElements = document.querySelectorAll(".temp-display");
-    const feelsLikeElements = document.querySelectorAll(".feels-like");
+    const maxTempElements = document.querySelectorAll(".max-temp");
+    const minTempElements = document.querySelectorAll(".min-temp");
     const humidityElements = document.querySelectorAll(".humidity");
     
     windElements.forEach((element) => {
         showWind ? element.classList.remove("d-none") : element.classList.add("d-none");
     });
-    tempElements.forEach((element) => {
+    maxTempElements.forEach((element) => {
         showTemp ? element.classList.remove("d-none") : element.classList.add("d-none");
     });
-    feelsLikeElements.forEach((element) => {
+    minTempElements.forEach((element) => {
         showTemp ? element.classList.remove("d-none") : element.classList.add("d-none");
     });
     humidityElements.forEach((element) => {
@@ -438,10 +456,10 @@ function addForecastCard(containerToUse) {
             <div class="card weather-card h-100">
                 <div class="day"></div>
                 <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
-                <div class="temp-display"></div>
-                <div class="feels-like"></div>
+                <div class="max-temp"></div>
+                <div class="min-temp"></div>
                 <div class="weather-type">{Weather}</div>
-                <div class="humidity text-muted small">Rain Amount</div>
+                <div class="humidity small">Rain Amount</div>
                 <div class="wind-speed">Wind</div>
                 </div>
             </div>

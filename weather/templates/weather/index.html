@@ -33,7 +33,7 @@
                             <div class="weather-main d-flex flex-column flex-md-row justify-content-md-between align-items-center gap-3 gap-md-0" aria-label="Today's Forecast">
                                 <!-- Left: Weather Info -->
                                 <div class="weather-left text-center text-md-start">
-                                    <div class="weather-label">Weather</div>
+                                    <div id="weather-label" class="weather-label">Weather</div>
                                     <div class="weather-subtext">Now</div>
                                     <div id="todaydetails-temp" class="temp-display zalando"></div>
                                     <div class="feels-like-text">Feels like <span id="feels-like-display"></span></div>
@@ -81,16 +81,18 @@
                             </div>
 
                             <div class="d-flex align-items-center gap-2 filter filter-item w-100 w-md-auto">
+                                <input type="checkbox" id="humidityCheck" class="filter-input btn" name="fav_language" value="humidity"
+                                    checked />
+                                <label for="humidityCheck" class="mb-0">Humidity</label>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2 filter filter-item w-100 w-md-auto">
                                 <input type="checkbox" id="windCheck" class="filter-input btn" name="fav_language" value="wind"
                                     checked />
                                 <label for="windCheck" class="mb-0">Wind</label>
                             </div>
 
-                            <div class="d-flex align-items-center gap-2 filter filter-item w-100 w-md-auto">
-                                <input type="checkbox" id="humidityCheck" class="filter-input btn" name="fav_language" value="humidity"
-                                    checked />
-                                <label for="humidityCheck" class="mb-0">Humidity</label>
-                            </div>
+                            
 
                             <div class="d-flex align-items-center gap-2 filter filter-item w-100 w-md-auto">
                                 <input type="number" id="forecastDays" placeholder="Number of days:"
@@ -118,10 +120,10 @@
                                             </div>
                                             <div class="card-body d-flex flex-column justify-content-between">
                                             <img src="{% static 'images/favicon.ico' %}" alt="Weather Icon" class="weather-icon" />
-                                            <div class="temp-display"></div>
-                                            <div class="feels-like"></div>
+                                            <div class="max-temp"></div>
+                                            <div class="min-temp"></div>
                                             <div class="weather-type">{Weather}</div>
-                                            <div class="humidity text-muted small">Rain Amount</div>
+                                            <div class="humidity small">Rain Amount</div>
                                             <div class="wind-speed">Wind</div>
                                             </div>
                                         </div>
