@@ -4,6 +4,7 @@ const storedFavouriteLocations = [];
 let forecastDays = 5;
 let weatherData = null;
 let userLocation = "";
+let tempTrendChart = null;
 const todayDateElement = document.getElementById("current-date");
 const container = document.getElementById("forecast-container");
 const favouriteContainer = document.getElementById("favourites-container");
@@ -128,7 +129,6 @@ function callWeatherAPI(location) {
         return response.json();
     })
         .then(function (data) {
-            console.log(data)
         return data;
     })
         .catch(function (error) {
@@ -171,6 +171,7 @@ function updateWeatherDisplay() {
     const humidityDisplayEl = document.getElementById("humidity-display");
     if (humidityDisplayEl)
         humidityDisplayEl.textContent = `${weatherData.list[0].main.humidity}%`;
+    renderTempTrend(weatherData.list);
     if (container) {
         while (container.querySelectorAll(".forecast-card").length < forecastDays) {
             addForecastCard(container);
@@ -216,6 +217,99 @@ function updateWeatherDisplay() {
     
     // Scale current-location text to fit forecast-today width
     scaleCurrentLocationText();
+}
+
+function renderTempTrend(forecastList) {
+    const chartEl = document.getElementById("temp-trend-chart");
+    if (!chartEl || !forecastList || !forecastList.length) return;
+    if (typeof Chart === "undefined") return;
+
+    const pointsToUse = Math.min(8, forecastList.length);
+    const samples = forecastList.slice(0, pointsToUse);
+    const labels = samples.map((item) => item.dt_txt.slice(11, 16));
+    const temps = samples.map((item) => Math.round(item.main.temp));
+    
+
+    if (tempTrendChart) {
+        tempTrendChart.destroy();
+    }
+
+    tempTrendChart = new Chart(chartEl, {
+        type: "line",
+        data: {
+            labels,
+            datasets: [
+                {
+                    data: temps,
+                    borderColor: "#ffffff",
+                    backgroundColor: "#ffffff",
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 4,
+                    tension: 0.3,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                    
+                 },
+                tooltip: {
+                    callbacks: {
+                        label(context) {
+                            return `${context.parsed.y}°C`;
+                        },
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        font: { size: 11 },                     
+                        color: "#ffffff", 
+                    }
+                },
+                y: {
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)' // Minimal faint horizontal lines
+                    },
+                    ticks: {
+                        display: false,
+                    }
+                }
+            },
+            layout: {
+                padding: {
+                    top: 16,
+                    right: 8,
+                    left: 8,
+                    bottom: 2,
+                },
+            },
+        },
+        plugins: [{
+            id: "pointValueLabels",
+            afterDatasetsDraw(chart) {
+                const { ctx } = chart;
+                const meta = chart.getDatasetMeta(0);
+                ctx.save();
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "12px sans-serif";
+                ctx.textAlign = "center";
+                meta.data.forEach((point, index) => {
+                    ctx.fillText(`${temps[index]}°`, point.x, point.y - 10);
+                });
+                ctx.restore();
+            },
+        }],
+    });
 }
 
 function buildDailyForecasts(forecastList) {
