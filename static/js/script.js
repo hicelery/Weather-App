@@ -287,7 +287,7 @@ function renderTempTrend(forecastList) {
             },
             layout: {
                 padding: {
-                    top: 16,
+                    top: 10,
                     right: 8,
                     left: 8,
                     bottom: 2,
