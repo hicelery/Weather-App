@@ -146,6 +146,11 @@
                     <div class="col-12">
                         <h2 class="h5 text-center">Favourite locations</h2>
                     </div>
+                    {% if  not user.is_authenticated%}
+                    <p class="text-center ">
+                        <a href="{% url "account_signup" %}">Sign up</a> or <a href="{% url "account_login" %}"> log in</a> to save favourite
+                    </p> 
+                    {% endif %}
                     <!-- Saved location cards -->
                     <div id="favourites-container" class="favourite-location-container row w-100">
                         <!--template of cards to add -->

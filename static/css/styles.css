@@ -57,6 +57,10 @@ main {
     flex: 1 0 auto;
 }
 
+p > a {
+    color: rgb(239, 90, 15);
+}
+
 /* Footer Styling */
 footer {
     background-color: rgb(35, 35, 37);
