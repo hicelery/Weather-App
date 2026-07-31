@@ -30,10 +30,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto">                    
                     <li class="nav-item">
                         <a class="hover nav-link" href="https://severeweather.wmo.int/" target="_blank"
                             rel="noopener">View Extreme Weather</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="hover nav-link" href="https://github.com/hicelery/WeatherApp/" target="_blank"
+                            rel="noopener">Go to Github <i class="fa-brands fa-github"></i></a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
