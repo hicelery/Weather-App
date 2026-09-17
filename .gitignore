@@ -13,4 +13,5 @@ node_modules/
 
 .vscode/
 .playwright-mcp/
-.docs/
+docs/
+/docs

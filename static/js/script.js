@@ -137,41 +137,32 @@ function callWeatherAPI(location) {
     });
 }
 
+/*
+
+```js
+function updateWeatherDisplay() {
+    if (!isValidWeatherData(weatherData)) return;
+
+    const settings = readForecastSettings();
+    renderCurrentConditions(weatherData);
+    renderTempTrend(weatherData.list);
+    syncForecastCardCount(settings.forecastDays);
+    renderDailyForecastCards(weatherData.list, settings.forecastDays);
+    scaleCurrentLocationText();
+}
+```*/
+
 //Main forecast display js
 function updateWeatherDisplay() {
+    // if no data break function
     if (!weatherData || !weatherData.list || !weatherData.city)
         return;
-    const forecastDaysInput = document.getElementById("forecastDays");
-    if (forecastDaysInput) {
-        forecastDays = parseInt(forecastDaysInput.value, 10) || 1;
-    }
-    console.log(forecastDays);
-    const currentLocationEl = document.getElementById("current-location");
-    if (currentLocationEl)
-        currentLocationEl.textContent = weatherData.city.name;
-    const tempDisplayEl = document.getElementById("todaydetails-temp");
-    if (tempDisplayEl)
-        tempDisplayEl.textContent = weatherData.list[0].main.temp + "°C";
-    const feelsLikeEl = document.getElementById("feels-like-display");
-    if (feelsLikeEl)
-        feelsLikeEl.textContent = weatherData.list[0].main.feels_like + "°C";
-    const weatherTypeEl = document.getElementById("weather-label");
-    if (weatherTypeEl)
-        weatherTypeEl.textContent = weatherData.list[0].weather[0].main;
-    const todayImageEl = document.getElementById("today-image");
-    if (todayImageEl)
-        todayImageEl.src = "/static/images/weathericons/" + weatherData.list[0].weather[0].main + ".png";
-
-    const windTodayEl = document.getElementById("todaydetails-wind");
-    if (windTodayEl)
-        windTodayEl.textContent = `${weatherData.list[0].wind.speed} m/s`;
-    const windSpeedDisplayEl = document.getElementById("wind-speed-display");
-    if (windSpeedDisplayEl)
-        windSpeedDisplayEl.textContent = `${weatherData.list[0].wind.speed} m/s`;
-    const humidityDisplayEl = document.getElementById("humidity-display");
-    if (humidityDisplayEl)
-        humidityDisplayEl.textContent = `${weatherData.list[0].main.humidity}%`;
+    // get parameters for api display and define DOM elements
+    const settings = readForecastSettings();
+    // render graph
     renderTempTrend(weatherData.list);
+
+    //add cards for days.
     if (container) {
         while (container.querySelectorAll(".forecast-card").length < forecastDays) {
             addForecastCard(container);
@@ -184,6 +175,8 @@ function updateWeatherDisplay() {
         }
     }
     const dailyForecasts = buildDailyForecasts(weatherData.list);
+
+    //hydrate cards with data for each day
     for (let i = 0; i < forecastDays; i++) {
         const forecast = dailyForecasts[i];
         if (!forecast)
@@ -219,6 +212,45 @@ function updateWeatherDisplay() {
     scaleCurrentLocationText();
 }
 
+function readForecastSettings() {
+    // get parameters for api display and define DOM elements
+    const forecastDaysInput = document.getElementById("forecastDays");
+    if (forecastDaysInput) {
+        forecastDays = parseInt(forecastDaysInput.value, 10) || 1;
+    }
+    console.log(forecastDays);
+    const currentLocationEl = document.getElementById("current-location");
+    if (currentLocationEl)
+        currentLocationEl.textContent = weatherData.city.name;
+    const tempDisplayEl = document.getElementById("todaydetails-temp");
+    if (tempDisplayEl)
+        tempDisplayEl.textContent = weatherData.list[0].main.temp + "°C";
+    const feelsLikeEl = document.getElementById("feels-like-display");
+    if (feelsLikeEl)
+        feelsLikeEl.textContent = weatherData.list[0].main.feels_like + "°C";
+    const weatherTypeEl = document.getElementById("weather-label");
+    if (weatherTypeEl)
+        weatherTypeEl.textContent = weatherData.list[0].weather[0].main;
+    const todayImageEl = document.getElementById("today-image");
+    if (todayImageEl)
+        todayImageEl.src = "/static/images/weathericons/" + weatherData.list[0].weather[0].main + ".png";
+
+    const windTodayEl = document.getElementById("todaydetails-wind");
+    if (windTodayEl)
+        windTodayEl.textContent = `${weatherData.list[0].wind.speed} m/s`;
+    const windSpeedDisplayEl = document.getElementById("wind-speed-display");
+    if (windSpeedDisplayEl)
+        windSpeedDisplayEl.textContent = `${weatherData.list[0].wind.speed} m/s`;
+    const humidityDisplayEl = document.getElementById("humidity-display");
+    if (humidityDisplayEl)
+        humidityDisplayEl.textContent = `${weatherData.list[0].main.humidity}%`;
+}
+
+/*
+function syncForecastCardCount(forecastDays) {
+
+};
+*/
 function renderTempTrend(forecastList) {
     const chartEl = document.getElementById("temp-trend-chart");
     if (!chartEl || !forecastList || !forecastList.length) return;
